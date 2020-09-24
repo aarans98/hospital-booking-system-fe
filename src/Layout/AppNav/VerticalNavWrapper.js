@@ -5,10 +5,10 @@ import MetisMenu from "react-metismenu";
 import { setEnableMobileMenu } from "../../reducers/ThemeOptions";
 import {
   MainNav,
-  ComponentsNav,
-  FormsNav,
-  WidgetsNav,
-  ChartsNav,
+  // ComponentsNav,
+  // FormsNav,
+  // WidgetsNav,
+  // ChartsNav,
 } from "./NavItems";
 
 class Nav extends Component {
@@ -31,8 +31,8 @@ class Nav extends Component {
           iconNamePrefix=''
           classNameStateIcon='pe-7s-angle-down'
         />
-        <h5 className='app-sidebar__heading'>UI Components</h5>
-        <MetisMenu
+        {/* <h5 className='app-sidebar__heading'>UI Components</h5> */}
+        {/* <MetisMenu
           content={ComponentsNav}
           onSelected={this.toggleMobileSidebar}
           activeLinkFromLocation
@@ -66,7 +66,7 @@ class Nav extends Component {
           className='vertical-nav-menu'
           iconNamePrefix=''
           classNameStateIcon='pe-7s-angle-down'
-        />
+        /> */}
       </Fragment>
     );
   }

@@ -218,7 +218,7 @@ const AppMain = () => {
         <Route path='/dashboards' component={Dashboards} />
       </Suspense>
 
-      <Route exact path='/' render={() => <Redirect to='/dashboards/crm' />} />
+      <Route exact path='/' render={() => <Redirect to='/pages/register' />} />
       <ToastContainer />
     </Fragment>
   );

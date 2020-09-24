@@ -179,8 +179,8 @@ export default class Register extends Component {
                       <h5 className='mb-0'>
                         Already have an account?{" "}
                         <a
-                          href='https://colorlib.com/'
-                          onClick={(e) => e.preventDefault()}
+                          href='http://localhost:3000/#/pages/login-boxed'
+                          onClick={"http://localhost:3000/#/pages/login-boxed"}
                           className='text-primary'>
                           Sign in
                         </a>
