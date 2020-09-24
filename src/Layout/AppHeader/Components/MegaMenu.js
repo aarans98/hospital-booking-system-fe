@@ -1,148 +1,150 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from "react";
 
 import {
-    UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Popover,
-    Nav, NavLink, Col, Row, NavItem, UncontrolledButtonDropdown, Button
-} from 'reactstrap';
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Popover,
+  Nav,
+  NavLink,
+  Col,
+  Row,
+  NavItem,
+  UncontrolledButtonDropdown,
+  Button,
+} from "reactstrap";
 
-import PerfectScrollbar from 'react-perfect-scrollbar';
+import PerfectScrollbar from "react-perfect-scrollbar";
 
-import bg2 from '../../../assets/utils/images/dropdown-header/abstract2.jpg';
-import bg3 from '../../../assets/utils/images/dropdown-header/abstract3.jpg';
+import bg2 from "../../../assets/utils/images/dropdown-header/abstract2.jpg";
+import bg3 from "../../../assets/utils/images/dropdown-header/abstract3.jpg";
 
-import {
-    faAngleDown,
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
-} from '@fortawesome/free-solid-svg-icons';
-
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class MegaMenu extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-            dropdownOpen: false,
-            popoverOpen: false,
-        };
-    }
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      dropdownOpen: false,
+      popoverOpen: false,
+    };
+  }
 
-    toggle() {
-        this.setState({
-            dropdownOpen: !this.state.dropdownOpen,
-            popoverOpen: !this.state.popoverOpen
+  toggle() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen,
+      popoverOpen: !this.state.popoverOpen,
+    });
+  }
 
-        });
-    }
+  state = {};
 
-    state = {};
-
-    render() {
-        return (
-            <Fragment>
-                <Nav className="header-megamenu">
-                    <NavItem>
-                        <NavLink href="#" onClick={this.toggle} id="PopoverMegaMenu">
-                            <i className="nav-link-icon pe-7s-gift"> </i>
-                            Mega Menu
-                            <FontAwesomeIcon className="ml-2 opacity-5" icon={faAngleDown}/>
+  render() {
+    return (
+      <Fragment>
+        <Nav className='header-megamenu'>
+          <NavItem>
+            <NavLink href='#' onClick={this.toggle} id='PopoverMegaMenu'>
+              <i className='nav-link-icon pe-7s-gift'> </i>
+              Mega Menu
+              <FontAwesomeIcon className='ml-2 opacity-5' icon={faAngleDown} />
+            </NavLink>
+          </NavItem>
+          <Popover
+            className='rm-max-width'
+            placement='bottom-start'
+            fade={false}
+            trigger='legacy'
+            isOpen={this.state.popoverOpen}
+            target='PopoverMegaMenu'
+            toggle={this.toggle}>
+            <div className='dropdown-mega-menu'>
+              <div className='grid-menu grid-menu-3col'>
+                <Row className='no-gutters'>
+                  <Col xl='4' sm='6'>
+                    <Nav vertical>
+                      {/* <NavItem className='nav-item-header'>Overview</NavItem>
+                      <NavItem>
+                        <NavLink href='#'>
+                          <i className='nav-link-icon lnr-inbox'> </i>
+                          <span>Contacts</span>
                         </NavLink>
-                    </NavItem>
-                    <Popover className="rm-max-width" placement="bottom-start" fade={false} trigger="legacy" isOpen={this.state.popoverOpen} target="PopoverMegaMenu"
-                             toggle={this.toggle}>
-                        <div className="dropdown-mega-menu">
-                            <div className="grid-menu grid-menu-3col">
-                                <Row className="no-gutters">
-                                    <Col xl="4" sm="6">
-                                        <Nav vertical>
-                                            <NavItem className="nav-item-header">
-                                                Overview
-                                            </NavItem>
-                                            <NavItem>
-                                                <NavLink href="#">
-                                                    <i className="nav-link-icon lnr-inbox"> </i>
-                                                    <span>Contacts</span>
-                                                </NavLink>
-                                            </NavItem>
-                                            <NavItem>
-                                                <NavLink href="#">
-                                                    <i className="nav-link-icon lnr-book"> </i>
-                                                    <span>Incidents</span>
-                                                    <div className="ml-auto badge badge-pill badge-danger">5</div>
-                                                </NavLink>
-                                            </NavItem>
-                                            <NavItem>
-                                                <NavLink href="#">
-                                                    <i className="nav-link-icon lnr-picture"> </i>
-                                                    <span>Companies</span>
-                                                </NavLink>
-                                            </NavItem>
-                                            <NavItem>
-                                                <NavLink disabled href="#">
-                                                    <i className="nav-link-icon lnr-file-empty"> </i>
-                                                    <span>Dashboards</span>
-                                                </NavLink>
-                                            </NavItem>
-                                        </Nav>
-                                    </Col>
-                                    <Col xl="4" sm="6">
-                                        <Nav vertical>
-                                            <NavItem className="nav-item-header">
-                                                Favourites
-                                            </NavItem>
-                                            <NavItem>
-                                                <NavLink href="#">Reports Conversions</NavLink>
-                                            </NavItem>
-                                            <NavItem>
-                                                <NavLink href="#">
-                                                    Quick Start
-                                                    <div className="ml-auto badge badge-success">New</div>
-                                                </NavLink>
-                                            </NavItem>
-                                            <NavItem>
-                                                <NavLink href="#">
-                                                    Users &amp; Groups
-                                                </NavLink>
-                                            </NavItem>
-                                            <NavItem>
-                                                <NavLink href="#">
-                                                    Proprieties
-                                                </NavLink>
-                                            </NavItem>
-                                        </Nav>
-                                    </Col>
-                                    <Col xl="4" sm="6">
-                                        <Nav vertical>
-                                            <NavItem className="nav-item-header">
-                                                Sales &amp; Marketing
-                                            </NavItem>
-                                            <NavItem>
-                                                <NavLink href="#">
-                                                    Queues
-                                                </NavLink>
-                                            </NavItem>
-                                            <NavItem>
-                                                <NavLink href="#">Resource Groups</NavLink>
-                                            </NavItem>
-                                            <NavItem>
-                                                <NavLink href="#">
-                                                    Goal Metrics
-                                                    <div className="ml-auto badge badge-warning">3</div>
-                                                </NavLink>
-                                            </NavItem>
-                                            <NavItem>
-                                                <NavLink href="#">
-                                                    Campaigns
-                                                </NavLink>
-                                            </NavItem>
-                                        </Nav>
-                                    </Col>
-                                </Row>
-                            </div>
-                        </div>
-                    </Popover>
-                    <UncontrolledButtonDropdown nav inNavbar>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink href='#'>
+                          <i className='nav-link-icon lnr-book'> </i>
+                          <span>Incidents</span>
+                          <div className='ml-auto badge badge-pill badge-danger'>
+                            5
+                          </div>
+                        </NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink href='#'>
+                          <i className='nav-link-icon lnr-picture'> </i>
+                          <span>Companies</span>
+                        </NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink disabled href='#'>
+                          <i className='nav-link-icon lnr-file-empty'> </i>
+                          <span>Dashboards</span>
+                        </NavLink>
+                      </NavItem> */}
+                    </Nav>
+                  </Col>
+                  <Col xl='4' sm='6'>
+                    <Nav vertical>
+                      <NavItem className='nav-item-header'>Favourites</NavItem>
+                      <NavItem>
+                        <NavLink href='#'>Reports Conversions</NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink href='#'>
+                          Quick Start
+                          <div className='ml-auto badge badge-success'>New</div>
+                        </NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink href='#'>Users &amp; Groups</NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink href='#'>Proprieties</NavLink>
+                      </NavItem>
+                    </Nav>
+                  </Col>
+                  <Col xl='4' sm='6'>
+                    <Nav vertical>
+                      {/* <NavItem className='nav-item-header'>
+                        Sales &amp; Marketing
+                      </NavItem>
+                      <NavItem>
+                        <NavLink href='#'>Queues</NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink href='#'>Resource Groups</NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink href='#'>
+                          Goal Metrics
+                          <div className='ml-auto badge badge-warning'>3</div>
+                        </NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink href='#'>Campaigns</NavLink>
+                      </NavItem> */}
+                    </Nav>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+          </Popover>
+          {/* <UncontrolledButtonDropdown nav inNavbar>
                         <DropdownToggle nav>
                             <div className="badge badge-pill badge-danger ml-0 mr-2">4</div>
                             Settings
@@ -185,8 +187,8 @@ class MegaMenu extends React.Component {
                                 </NavItem>
                             </Nav>
                         </DropdownMenu>
-                    </UncontrolledButtonDropdown>
-                    <UncontrolledDropdown nav inNavbar>
+                    </UncontrolledButtonDropdown> */}
+          {/* <UncontrolledDropdown nav inNavbar>
                         <DropdownToggle nav>
                             <i className="nav-link-icon pe-7s-settings"> </i>
                             Projects
@@ -236,11 +238,11 @@ class MegaMenu extends React.Component {
                                 Frontend Dev
                             </DropdownItem>
                         </DropdownMenu>
-                    </UncontrolledDropdown>
-                </Nav>
-            </Fragment>
-        )
-    }
+                    </UncontrolledDropdown> */}
+        </Nav>
+      </Fragment>
+    );
+  }
 }
 
 export default MegaMenu;
