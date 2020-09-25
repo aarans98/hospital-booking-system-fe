@@ -2,6 +2,7 @@ import React, { Fragment, Component } from "react";
 import axios from "axios";
 
 import Slider from "react-slick";
+import Login from "../../UserPages/Login/index";
 
 import bg3 from "../../../assets/utils/images/originals/citynights.jpg";
 
@@ -36,7 +37,7 @@ export default class Register extends Component {
     };
 
     axios
-      .post("http://localhost:2000/v1/app/register", register)
+      .post("http://localhost:1212/v1/app/register", register)
       .then((response) => {
         if (response.data != null) {
           this.setState(this.initialState);
@@ -180,7 +181,7 @@ export default class Register extends Component {
                         Already have an account?{" "}
                         <a
                           href='http://localhost:3000/#/pages/login'
-                          onClick={"http://localhost:3000/#/pages/login"}
+                          onClick={<Login />}
                           className='text-primary'>
                           Sign in
                         </a>

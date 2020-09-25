@@ -28,7 +28,7 @@ export default class Login extends Component {
     event.preventDefault();
     axios
       .get(
-        "http://localhost:2000/v1/app/register/login?password=" +
+        "http://localhost:1212/v1/app/register/login?password=" +
           this.state.password +
           "&username=" +
           this.state.username
@@ -39,6 +39,7 @@ export default class Login extends Component {
         {
           this.props.history.push("/dashboard/" + data.user_role);
         }
+        console.log(data);
       });
     //   this.setState(this.initialState);
   };
@@ -192,15 +193,10 @@ export default class Login extends Component {
                           className='btn-lg btn btn-link'>
                           Recover Password
                         </a>{" "}
-<<<<<<< HEAD
                         <Button color='primary' size='lg' type='submit'>
-=======
-                        <Button color="primary" size="lg" type="submit">
                           {/* <Link
                             to={"/" + data.user_role}
-                            className="btn btn-sm btn-outline-primary"
-                          > */}
->>>>>>> 4c6755c6898f4d804dd217cd409ab63707d1ea61
+                            className='btn btn-sm btn-outline-primary'> */}
                           Login to Dashboard
                           {/* </Link> */}
                         </Button>
