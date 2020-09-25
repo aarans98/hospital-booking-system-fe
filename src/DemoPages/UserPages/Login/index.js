@@ -37,7 +37,7 @@ export default class Login extends Component {
       .then((data) => {
         this.setState({ logins: data });
         {
-          this.props.history.push("/dashboard/" + data.user_role);
+          this.props.history.push("/dashboards/" + data.user_role);
         }
         console.log(data);
       });

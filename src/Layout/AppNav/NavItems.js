@@ -32,6 +32,6 @@ export const MainNav = [
   {
     icon: "pe-7s-browser",
     label: "Jadwal Praktik",
-    to: "#/elements/cards",
+    to: "#/tables/datatables-custom-components",
   },
 ];

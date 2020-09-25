@@ -85,7 +85,7 @@ export default class DataTableBasic extends React.Component {
             <Col md='12'>
               <Card className='main-card mb-3'>
                 <CardBody class='card-hover-shadow card-border mb-3 card'>
-                  {/* <DataTable
+                  <DataTable
                     title='List Praktek'
                     columns={this.columns}
                     pagination={true}
@@ -97,7 +97,7 @@ export default class DataTableBasic extends React.Component {
                       jam: praktek.jam,
                       idDokter: praktek.idDokter,
                     }))}
-                  /> */}
+                  />
                 </CardBody>
                 <CardFooter>
                   <button class='mb-2 mr-2 btn btn-alternate'>
