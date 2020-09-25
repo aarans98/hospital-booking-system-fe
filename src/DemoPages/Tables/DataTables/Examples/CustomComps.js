@@ -3,7 +3,7 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import {
     Row, Col,
     Card, CardBody,
-    CardFooter, PageTitle} from 'reactstrap';
+    CardFooter} from 'reactstrap';
 import DataTable from 'react-data-table-component';
 import PageTitle from '../../../../Layout/AppMain/PageTitle';
 import axios from 'axios';
