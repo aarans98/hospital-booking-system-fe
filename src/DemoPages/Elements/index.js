@@ -76,10 +76,10 @@ const Elements = ({ match }) => (
   <Fragment>
     <ThemeOptions />
     <AppHeader />
-    <div className="app-main">
+    <div className='app-main'>
       <AppSidebar />
-      <div className="app-main__outer">
-        <div className="app-main__inner">
+      <div className='app-main__outer'>
+        <div className='app-main__inner'>
           {/* Buttons */}
 
           <Route
@@ -112,7 +112,7 @@ const Elements = ({ match }) => (
 
           {/* Cards */}
 
-          <Route path={`#/dashboard/pasien`} component={CardsExamples} />
+          <Route path={`${match.url}/cards`} component={CardsExamples} />
 
           {/* Loaders */}
 

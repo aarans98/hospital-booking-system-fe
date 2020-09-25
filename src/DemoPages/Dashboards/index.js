@@ -9,6 +9,7 @@ import CommerceDashboard from "./Commerce/";
 import CRMDashboard from "./CRM/";
 import MinimalDashboard1 from "./Minimal/Variation1";
 import MinimalDashboard2 from "./Minimal/Variation2";
+import MySchedule from "./Dokter/Examples/Advanced";
 
 // Layout
 
@@ -35,13 +36,14 @@ const Dashboards = ({ match }) => (
           <Route path={`${match.url}/commerce`} component={CommerceDashboard} />
           <Route path={`${match.url}/crm`} component={CRMDashboard} />
           <Route
-            path={`${match.url}/minimal-dashboard-1`}
+            path={`${match.url}/minimal-dashboard-2`}
             component={MinimalDashboard1}
           />
           <Route
             path={`${match.url}/minimal-dashboard-2`}
             component={MinimalDashboard2}
           />
+          <Route path={`${match.url}/pasien`} component={MySchedule} />
         </div>
         <AppFooter />
       </div>
