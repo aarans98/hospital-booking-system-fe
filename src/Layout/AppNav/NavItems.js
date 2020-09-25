@@ -6,6 +6,11 @@ export const MainNav = [
   },
   {
     icon: "pe-7s-browser",
+    label: "Login",
+    to: "#/pages/login",
+  },
+  {
+    icon: "pe-7s-browser",
     label: "Register",
     to: "#/pages/register",
   },
