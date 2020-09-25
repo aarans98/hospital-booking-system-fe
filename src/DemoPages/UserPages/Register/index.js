@@ -36,7 +36,7 @@ export default class Register extends Component {
     };
 
     axios
-      .post("http://localhost:1212/v1/app/register", register)
+      .post("http://localhost:2000/v1/app/register", register)
       .then((response) => {
         if (response.data != null) {
           this.setState(this.initialState);

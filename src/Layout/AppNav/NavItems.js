@@ -17,7 +17,7 @@ export const MainNav = [
   {
     icon: "pe-7s-browser",
     label: "My Schedule",
-    to: "#/elements/cards",
+    to: "#/pages/cards",
   },
   {
     icon: "pe-7s-browser",

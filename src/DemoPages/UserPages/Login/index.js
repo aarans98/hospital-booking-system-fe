@@ -7,13 +7,15 @@ import bg2 from "../../../assets/utils/images/originals/citydark.jpg";
 import bg3 from "../../../assets/utils/images/originals/citynights.jpg";
 
 import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
+import { data } from "jquery";
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = this.initialState;
+    this.state = { logins: [] };
     this.submitLogin = this.submitLogin.bind(this);
     this.loginChange = this.loginChange.bind(this);
   }
@@ -26,18 +28,25 @@ export default class Login extends Component {
     event.preventDefault();
     axios
       .get(
-        "http://localhost:1212/v1/app/register/login?password=" +
+        "http://localhost:2000/v1/app/register/login?password=" +
           this.state.password +
           "&username=" +
           this.state.username
       )
       .then((response) => response.data)
       .then((data) => {
-        this.setState({ biodatas: data });
-        console.log(data);
+        this.setState({ logins: data });
+        {
+          this.props.history.push("/dashboard/" + data.user_role);
+        }
       });
     //   this.setState(this.initialState);
   };
+
+  //   const redirectToReferrer = this.state.redirectToReferrer;
+  //         if (redirectToReferrer === true) {
+  //             return <Redirect to="/home" />
+  //     }
 
   loginChange(event) {
     this.setState({
@@ -45,6 +54,10 @@ export default class Login extends Component {
     });
   }
   render() {
+    // const stat = this.state.logins.stat;
+    //     if (stat === true) {
+    //         return <Redirect to="/home" />
+    //     }
     const { username, password } = this.state;
     let settings = {
       dots: true,
@@ -179,8 +192,17 @@ export default class Login extends Component {
                           className='btn-lg btn btn-link'>
                           Recover Password
                         </a>{" "}
+<<<<<<< HEAD
                         <Button color='primary' size='lg' type='submit'>
+=======
+                        <Button color="primary" size="lg" type="submit">
+                          {/* <Link
+                            to={"/" + data.user_role}
+                            className="btn btn-sm btn-outline-primary"
+                          > */}
+>>>>>>> 4c6755c6898f4d804dd217cd409ab63707d1ea61
                           Login to Dashboard
+                          {/* </Link> */}
                         </Button>
                       </div>
                     </div>
