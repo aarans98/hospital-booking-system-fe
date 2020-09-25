@@ -5,7 +5,7 @@ import {
     Card, CardBody,
     CardFooter, PageTitle} from 'reactstrap';
 import DataTable from 'react-data-table-component';
-
+import PageTitle from '../../../../Layout/AppMain/PageTitle';
 import axios from 'axios';
 
 export default class DataTableBasic extends React.Component {
