@@ -19,7 +19,7 @@ const UserPages = ({ match }) => (
 
       <Route path={`${match.url}/login`} component={Login} />
       <Route path={`${match.url}/login-boxed`} component={LoginBoxed} />
-      <Route path={`${match.url}/pasien`} component={Register} />
+      <Route path={`${match.url}/register`} component={Register} />
       <Route path={`${match.url}/register-boxed`} component={RegisterBoxed} />
       <Route path={`${match.url}/forgot-password`} component={ForgotPassword} />
       <Route

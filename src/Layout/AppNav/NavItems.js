@@ -12,7 +12,7 @@ export const MainNav = [
   {
     icon: "pe-7s-browser",
     label: "Register",
-    to: "#/pages/pasien",
+    to: "#/pages/register",
   },
   {
     icon: "pe-7s-browser",
@@ -32,6 +32,6 @@ export const MainNav = [
   {
     icon: "pe-7s-browser",
     label: "Jadwal Praktik",
-    to: "#/tables/datatables-custom-components",
+    to: "#dashboards/pasien/listpraktek",
   },
 ];

@@ -3,13 +3,9 @@ import { Route } from "react-router-dom";
 
 // DASHBOARDS
 
-import AnalyticsDashboard from "./Analytics/";
-import SalesDashboard from "./Sales/";
-import CommerceDashboard from "./Commerce/";
-import CRMDashboard from "./CRM/";
-import MinimalDashboard1 from "./Minimal/Variation1";
-import MinimalDashboard2 from "./Minimal/Variation2";
-import MySchedule from "./Dokter/Examples/Advanced";
+import MainDokter from "./Dokter";
+import MainPasien from "./Pasien";
+import MainAdmin from "./Admin";
 
 // Layout
 
@@ -24,26 +20,13 @@ const Dashboards = ({ match }) => (
   <Fragment>
     <ThemeOptions />
     <AppHeader />
-    <div className='app-main'>
-      <AppSidebar />
-      <div className='app-main__outer'>
-        <div className='app-main__inner'>
-          <Route
-            path={`${match.url}/analytics`}
-            component={AnalyticsDashboard}
-          />
-          <Route path={`${match.url}/sales`} component={SalesDashboard} />
-          <Route path={`${match.url}/commerce`} component={CommerceDashboard} />
-          <Route path={`${match.url}/crm`} component={CRMDashboard} />
-          <Route
-            path={`${match.url}/minimal-dashboard-2`}
-            component={MinimalDashboard1}
-          />
-          <Route
-            path={`${match.url}/minimal-dashboard-2`}
-            component={MinimalDashboard2}
-          />
-          <Route path={`${match.url}/pasien`} component={MySchedule} />
+    <div className="app-main">
+      {/* <AppSidebar /> */}
+      <div className="app-main__outer">
+        <div className="app-main__inner">
+          <Route path={`/dashboards/pasien`} component={MainPasien} />
+          <Route path={`/dashboards/dokter`} component={MainDokter} />
+          <Route path={`/dashboards/admin`} component={MainAdmin} />
         </div>
         <AppFooter />
       </div>

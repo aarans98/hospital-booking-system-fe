@@ -9,7 +9,7 @@ import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
 
 // Examples
 
-export default class MainDokter extends React.Component {
+export default class MainAdmin extends React.Component {
   render() {
     return (
       <Fragment>
@@ -22,8 +22,8 @@ export default class MainDokter extends React.Component {
           transitionLeave={false}
         >
           <PageTitle
-            heading="Dokter"
-            subheading="Ini Halaman Dokter~"
+            heading="Admin"
+            subheading="Ini Halaman Admin~"
             icon="pe-7s-stopwatch icon-gradient bg-amy-crisp"
           />
           <Tabs
@@ -31,18 +31,15 @@ export default class MainDokter extends React.Component {
             renderTabBar={() => <ScrollableInkTabBar />}
             renderTabContent={() => <TabContent />}
           >
-            <TabPane tab="Pasien" key="1">
-              <p>List Pasien Dokter</p>
+            <TabPane tab="Tambah Dokter" key="1">
+              <p>Konten Tambah Dokter</p>
             </TabPane>
-            <TabPane tab="Rekam Medik" key="2">
-              <p>Konten 2</p>
+            <TabPane tab="Tambah Jadwal Praktek" key="2">
+              Konten Tambah Jadwal Praktek
             </TabPane>
-            {/* <TabPane tab='Color States' key='3'>
-              <CardsColors />
+            <TabPane tab="Informasi Staff" key="3">
+              Konten Informasi Staff
             </TabPane>
-            <TabPane tab='Block Loading' key='4'>
-              <CardsBlockLoadingExample />
-            </TabPane> */}
           </Tabs>
         </CSSTransitionGroup>
       </Fragment>
