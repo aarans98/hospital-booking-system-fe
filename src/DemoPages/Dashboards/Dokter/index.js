@@ -6,6 +6,7 @@ import PageTitle from "../../../Layout/AppMain/PageTitle";
 import Tabs, { TabPane } from "rc-tabs";
 import TabContent from "rc-tabs/lib/SwipeableTabContent";
 import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
+import RekamMedik from "../Pasien/KontenPasien/RekamMedik";
 
 // Examples
 
@@ -35,7 +36,7 @@ export default class MainDokter extends React.Component {
               <p>List Pasien Dokter</p>
             </TabPane>
             <TabPane tab="Rekam Medik" key="2">
-              <p>Konten 2</p>
+              <RekamMedik/>
             </TabPane>
             {/* <TabPane tab='Color States' key='3'>
               <CardsColors />

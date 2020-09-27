@@ -9,6 +9,8 @@ import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
 
 import MySchedulePasien from "./KontenPasien/MySchedulePasien";
 import ListPraktek from "./KontenPasien/ListPraktek";
+import RekamMedik from "./KontenPasien/RekamMedik";
+import ListDokter from "./KontenPasien/ListDokter";
 
 // Examples
 // import CardsBasicExample from "./KontenPasien/Basic";
@@ -39,13 +41,16 @@ export default class MainPasien extends React.Component {
             renderTabContent={() => <TabContent />}
           >
             <TabPane tab="List Dokter" key="1">
+              <ListDokter />
+            </TabPane>
+            <TabPane tab="List Praktek" key="2">
               <ListPraktek />
             </TabPane>
-            <TabPane tab="Notifikasi Pasien" key="2">
+            <TabPane tab="Notifikasi Pasien" key="3">
               <MySchedulePasien />
             </TabPane>
-            <TabPane tab="Rekam Medik" key="3">
-              Konten Rekam Medik
+            <TabPane tab="Rekam Medik" key="4">
+              <RekamMedik/>
             </TabPane>
           </Tabs>
         </CSSTransitionGroup>

@@ -59,6 +59,10 @@ export default class MySchedulePasien extends Component {
       getContent: () => biography,
     }));
 
+  componentDidMount() {
+    this.getAllDokter();
+  }
+
   getAllDokter = () => {
     axios
       .get("http://localhost:1212/v1/app/dokter")
@@ -69,7 +73,6 @@ export default class MySchedulePasien extends Component {
   };
 
   render() {
-    this.getAllDokter();
     console.log(this.state.persons);
     const dokter = this.state.persons;
 
