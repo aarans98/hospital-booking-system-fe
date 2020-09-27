@@ -59,6 +59,10 @@ export default class MySchedulePasien extends Component {
       getContent: () => biography,
     }));
 
+  componentDidMount() {
+    this.getAllDokter();
+  }
+
   getAllDokter = () => {
     axios
       .get("http://localhost:1212/v1/app/pasien/roni")
