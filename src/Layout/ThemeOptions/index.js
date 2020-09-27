@@ -85,15 +85,15 @@ class ThemeOptions extends Component {
         setEnableHeaderShadow(!enableHeaderShadow);
     }
 
-    toggleEnableSidebarShadow = () => {
-        let {enableSidebarShadow, setEnableSidebarShadow} = this.props;
-        setEnableSidebarShadow(!enableSidebarShadow);
-    }
+    // toggleEnableSidebarShadow = () => {
+    //     let {enableSidebarShadow, setEnableSidebarShadow} = this.props;
+    //     setEnableSidebarShadow(!enableSidebarShadow);
+    // }
 
-    toggleEnableFixedSidebar = () => {
-        let {enableFixedSidebar, setEnableFixedSidebar} = this.props;
-        setEnableFixedSidebar(!enableFixedSidebar);
-    }
+    // toggleEnableFixedSidebar = () => {
+    //     let {enableFixedSidebar, setEnableFixedSidebar} = this.props;
+    //     setEnableFixedSidebar(!enableFixedSidebar);
+    // }
 
     toggleEnablePageTitleIcon = () => {
         let {enablePageTitleIcon, setEnablePageTitleIcon} = this.props;
@@ -131,8 +131,8 @@ class ThemeOptions extends Component {
 
             enableFixedHeader,
             enableHeaderShadow,
-            enableSidebarShadow,
-            enableFixedSidebar,
+            // enableSidebarShadow,
+            // enableFixedSidebar,
             enableFixedFooter,
 
             enablePageTitleIcon,
@@ -202,7 +202,7 @@ class ThemeOptions extends Component {
                                             </div>
                                         </div>
                                     </ListGroupItem>
-                                    <ListGroupItem>
+                                    {/* <ListGroupItem>
                                         <div className="widget-content p-0">
                                             <div className="widget-content-wrapper">
                                                 <div className="widget-content-left mr-3">
@@ -235,7 +235,7 @@ class ThemeOptions extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                    </ListGroupItem>
+                                    </ListGroupItem> */}
                                     <ListGroupItem>
                                         <div className="widget-content p-0">
                                             <div className="widget-content-wrapper">
@@ -478,7 +478,7 @@ class ThemeOptions extends Component {
                                             </div>
                                         </div>
                                     </ListGroupItem>
-                                    <ListGroupItem>
+                                    {/* <ListGroupItem>
                                         <div className="widget-content p-0">
                                             <div className="widget-content-wrapper">
                                                 <div className="widget-content-left mr-3">
@@ -511,7 +511,7 @@ class ThemeOptions extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                    </ListGroupItem>
+                                    </ListGroupItem> */}
                                     <ListGroupItem>
                                         <h5 className="pb-2">Choose Color Scheme</h5>
                                         <div className="theme-settings-swatches">
@@ -900,8 +900,8 @@ const mapStateToProps = state => ({
 
     enableFixedHeader: state.ThemeOptions.enableFixedHeader,
     enableHeaderShadow: state.ThemeOptions.enableHeaderShadow,
-    enableSidebarShadow: state.ThemeOptions.enableSidebarShadow,
-    enableFixedSidebar: state.ThemeOptions.enableFixedSidebar,
+    // enableSidebarShadow: state.ThemeOptions.enableSidebarShadow,
+    // enableFixedSidebar: state.ThemeOptions.enableFixedSidebar,
     enableFixedFooter: state.ThemeOptions.enableFixedFooter,
 
 
@@ -920,9 +920,9 @@ const mapDispatchToProps = dispatch => ({
 
     setEnableFixedHeader: enable => dispatch(setEnableFixedHeader(enable)),
     setEnableHeaderShadow: enable => dispatch(setEnableHeaderShadow(enable)),
-    setEnableSidebarShadow: enable => dispatch(setEnableSidebarShadow(enable)),
+    // setEnableSidebarShadow: enable => dispatch(setEnableSidebarShadow(enable)),
     setEnableFixedFooter: enable => dispatch(setEnableFixedFooter(enable)),
-    setEnableFixedSidebar: enable => dispatch(setEnableFixedSidebar(enable)),
+    // setEnableFixedSidebar: enable => dispatch(setEnableFixedSidebar(enable)),
 
     setEnablePageTitleIcon: enable => dispatch(setEnablePageTitleIcon(enable)),
     setEnablePageTitleSubheading: enable => dispatch(setEnablePageTitleSubheading(enable)),

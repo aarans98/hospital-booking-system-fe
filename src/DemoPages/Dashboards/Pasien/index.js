@@ -7,9 +7,16 @@ import Tabs, { TabPane } from "rc-tabs";
 import TabContent from "rc-tabs/lib/SwipeableTabContent";
 import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
 
-// Examples
+import MySchedulePasien from "./KontenPasien/MySchedulePasien";
+import ListPraktek from "./KontenPasien/ListPraktek";
 
-export default class MainDokter extends React.Component {
+// Examples
+// import CardsBasicExample from "./KontenPasien/Basic";
+// import CardsColors from "./KontenPasien/Colors";
+// import CardsBlockLoadingExample from "./KontenPasien/Loading";
+// import CardsAdvanced from "./KontenPasien/Advanced";
+
+export default class MainPasien extends React.Component {
   render() {
     return (
       <Fragment>
@@ -22,8 +29,8 @@ export default class MainDokter extends React.Component {
           transitionLeave={false}
         >
           <PageTitle
-            heading="Dokter"
-            subheading="Ini Halaman Dokter~"
+            heading="Pasien"
+            subheading="Ini Halaman Pasien~"
             icon="pe-7s-stopwatch icon-gradient bg-amy-crisp"
           />
           <Tabs
@@ -31,18 +38,15 @@ export default class MainDokter extends React.Component {
             renderTabBar={() => <ScrollableInkTabBar />}
             renderTabContent={() => <TabContent />}
           >
-            <TabPane tab="Pasien" key="1">
-              <p>List Pasien Dokter</p>
+            <TabPane tab="List Dokter" key="1">
+              <ListPraktek />
             </TabPane>
-            <TabPane tab="Rekam Medik" key="2">
-              <p>Konten 2</p>
+            <TabPane tab="Notifikasi Pasien" key="2">
+              <MySchedulePasien />
             </TabPane>
-            {/* <TabPane tab='Color States' key='3'>
-              <CardsColors />
+            <TabPane tab="Rekam Medik" key="3">
+              Konten Rekam Medik
             </TabPane>
-            <TabPane tab='Block Loading' key='4'>
-              <CardsBlockLoadingExample />
-            </TabPane> */}
           </Tabs>
         </CSSTransitionGroup>
       </Fragment>
