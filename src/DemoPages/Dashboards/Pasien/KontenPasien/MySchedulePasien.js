@@ -3,7 +3,7 @@ import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import classnames from "classnames";
 import Tabs from "react-responsive-tabs";
 import axios from "axios";
-import dummyData from "./dummyData";
+import dummyData from "../../Pasien/KontenPasien/dummyData";
 
 import {
   TabContent,
@@ -26,7 +26,7 @@ import {
   Container,
 } from "reactstrap";
 
-export default class CardsAdvanced extends Component {
+export default class MySchedulePasien extends Component {
   constructor(props) {
     super(props);
 
@@ -75,24 +75,24 @@ export default class CardsAdvanced extends Component {
 
     const renderCard = (card, index) => {
       return (
-        <Col md='6'>
-          <Card className='main-card mb-3'>
+        <Col md="6">
+          <Card className="main-card mb-3">
             <CardHeader>
-              <i className='header-icon lnr-user icon-gradient bg-arielle-smile'>
+              <i className="header-icon lnr-user icon-gradient bg-arielle-smile">
                 {" "}
               </i>
               {"dr. " + card.namaLengkap}
             </CardHeader>
-            <CardBody className='mb-0'>
+            <CardBody className="mb-0">
               <p>Spesialisasi:</p>
-              <p className='mb-0'>Jadwal:</p>
-              <p className='mb-0'>Jam:</p>
+              <p className="mb-0">Jadwal:</p>
+              <p className="mb-0">Jam:</p>
             </CardBody>
-            <CardFooter className='d-block text-right'>
-              <Button size='lg' className='mr-2' color='primary'>
+            <CardFooter className="d-block text-right">
+              <Button size="lg" className="mr-2" color="primary">
                 Rincian
               </Button>
-              <Button size='lg' color='success'>
+              <Button size="lg" color="success">
                 Selesai
               </Button>
             </CardFooter>
@@ -103,14 +103,15 @@ export default class CardsAdvanced extends Component {
     return (
       <Fragment>
         <CSSTransitionGroup
-          component='div'
-          transitionName='TabsAnimation'
+          component="div"
+          transitionName="TabsAnimation"
           transitionAppear={true}
           transitionAppearTimeout={0}
           transitionEnter={false}
-          transitionLeave={false}>
+          transitionLeave={false}
+        >
           <Container fluid>
-            <Row className='justify-content-center'>
+            <Row className="justify-content-center">
               {dokter.map(renderCard)}
 
               {/* <Col md='6'>

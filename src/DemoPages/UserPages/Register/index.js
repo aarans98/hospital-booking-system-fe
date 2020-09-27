@@ -2,6 +2,7 @@ import React, { Fragment, Component } from "react";
 import axios from "axios";
 
 import Slider from "react-slick";
+import Login from "../../UserPages/Login/index";
 
 import bg3 from "../../../assets/utils/images/originals/citynights.jpg";
 
@@ -179,8 +180,8 @@ export default class Register extends Component {
                       <h5 className='mb-0'>
                         Already have an account?{" "}
                         <a
-                          href='https://colorlib.com/'
-                          onClick={(e) => e.preventDefault()}
+                          href='http://localhost:3000/#/pages/login'
+                          onClick={<Login />}
                           className='text-primary'>
                           Sign in
                         </a>

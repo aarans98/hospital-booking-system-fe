@@ -1,5 +1,5 @@
-import React, {Fragment} from 'react';
-import {Route} from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { Route } from 'react-router-dom';
 
 // APPLICATIONS
 
@@ -17,21 +17,21 @@ import AppFooter from '../../Layout/AppFooter/';
 // Theme Options
 import ThemeOptions from '../../Layout/ThemeOptions/';
 
-const Applications = ({match}) => (
+const Applications = ({ match }) => (
     <Fragment>
-        <ThemeOptions/>
-        <AppHeader/>
+        <ThemeOptions />
+        <AppHeader />
         <div className="app-main">
-            <AppSidebar/>
+            <AppSidebar />
             <div className="app-main__outer">
                 <div className="app-main__inner p-0">
-                    <Route path={`${match.url}/mailbox`} component={Mailbox}/>
-                    <Route path={`${match.url}/chat`} component={Chat}/>
-                    <Route path={`${match.url}/split-layout`} component={SplitLayout}/>
-                    <Route path={`${match.url}/faq-section`} component={FaqSection}/>
+                    <Route path={`${match.url}/mailbox`} component={Mailbox} />
+                    <Route path={`${match.url}/chat`} component={Chat} />
+                    <Route path={`${match.url}/split-layout`} component={SplitLayout} />
+                    <Route path={`${match.url}/faq-section`} component={FaqSection} />
                 </div>
                 <div className="app-wrapper-footer">
-                    <AppFooter/>
+                    <AppFooter />
                 </div>
             </div>
         </div>
