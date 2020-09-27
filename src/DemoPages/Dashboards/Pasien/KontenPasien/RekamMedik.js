@@ -18,18 +18,21 @@ function RekamMedik() {
     });
 
     const [username, setUsername] = useState(useHistory().location.customName.username);
-    // console.log(username);
-    // const { username } = useHistory().location.customName.username;
-
-    // console.log(useHistory().location.customName.username);
+    const [userRole, setUserRole] = useState(useHistory().location.customName.user_role);
 
     const onPaginationChange = (start, end) => {
         setPagination({ start: start, end: end});
     };
 
     useEffect(() => {
-        axios.get('http://localhost:1212/v1/app/rekam-medik/pasien/' + username)
+        // console.log(username);
+        if(userRole === "pasien"){
+            axios.get('http://localhost:1212/v1/app/rekam-medik/pasien/' + username)
             .then(response => setPosts(response.data));
+        } else if(userRole === "dokter"){
+            axios.get('http://localhost:1212/v1/app/rekam-medik/dokter/' + username)
+            .then(response => setPosts(response.data));
+        }
         // empty dependency array means this effect will only run once (like componentDidMount in classes)
     }, []);
 
