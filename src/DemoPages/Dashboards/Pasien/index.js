@@ -9,6 +9,7 @@ import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
 
 import MySchedulePasien from "./KontenPasien/MySchedulePasien";
 import ListPraktek from "./KontenPasien/ListPraktek";
+import Praktek from "./KontenPasien/Praktek";
 
 // Examples
 // import CardsBasicExample from "./KontenPasien/Basic";
@@ -39,7 +40,7 @@ export default class MainPasien extends React.Component {
             renderTabContent={() => <TabContent />}
           >
             <TabPane tab="List Dokter" key="1">
-              <ListPraktek />
+              <Praktek />
             </TabPane>
             <TabPane tab="Notifikasi Pasien" key="2">
               <MySchedulePasien />
