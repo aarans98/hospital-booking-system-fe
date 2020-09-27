@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
     Row, Col,
     Card, CardImg, CardBody,
@@ -16,13 +17,19 @@ function RekamMedik() {
         end: showPerPage,
     });
 
+    const [username, setUsername] = useState(useHistory().location.customName.username);
+    // console.log(username);
+    // const { username } = useHistory().location.customName.username;
+
+    // console.log(useHistory().location.customName.username);
+
     const onPaginationChange = (start, end) => {
         setPagination({ start: start, end: end});
     };
 
     useEffect(() => {
-        axios.get('http://localhost:1212/v1/app/rekam-medik')
-            .then(response => setPosts(response.data.data));
+        axios.get('http://localhost:1212/v1/app/rekam-medik/pasien/' + username)
+            .then(response => setPosts(response.data));
         // empty dependency array means this effect will only run once (like componentDidMount in classes)
     }, []);
 
