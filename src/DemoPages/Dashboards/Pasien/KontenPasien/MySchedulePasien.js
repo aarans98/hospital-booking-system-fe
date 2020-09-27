@@ -6,11 +6,6 @@ import axios from "axios";
 import dummyData from "../../Pasien/KontenPasien/dummyData";
 
 import {
-  TabContent,
-  TabPane,
-  Nav,
-  NavItem,
-  NavLink,
   Row,
   Col,
   Card,
@@ -18,18 +13,13 @@ import {
   CardHeader,
   CardFooter,
   Button,
-  ButtonGroup,
-  UncontrolledButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
   Container,
 } from "reactstrap";
 
 export default class MySchedulePasien extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.location.customName);
+
     this.toggle = this.toggle.bind(this);
 
     this.state = {
@@ -60,21 +50,21 @@ export default class MySchedulePasien extends Component {
     }));
 
   componentDidMount() {
-    this.getAllDokter();
+    // this.getAllDokter();
   }
 
   getAllDokter = () => {
     axios
-      .get("http://localhost:1212/v1/app/pasien/roni")
+      .get("http://localhost:1212/v1/app/jadwal/pasien/roni")
       .then((response) => response.data)
       .then((data) => {
-        this.setState({ persons: data.data });
+        this.setState({ persons: data });
       });
   };
 
   render() {
     this.getAllDokter();
-    // console.log(this.state.persons);
+    console.log(this.state.persons);
     const dokter = this.state.persons;
 
     const renderCard = (card, index) => {
