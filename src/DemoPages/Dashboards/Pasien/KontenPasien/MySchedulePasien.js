@@ -29,7 +29,7 @@ import {
 export default class MySchedulePasien extends Component {
   constructor(props) {
     super(props);
-
+    console.log(this.props.location.customName);
     this.toggle = this.toggle.bind(this);
 
     this.state = {
@@ -61,7 +61,7 @@ export default class MySchedulePasien extends Component {
 
   getAllDokter = () => {
     axios
-      .get("http://localhost:1212/v1/app/dokter")
+      .get("http://localhost:1212/v1/app/pasien/roni")
       .then((response) => response.data)
       .then((data) => {
         this.setState({ persons: data.data });
@@ -70,29 +70,29 @@ export default class MySchedulePasien extends Component {
 
   render() {
     this.getAllDokter();
-    console.log(this.state.persons);
+    // console.log(this.state.persons);
     const dokter = this.state.persons;
 
     const renderCard = (card, index) => {
       return (
-        <Col md="6">
-          <Card className="main-card mb-3">
+        <Col md='6'>
+          <Card className='main-card mb-3'>
             <CardHeader>
-              <i className="header-icon lnr-user icon-gradient bg-arielle-smile">
+              <i className='header-icon lnr-user icon-gradient bg-arielle-smile'>
                 {" "}
               </i>
               {"dr. " + card.namaLengkap}
             </CardHeader>
-            <CardBody className="mb-0">
+            <CardBody className='mb-0'>
               <p>Spesialisasi:</p>
-              <p className="mb-0">Jadwal:</p>
-              <p className="mb-0">Jam:</p>
+              <p className='mb-0'>Jadwal:</p>
+              <p className='mb-0'>Jam:</p>
             </CardBody>
-            <CardFooter className="d-block text-right">
-              <Button size="lg" className="mr-2" color="primary">
+            <CardFooter className='d-block text-right'>
+              <Button size='lg' className='mr-2' color='primary'>
                 Rincian
               </Button>
-              <Button size="lg" color="success">
+              <Button size='lg' color='success'>
                 Selesai
               </Button>
             </CardFooter>
@@ -103,15 +103,14 @@ export default class MySchedulePasien extends Component {
     return (
       <Fragment>
         <CSSTransitionGroup
-          component="div"
-          transitionName="TabsAnimation"
+          component='div'
+          transitionName='TabsAnimation'
           transitionAppear={true}
           transitionAppearTimeout={0}
           transitionEnter={false}
-          transitionLeave={false}
-        >
+          transitionLeave={false}>
           <Container fluid>
-            <Row className="justify-content-center">
+            <Row className='justify-content-center'>
               {dokter.map(renderCard)}
 
               {/* <Col md='6'>
