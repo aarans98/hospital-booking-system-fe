@@ -178,7 +178,7 @@ export default class TambahDokter extends React.Component {
             </Col>
           </Row>
           
-          <TambahDokterModal/>
+          {/* <TambahDokterModal/> */}
           
         </CSSTransitionGroup>
       </Fragment>
