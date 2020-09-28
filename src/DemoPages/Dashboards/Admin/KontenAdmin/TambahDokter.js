@@ -6,7 +6,7 @@ import PageTitle from "../../../../Layout/AppMain/PageTitle";
 import axios from "axios";
 import Rodal from "rodal";
 import { ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
-import TambahDokterModal from "./TambahDokterModal";
+// import TambahDokterModal from "./TambahDokterModal";
 
 export default class TambahDokter extends React.Component {
   constructor(props) {
