@@ -8,7 +8,8 @@ import TabContent from "rc-tabs/lib/SwipeableTabContent";
 import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
 
 import MySchedulePasien from "./KontenPasien/MySchedulePasien";
-import {Praktek} from "./KontenPasien/Praktek";
+import ListPraktek from "./KontenPasien/ListPraktek";
+import Praktek from "./KontenPasien/Praktek";
 import RekamMedik from "./KontenPasien/RekamMedik";
 import ListDokter from "./KontenPasien/ListDokter";
 
@@ -19,6 +20,13 @@ import ListDokter from "./KontenPasien/ListDokter";
 // import CardsAdvanced from "./KontenPasien/Advanced";
 
 export default class MainPasien extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      username: this.props.location.customName.username,
+    };
+  }
   render() {
     return (
       <Fragment>
@@ -42,10 +50,10 @@ export default class MainPasien extends React.Component {
               <ListDokter />
             </TabPane>
             <TabPane tab='List Praktek' key='2'>
-              <Praktek />
+              <ListPraktek />
             </TabPane>
             <TabPane tab='Notifikasi Pasien' key='3'>
-              <MySchedulePasien />
+              <MySchedulePasien username={this.state.username} />
             </TabPane>
             <TabPane tab='Rekam Medik' key='4'>
               <RekamMedik />

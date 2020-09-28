@@ -81,12 +81,12 @@ export class Praktek extends React.Component {
 
     componentDidMount() {
         this.refreshList();
-    }
 
-    componentDidUpdate() {
-        this.refreshList();
-    }
+  componentDidMount() {
+    this.refreshList();
+  }
 
+<<<<<<< HEAD
     refreshList() {
         axios
             .get("http://localhost:1212/v1/app/praktek/dokter/2")
@@ -94,6 +94,36 @@ export class Praktek extends React.Component {
                 this.setState({praktek:response.data.data});
             });
     }
+  componentDidUpdate() {
+    this.refreshList();
+  }
+
+  refreshList() {
+    axios
+      .get("http://localhost:1212/v1/app/praktek/dokter/" + 2)
+      .then((response) => {
+        this.setState({ praktek: response.data.data });
+      });
+  }
+
+  editPraktek = (idPraktek) => {
+    axios
+      .get("http://localhost:1212/v1/app/praktek/" + idPraktek)
+      .then((response) => response.data.data)
+      .then((data) => {
+        this.setState({
+          idPraktek: data.data.idPraktek,
+          idDokter: data.data.idDokter,
+        });
+      });
+  };
+
+  kunjunganChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
+
 
     editPraktek = (idPraktek) => {
         axios.get("http://localhost:1212/v1/app/praktek/" + idPraktek)
