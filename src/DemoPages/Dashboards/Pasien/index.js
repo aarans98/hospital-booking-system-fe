@@ -9,12 +9,9 @@ import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
 
 import MySchedulePasien from "./KontenPasien/MySchedulePasien";
 import ListPraktek from "./KontenPasien/ListPraktek";
-<<<<<<< HEAD
 import Praktek from "./KontenPasien/Praktek";
-=======
 import RekamMedik from "./KontenPasien/RekamMedik";
 import ListDokter from "./KontenPasien/ListDokter";
->>>>>>> e06ecb893067236cb94883182d3ded7ddea0ffed
 
 // Examples
 // import CardsBasicExample from "./KontenPasien/Basic";
@@ -48,19 +45,13 @@ export default class MainPasien extends React.Component {
           <Tabs
             defaultActiveKey='1'
             renderTabBar={() => <ScrollableInkTabBar />}
-<<<<<<< HEAD
             renderTabContent={() => <TabContent />}
           >
             <TabPane tab="List Dokter" key="1">
               <Praktek />
-=======
-            renderTabContent={() => <TabContent />}>
-            <TabPane tab='List Dokter' key='1'>
-              <ListDokter />
             </TabPane>
             <TabPane tab='List Praktek' key='2'>
               <ListPraktek />
->>>>>>> e06ecb893067236cb94883182d3ded7ddea0ffed
             </TabPane>
             <TabPane tab='Notifikasi Pasien' key='3'>
               <MySchedulePasien username={this.state.username} />
