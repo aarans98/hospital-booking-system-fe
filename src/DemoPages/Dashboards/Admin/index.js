@@ -6,7 +6,7 @@ import PageTitle from "../../../Layout/AppMain/PageTitle";
 import Tabs, { TabPane } from "rc-tabs";
 import TabContent from "rc-tabs/lib/SwipeableTabContent";
 import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
-
+import TambahDokter from "./KontenAdmin/TambahDokter"
 // Examples
 
 export default class MainAdmin extends React.Component {
@@ -32,7 +32,7 @@ export default class MainAdmin extends React.Component {
             renderTabContent={() => <TabContent />}
           >
             <TabPane tab="Tambah Dokter" key="1">
-              <p>Konten Tambah Dokter</p>
+              <TambahDokter/>
             </TabPane>
             <TabPane tab="Tambah Jadwal Praktek" key="2">
               Konten Tambah Jadwal Praktek
