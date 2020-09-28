@@ -93,11 +93,9 @@ export default class MyScheduleDoctor extends Component {
                     </h6>
                   </div>
                   <div className='menu-header-btn-pane'>
-                    <Button
-                      size='sm'
-                      className='btn-icon mr-2 btn-icon-only'
-                      color='warning'>
-                      <i className='pe-7s-config btn-icon-wrapper'> </i>
+                    <Button size='sm' className='btn-icon mr-2' color='warning'>
+                      <i className='lnr-file-add btn-icon-wrapper'> </i>
+                      Rekam Medik
                     </Button>
                     <Button size='sm' className='btn-icon' color='primary'>
                       View Profile
