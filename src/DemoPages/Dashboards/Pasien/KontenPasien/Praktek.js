@@ -4,7 +4,6 @@ import {Row, Col} from 'reactstrap';
 import {Modal, Card, Button, ButtonToolbar, Nav} from 'react-bootstrap';
 import {AddModalKunjungan} from './AddModalKunjungan'
 import DataTable from 'react-data-table-component';
-import PageTitle from '../../../../Layout/AppMain/PageTitle';
 import axios from 'axios';
 
 export class Praktek extends React.Component {
@@ -79,21 +78,11 @@ export class Praktek extends React.Component {
         console.log(this.props.sendIdDokter);
     }
 
-    componentDidMount() {
-        this.refreshList();
 
   componentDidMount() {
     this.refreshList();
   }
 
-<<<<<<< HEAD
-    refreshList() {
-        axios
-            .get("http://localhost:1212/v1/app/praktek/dokter/2")
-            .then(response => {
-                this.setState({praktek:response.data.data});
-            });
-    }
   componentDidUpdate() {
     this.refreshList();
   }
@@ -136,12 +125,6 @@ export class Praktek extends React.Component {
             })
         });
     }
-
-    kunjunganChange(event) {
-        this.setState({
-            [event.target.name]:event.target.value
-        })
-    };
 
     render() {
         let editModalClose = () => this.setState({editModalShow:false});

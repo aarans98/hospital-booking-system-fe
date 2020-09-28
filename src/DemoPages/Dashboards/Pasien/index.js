@@ -49,9 +49,6 @@ export default class MainPasien extends React.Component {
             <TabPane tab='List Dokter' key='1'>
               <ListDokter />
             </TabPane>
-            <TabPane tab='List Praktek' key='2'>
-              <ListPraktek />
-            </TabPane>
             <TabPane tab='Notifikasi Pasien' key='3'>
               <MySchedulePasien username={this.state.username} />
             </TabPane>
