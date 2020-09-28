@@ -9,6 +9,8 @@ import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
 
 import MySchedulePasien from "./KontenPasien/MySchedulePasien";
 import ListPraktek from "./KontenPasien/ListPraktek";
+import Praktek from "./KontenPasien/Praktek";
+import RekamMedik from "./KontenPasien/RekamMedik";
 import ListDokter from "./KontenPasien/ListDokter";
 
 // Examples
@@ -18,38 +20,40 @@ import ListDokter from "./KontenPasien/ListDokter";
 // import CardsAdvanced from "./KontenPasien/Advanced";
 
 export default class MainPasien extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      username: this.props.location.customName.username,
+    };
+  }
   render() {
     return (
       <Fragment>
         <CSSTransitionGroup
-          component="div"
-          transitionName="TabsAnimation"
+          component='div'
+          transitionName='TabsAnimation'
           transitionAppear={true}
           transitionAppearTimeout={0}
           transitionEnter={false}
-          transitionLeave={false}
-        >
+          transitionLeave={false}>
           <PageTitle
-            heading="Pasien"
-            subheading="Ini Halaman Pasien~"
-            icon="pe-7s-stopwatch icon-gradient bg-amy-crisp"
+            heading='Pasien'
+            subheading='Ini Halaman Pasien~'
+            icon='pe-7s-stopwatch icon-gradient bg-amy-crisp'
           />
           <Tabs
-            defaultActiveKey="1"
+            defaultActiveKey='1'
             renderTabBar={() => <ScrollableInkTabBar />}
-            renderTabContent={() => <TabContent />}
-          >
-            <TabPane tab="List Dokter" key="1">
+            renderTabContent={() => <TabContent />}>
+            <TabPane tab='List Dokter' key='1'>
               <ListDokter />
             </TabPane>
-            <TabPane tab="List Praktek" key="2">
-              <ListPraktek />
+            <TabPane tab='Notifikasi Pasien' key='3'>
+              <MySchedulePasien username={this.state.username} />
             </TabPane>
-            <TabPane tab="Notifikasi Pasien" key="3">
-              <MySchedulePasien />
-            </TabPane>
-            <TabPane tab="Rekam Medik" key="4">
-              Konten Rekam Medik
+            <TabPane tab='Rekam Medik' key='4'>
+              <RekamMedik />
             </TabPane>
           </Tabs>
         </CSSTransitionGroup>

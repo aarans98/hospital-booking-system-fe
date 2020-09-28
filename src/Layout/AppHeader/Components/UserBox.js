@@ -57,54 +57,53 @@ class UserBox extends React.Component {
   render() {
     return (
       <Fragment>
-        <div className="header-btn-lg pr-0">
-          <div className="widget-content p-0">
-            <div className="widget-content-wrapper">
-              <div className="widget-content-left">
+        <div className='header-btn-lg pr-0'>
+          <div className='widget-content p-0'>
+            <div className='widget-content-wrapper'>
+              <div className='widget-content-left'>
                 <UncontrolledButtonDropdown>
-                  <DropdownToggle color="link" className="p-0">
+                  <DropdownToggle color='link' className='p-0'>
                     <img
                       width={42}
-                      className="rounded-circle"
+                      className='rounded-circle'
                       src={avatar1}
-                      alt=""
+                      alt=''
                     />
                     <FontAwesomeIcon
-                      className="ml-2 opacity-8"
+                      className='ml-2 opacity-8'
                       icon={faAngleDown}
                     />
                   </DropdownToggle>
-                  <DropdownMenu right className="rm-pointers dropdown-menu-lg">
-                    <div className="dropdown-menu-header">
-                      <div className="dropdown-menu-header-inner bg-info">
+                  <DropdownMenu right className='rm-pointers dropdown-menu-lg'>
+                    <div className='dropdown-menu-header'>
+                      <div className='dropdown-menu-header-inner bg-info'>
                         <div
-                          className="menu-header-image opacity-2"
+                          className='menu-header-image opacity-2'
                           style={{
                             backgroundImage: "url(" + city3 + ")",
                           }}
                         />
-                        <div className="menu-header-content text-left">
-                          <div className="widget-content p-0">
-                            <div className="widget-content-wrapper">
-                              <div className="widget-content-left mr-3">
+                        <div className='menu-header-content text-left'>
+                          <div className='widget-content p-0'>
+                            <div className='widget-content-wrapper'>
+                              <div className='widget-content-left mr-3'>
                                 <img
                                   width={42}
-                                  className="rounded-circle"
+                                  className='rounded-circle'
                                   src={avatar1}
-                                  alt=""
+                                  alt=''
                                 />
                               </div>
-                              <div className="widget-content-left">
-                                <div className="widget-heading">Pasien</div>
-                                <div className="widget-subheading opacity-8">
+                              <div className='widget-content-left'>
+                                <div className='widget-heading'>Pasien</div>
+                                <div className='widget-subheading opacity-8'>
                                   A short profile description
                                 </div>
                               </div>
-                              <div className="widget-content-right mr-2">
+                              <div className='widget-content-right mr-2'>
                                 <Button
-                                  className="btn-pill btn-shadow btn-shine"
-                                  color="focus"
-                                >
+                                  className='btn-pill btn-shadow btn-shine'
+                                  color='focus'>
                                   Logout
                                 </Button>
                               </div>
@@ -114,32 +113,31 @@ class UserBox extends React.Component {
                       </div>
                     </div>
                     <div
-                      className="scroll-area-xs"
+                      className='scroll-area-xs'
                       style={{
                         height: "150px",
-                      }}
-                    >
+                      }}>
                       <PerfectScrollbar>
                         <Nav vertical>
-                          <NavItem className="nav-item-header">
+                          <NavItem className='nav-item-header'>
                             Activity
                           </NavItem>
                           <NavItem>
-                            <NavLink href="#">
+                            <NavLink href='#'>
                               Chat
-                              <div className="ml-auto badge badge-pill badge-info">
+                              <div className='ml-auto badge badge-pill badge-info'>
                                 8
                               </div>
                             </NavLink>
                           </NavItem>
                           <NavItem>
-                            <NavLink href="#">Recover Password</NavLink>
+                            <NavLink href='#'>Recover Password</NavLink>
                           </NavItem>
-                          <NavItem className="nav-item-header">
+                          <NavItem className='nav-item-header'>
                             My Account
                           </NavItem>
                           <NavItem>
-                            <NavLink href="#">
+                            <NavLink href='#'>
                               Settings
                               {/* <div className='ml-auto badge badge-success'>
                                 New
@@ -200,26 +198,25 @@ class UserBox extends React.Component {
                   </DropdownMenu>
                 </UncontrolledButtonDropdown>
               </div>
-              <div className="widget-content-left  ml-3 header-user-info">
-                <div className="widget-heading">
+              <div className='widget-content-left  ml-3 header-user-info'>
+                <div className='widget-heading'>
                   {this.props.location.customName.username}
                 </div>
-                <div className="widget-subheading">
+                <div className='widget-subheading'>
                   {this.props.location.customName.user_role}
                 </div>
               </div>
 
-              <div className="widget-content-right header-user-info ml-3">
+              <div className='widget-content-right header-user-info ml-3'>
                 <Button
-                  className="btn-shadow p-1"
-                  size="sm"
+                  className='btn-shadow p-1'
+                  size='sm'
                   onClick={this.notify2}
-                  color="info"
-                  id="Tooltip-1"
-                >
-                  <IoIosCalendar color="#ffffff" fontSize="20px" />
+                  color='info'
+                  id='Tooltip-1'>
+                  <IoIosCalendar color='#ffffff' fontSize='20px' />
                 </Button>
-                <UncontrolledTooltip placement="bottom" target={"Tooltip-1"}>
+                <UncontrolledTooltip placement='bottom' target={"Tooltip-1"}>
                   Click for Toastify Notifications!
                 </UncontrolledTooltip>
               </div>

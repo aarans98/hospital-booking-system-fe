@@ -6,6 +6,8 @@ import PageTitle from "../../../Layout/AppMain/PageTitle";
 import Tabs, { TabPane } from "rc-tabs";
 import TabContent from "rc-tabs/lib/SwipeableTabContent";
 import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
+import InformasiStaf from './KontenAdmin/InformasiStaf'
+import JadwalPraktek from './KontenAdmin/JadwalPraktek'
 import TambahDokter from "./KontenAdmin/TambahDokter"
 // Examples
 
@@ -35,10 +37,10 @@ export default class MainAdmin extends React.Component {
               <TambahDokter/>
             </TabPane>
             <TabPane tab="Tambah Jadwal Praktek" key="2">
-              Konten Tambah Jadwal Praktek
+              <JadwalPraktek/>
             </TabPane>
             <TabPane tab="Informasi Staff" key="3">
-              Konten Informasi Staff
+              <InformasiStaf/>
             </TabPane>
           </Tabs>
         </CSSTransitionGroup>
