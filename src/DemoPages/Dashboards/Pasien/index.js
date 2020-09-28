@@ -19,6 +19,13 @@ import ListDokter from "./KontenPasien/ListDokter";
 // import CardsAdvanced from "./KontenPasien/Advanced";
 
 export default class MainPasien extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      username: this.props.location.customName.username,
+    };
+  }
   render() {
     return (
       <Fragment>
@@ -45,7 +52,7 @@ export default class MainPasien extends React.Component {
               <ListPraktek />
             </TabPane>
             <TabPane tab='Notifikasi Pasien' key='3'>
-              <MySchedulePasien />
+              <MySchedulePasien username={this.state.username} />
             </TabPane>
             <TabPane tab='Rekam Medik' key='4'>
               <RekamMedik />
