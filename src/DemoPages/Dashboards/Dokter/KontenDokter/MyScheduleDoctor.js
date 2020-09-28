@@ -6,6 +6,7 @@ import axios from "axios";
 import dummyData from "../../Pasien/KontenPasien/dummyData";
 import bg1 from "../../../../assets/utils/images/dropdown-header/abstract1.jpg";
 import avatar4 from "../../../../assets/utils/images/avatars/3.jpg";
+import FormRekamMedik from "./FormRekamMedik";
 
 import {
   ListGroup,
@@ -93,12 +94,7 @@ export default class MyScheduleDoctor extends Component {
                     </h6>
                   </div>
                   <div className='menu-header-btn-pane'>
-                    <Button
-                      size='sm'
-                      className='btn-icon mr-2 btn-icon-only'
-                      color='warning'>
-                      <i className='pe-7s-config btn-icon-wrapper'> </i>
-                    </Button>
+                    <FormRekamMedik id={card.idJadwalDokter} />
                     <Button size='sm' className='btn-icon' color='primary'>
                       View Profile
                     </Button>
