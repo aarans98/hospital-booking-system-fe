@@ -8,7 +8,7 @@ import TabContent from "rc-tabs/lib/SwipeableTabContent";
 import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
 
 import MySchedulePasien from "./KontenPasien/MySchedulePasien";
-import ListPraktek from "./KontenPasien/ListPraktek";
+import {Praktek} from "./KontenPasien/Praktek";
 import RekamMedik from "./KontenPasien/RekamMedik";
 import ListDokter from "./KontenPasien/ListDokter";
 
@@ -42,7 +42,7 @@ export default class MainPasien extends React.Component {
               <ListDokter />
             </TabPane>
             <TabPane tab='List Praktek' key='2'>
-              <ListPraktek />
+              <Praktek />
             </TabPane>
             <TabPane tab='Notifikasi Pasien' key='3'>
               <MySchedulePasien />

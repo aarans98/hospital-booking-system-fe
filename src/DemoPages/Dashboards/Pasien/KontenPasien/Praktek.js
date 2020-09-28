@@ -1,13 +1,13 @@
 import React, {Fragment} from 'react'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import {Row, Col} from 'reactstrap';
-import {Card, Button, ButtonToolbar, Nav} from 'react-bootstrap';
+import {Modal, Card, Button, ButtonToolbar, Nav} from 'react-bootstrap';
 import {AddModalKunjungan} from './AddModalKunjungan'
 import DataTable from 'react-data-table-component';
 import PageTitle from '../../../../Layout/AppMain/PageTitle';
 import axios from 'axios';
 
-export default class Praktek extends React.Component {
+export class Praktek extends React.Component {
 
     constructor(props) {
         super(props);
@@ -76,6 +76,7 @@ export default class Praktek extends React.Component {
         this.componentDidUpdate = this.componentDidUpdate.bind(this);
         this.kunjunganChange = this.kunjunganChange.bind(this);
         // this.submitKunjungan =  this.submitKunjungan.bind(this);
+        console.log(this.props.sendIdDokter);
     }
 
     componentDidMount() {
@@ -88,7 +89,7 @@ export default class Praktek extends React.Component {
 
     refreshList() {
         axios
-            .get("http://localhost:1212/v1/app/praktek/dokter/" + 2)
+            .get("http://localhost:1212/v1/app/praktek/dokter/2")
             .then(response => {
                 this.setState({praktek:response.data.data});
             });
@@ -115,6 +116,13 @@ export default class Praktek extends React.Component {
     render() {
         let editModalClose = () => this.setState({editModalShow:false});
         return (
+            <Modal {...this.props} size="lg" backdrop="static" className="Mymodal" id="modal_form" animation={true}>
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    JADWAL PRAKTEK
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
             <Fragment>
                 <CSSTransitionGroup
                     component="div"
@@ -124,11 +132,11 @@ export default class Praktek extends React.Component {
                     transitionEnter={false}
                     transitionLeave={false}>
                     <div>
-                        <PageTitle
+                        {/* <PageTitle
                             heading="Data Tables"
                             subheading="Choose between regular React Bootstrap tables or advanced dynamic ones."
                             icon="pe-7s-medal icon-gradient bg-tempting-azure"
-                        />
+                        /> */}
                     </div>
                     <Row>
                         <Col md="12">
@@ -137,7 +145,7 @@ export default class Praktek extends React.Component {
                                 </Card.Header>
                                 <Card.Body class="card-hover-shadow card-border mb-3 card">
                                     <DataTable
-                                        title="List Praktek"
+                                        // title="List Praktek"
                                         columns={this.columns} 
                                         pagination={true}
                                         highlightOnHover
@@ -164,6 +172,11 @@ export default class Praktek extends React.Component {
                     </Row>
                 </CSSTransitionGroup>
             </Fragment>
+            </Modal.Body>
+                <Modal.Footer>
+                   
+                </Modal.Footer>
+            </Modal>
         )
     }
 }
