@@ -108,8 +108,8 @@ export default class TambahDokter extends React.Component {
       });
   }
 
-  deleteInformasiStaf = (idDokter) => {
-      axios.delete("http//localhost:1212/v1/app/dokter/"+idDokter)
+  deleteDokter = (idDokter) => {
+      axios.delete("http://localhost:1212/v1/app/dokter/"+idDokter)
       .then(response => {
           if(response.data != null) {
               alert("Data berhasil dihapus!");
