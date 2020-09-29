@@ -1,10 +1,13 @@
 import React, { Fragment } from "react";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import { Row, Col, Card, CardBody, CardFooter, Button } from "reactstrap";
+import {ButtonToolbar} from 'react-bootstrap';
 import DataTable from "react-data-table-component";
 import PageTitle from "../../../../Layout/AppMain/PageTitle";
 import axios from "axios";
 import TambahDokterModal from "./TambahDokterModal";
+import EditModalDokter from "./EditModalDokter";
+import JadwalPraktek from './JadwalPraktek';
 
 export default class TambahDokter extends React.Component {
   constructor(props) {
@@ -13,12 +16,18 @@ export default class TambahDokter extends React.Component {
       dokter: [],
       modal: false,
       addModalShow: false,
+      editModalShow: false,
+      praktekModalShow: false,
       initialState: {
           idDokter:'',
           namaLengkap:'',
           spesialisasi:'',
           tanggalLahir:'',
-          username:''
+          username:'',
+        //   email:'',
+        //   password:'',
+        //   passwordrep:'',
+        //   user_role:'dokter'
       }
     };
 
@@ -60,7 +69,7 @@ export default class TambahDokter extends React.Component {
         <Button className="btn btn-primary" raised primary 
         onClick={() => this.setState({
             editModalShow:true,
-            sendIdPraktek: updateJadwal.idPraktek,
+            sendIdPraktek: updateJadwal.idPraktek,  
             sendidDokter: updateJadwal.idDokter,
             sendJadwal: updateJadwal.jadwal,
             sendJam: updateJadwal.jam,
@@ -71,6 +80,18 @@ export default class TambahDokter extends React.Component {
         ignoreRowClick: true,
         allowOverflow: true,
         button: true,
+        cell: (dokter) => {
+        return(
+            <Fragment>
+              <button className="btn btn-primary" 
+                onClick={() => this.setState({
+                    praktekModalShow:true,
+                    sendIdDokter: dokter.idDokter})}>
+                    Update
+                </button>
+            </Fragment>
+          );
+        }
       },
       {
         name: "Update Dokter",
@@ -79,11 +100,14 @@ export default class TambahDokter extends React.Component {
         <Button className="btn btn-primary" raised primary 
         onClick={() => this.setState({
             editModalShow:true,
-            sendIdPraktek: updateDokter.idPraktek,
-            sendidDokter: updateDokter.idDokter,
-            sendJadwal: updateDokter.jadwal,
-            sendJam: updateDokter.jam,
-            sendPoli: updateDokter.poli
+            sendIdDokter: updateDokter.idDokter,
+            sendNamaLengkap: updateDokter.namaLengkap,
+            sendSpesialisasi: updateDokter.spesialisasi,
+            sendTanggalLahir: updateDokter.tanggalLahir,
+            // sendUsername: updateDokter.username,
+            // sendEmail: updateDokter.email,
+            // sendPassword: updateDokter.password,
+            // sendPasswordrep: updateDokter.passwordrep
         })}>
             Update
         </Button>,
@@ -122,7 +146,14 @@ export default class TambahDokter extends React.Component {
       .get("http://localhost:1212/v1/app/dokter")
       .then((response) => {
         this.setState({ dokter: response.data.data });
+
+    //     axios.get("http://localhost:1212/v1/app/register"+)
+    //         .then((response) => {
+    //             this.setState({ dokter: response.data.data});
+    //   });
       });
+
+    
   }
 
   deleteDokter = (idDokter) => {
@@ -138,7 +169,9 @@ export default class TambahDokter extends React.Component {
   }
 
   render() {
+    console.log(this.state.sendIdDokter);
     let addModalClose = () => this.setState({addModalShow:false});
+    let praktekModalClose = () => this.setState({praktekModalShow:false});
     let editModalClose = () => this.setState({editModalShow:false});
     return (
       <Fragment>
@@ -166,6 +199,13 @@ export default class TambahDokter extends React.Component {
                     show={this.state.addModalShow}
                     onHide={addModalClose}
                     />
+                <ButtonToolbar>
+                  <JadwalPraktek
+                    show={this.state.praktekModalShow}
+                    onHide={praktekModalClose}
+                    sendIdDokter={this.state.sendIdDokter}
+                    />
+                  </ButtonToolbar>
               </Col>
           </Row>
           <Row>
@@ -183,12 +223,43 @@ export default class TambahDokter extends React.Component {
                       spesialisasi: dokter.spesialisasi,
                       tanggalLahir: dokter.tanggalLahir,
                       username: dokter.username,
+                    //   email: dokter.email,
+                    //   password: dokter.password,
+                    //   passwordrep: dokter.passwordrep
                     //   action:   
                     }))}
                   />
+                  {/* <JadwalPraktek
+                  show={this.state.praktekModalShow}
+                  onHide={praktekModalClose}
+                  idDokter={this.state.sendIdDokter}
+                  /> */}
                 </CardBody>
               </Card>
             </Col>
+          </Row>
+          <Row>
+              <Col md="12">
+                <Button className="btn btn-primary" onClick={() => this.setState({addModalShow: true})}>
+                    Tambah Dokter
+                </Button>
+                <TambahDokterModal
+                    show={this.state.addModalShow}
+                    onHide={addModalClose}
+                    />
+                <EditModalDokter
+                    show={this.state.editModalShow}
+                    onHide={editModalClose}
+                    idDokter={this.state.sendIdDokter}
+                    namaLengkap={this.state.sendNamaLengkap}
+                    spesialisasi={this.state.sendSpesialisasi}
+                    tanggalLahir={this.state.sendTanggalLahir}
+                    // username={this.state.sendUsername}
+                    // email={this.state.sendEmail}
+                    // password={this.state.sendPassword}
+                    // passwordrep={this.state.sendPasswordrep}
+                />
+              </Col>
           </Row>
           
         </CSSTransitionGroup>

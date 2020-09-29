@@ -1,14 +1,14 @@
 import React, {Fragment} from 'react'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import {Row, Col} from 'reactstrap';
-import {Card, Button, ButtonToolbar} from 'react-bootstrap';
+import {Modal, Card, Button, ButtonToolbar} from 'react-bootstrap';
 import DataTable from 'react-data-table-component';
 import {AddModalPraktek} from './AddModalPraktek';
 import {EditModalPraktek} from './EditModalPraktek';
 import PageTitle from '../../../../Layout/AppMain/PageTitle';
 import axios from 'axios';
 
-export default class DataTableBasic extends React.Component {
+export default class JadwalPraktek extends React.Component {
 
     constructor(props) {
         super(props);
@@ -99,7 +99,7 @@ export default class DataTableBasic extends React.Component {
 
     refreshList() {
         axios
-            .get("http://localhost:1212/v1/app/praktek/dokter/2")
+            .get("http://localhost:1212/v1/app/praktek/dokter/2") 
             .then(response => {
                 this.setState({praktek:response.data.data});
             });
@@ -144,6 +144,13 @@ export default class DataTableBasic extends React.Component {
         let addModalClose = () => this.setState({addModalShow:false});
         let editModalClose = () => this.setState({editModalShow:false});
         return (
+            <Modal {...this.props} size="lg" backdrop="static" className="Mymodal" id="modal_form" animation={true}>
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    JADWAL PRAKTEK
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
             <Fragment>
                 <CSSTransitionGroup
                     component="div"
@@ -153,11 +160,11 @@ export default class DataTableBasic extends React.Component {
                     transitionEnter={false}
                     transitionLeave={false}>
                     <div>
-                        <PageTitle
+                        {/* <PageTitle
                             heading="Data Tables"
                             subheading="Choose between regular React Bootstrap tables or advanced dynamic ones."
                             icon="pe-7s-medal icon-gradient bg-tempting-azure"
-                        />
+                        /> */}
                     </div>
                     <Row>
                         <Col md="12">
@@ -201,6 +208,11 @@ export default class DataTableBasic extends React.Component {
                     </Row>
                 </CSSTransitionGroup>
             </Fragment>
+            </Modal.Body>
+                <Modal.Footer>
+                   
+                </Modal.Footer>
+            </Modal>
         )
     }
 }
