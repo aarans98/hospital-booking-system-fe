@@ -1,10 +1,12 @@
 import React, { Fragment } from "react";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import { Row, Col, Card, CardBody, CardFooter, Button } from "reactstrap";
+import {ButtonToolbar} from 'react-bootstrap';
 import DataTable from "react-data-table-component";
 import PageTitle from "../../../../Layout/AppMain/PageTitle";
 import axios from "axios";
 import TambahDokterModal from "./TambahDokterModal";
+import JadwalPraktek from './JadwalPraktek';
 
 export default class TambahDokter extends React.Component {
   constructor(props) {
@@ -13,13 +15,15 @@ export default class TambahDokter extends React.Component {
       dokter: [],
       modal: false,
       addModalShow: false,
+      praktekModalShow: false,
       initialState: {
           idDokter:'',
           namaLengkap:'',
           spesialisasi:'',
           tanggalLahir:'',
           username:''
-      }
+      },
+      sendIdDokter:''
     };
 
     this.columns = [
@@ -56,21 +60,19 @@ export default class TambahDokter extends React.Component {
       {
         name: "Update Jadwal",
         sortable: "true",
-        cell: (updateJadwal) => 
-        <Button className="btn btn-primary" raised primary 
-        onClick={() => this.setState({
-            editModalShow:true,
-            sendIdPraktek: updateJadwal.idPraktek,
-            sendidDokter: updateJadwal.idDokter,
-            sendJadwal: updateJadwal.jadwal,
-            sendJam: updateJadwal.jam,
-            sendPoli: updateJadwal.poli
-        })}>
-            Update
-        </Button>,
-        ignoreRowClick: true,
-        allowOverflow: true,
         button: true,
+        cell: (dokter) => {
+        return(
+            <Fragment>
+              <button className="btn btn-primary" 
+                onClick={() => this.setState({
+                    praktekModalShow:true,
+                    sendIdDokter: dokter.idDokter})}>
+                    Update
+                </button>
+            </Fragment>
+          );
+        }
       },
       {
         name: "Update Dokter",
@@ -121,7 +123,7 @@ export default class TambahDokter extends React.Component {
     axios
       .get("http://localhost:1212/v1/app/dokter")
       .then((response) => {
-        this.setState({ dokter: response.data.data });
+        this.setState({ dokter: response.data.data});
       });
   }
 
@@ -138,7 +140,9 @@ export default class TambahDokter extends React.Component {
   }
 
   render() {
+    console.log(this.state.sendIdDokter);
     let addModalClose = () => this.setState({addModalShow:false});
+    let praktekModalClose = () => this.setState({praktekModalShow:false});
     let editModalClose = () => this.setState({editModalShow:false});
     return (
       <Fragment>
@@ -166,6 +170,13 @@ export default class TambahDokter extends React.Component {
                     show={this.state.addModalShow}
                     onHide={addModalClose}
                     />
+                <ButtonToolbar>
+                  <JadwalPraktek
+                    show={this.state.praktekModalShow}
+                    onHide={praktekModalClose}
+                    sendIdDokter={this.state.sendIdDokter}
+                    />
+                  </ButtonToolbar>
               </Col>
           </Row>
           <Row>
@@ -186,6 +197,11 @@ export default class TambahDokter extends React.Component {
                     //   action:   
                     }))}
                   />
+                  {/* <JadwalPraktek
+                  show={this.state.praktekModalShow}
+                  onHide={praktekModalClose}
+                  idDokter={this.state.sendIdDokter}
+                  /> */}
                 </CardBody>
               </Card>
             </Col>

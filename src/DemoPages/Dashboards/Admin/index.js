@@ -36,9 +36,6 @@ export default class MainAdmin extends React.Component {
             <TabPane tab="Tambah Dokter" key="1">
               <TambahDokter/>
             </TabPane>
-            <TabPane tab="Tambah Jadwal Praktek" key="2">
-              <JadwalPraktek/>
-            </TabPane>
             <TabPane tab="Informasi Staff" key="3">
               <InformasiStaf/>
             </TabPane>
