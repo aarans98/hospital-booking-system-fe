@@ -22,7 +22,7 @@ export default class TambahDokterModal extends React.Component {
         email: '',
         password: '',
         passwordrep: '',
-        user_reole: 'dokter'
+        user_role: 'dokter'
     }
 
     submitTambahDokter = event =>  {
