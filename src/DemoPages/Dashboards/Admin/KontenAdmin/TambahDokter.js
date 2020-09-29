@@ -54,19 +54,36 @@ export default class TambahDokter extends React.Component {
         filterable: true,
       },
       {
-        name: "Update Dokter",
+        name: "Update Jadwal",
         sortable: "true",
-        cell: (tambahDokter) => 
+        cell: (updateJadwal) => 
         <Button className="btn btn-primary" raised primary 
         onClick={() => this.setState({
             editModalShow:true,
-            sendIdStaf: tambahDokter.idStaf,
-            sendNamaLengkap: tambahDokter.namaLengkap,
-            sendUserName: tambahDokter.userName,
-            sendTanggalLahir: tambahDokter.tanggalLahir,
-            sendPosisi: tambahDokter.posisi,
-            sendMulaiBekerja:tambahDokter.mulaiBekerja,
-            sendGaji: tambahDokter.gaji
+            sendIdPraktek: updateJadwal.idPraktek,
+            sendidDokter: updateJadwal.idDokter,
+            sendJadwal: updateJadwal.jadwal,
+            sendJam: updateJadwal.jam,
+            sendPoli: updateJadwal.poli
+        })}>
+            Update
+        </Button>,
+        ignoreRowClick: true,
+        allowOverflow: true,
+        button: true,
+      },
+      {
+        name: "Update Dokter",
+        sortable: "true",
+        cell: (updateDokter) => 
+        <Button className="btn btn-primary" raised primary 
+        onClick={() => this.setState({
+            editModalShow:true,
+            sendIdPraktek: updateDokter.idPraktek,
+            sendidDokter: updateDokter.idDokter,
+            sendJadwal: updateDokter.jadwal,
+            sendJam: updateDokter.jam,
+            sendPoli: updateDokter.poli
         })}>
             Update
         </Button>,
