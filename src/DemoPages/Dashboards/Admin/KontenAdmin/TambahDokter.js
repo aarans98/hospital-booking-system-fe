@@ -1,12 +1,13 @@
 import React, { Fragment } from "react";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
-import { Row, Col, Card, CardBody, CardFooter } from "reactstrap";
+import { Row, Col, Card, CardBody, CardFooter, Button } from "reactstrap";
+import {ButtonToolbar} from 'react-bootstrap';
 import DataTable from "react-data-table-component";
 import PageTitle from "../../../../Layout/AppMain/PageTitle";
 import axios from "axios";
-import Rodal from "rodal";
-import { ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
-// import TambahDokterModal from "./TambahDokterModal";
+import TambahDokterModal from "./TambahDokterModal";
+import EditModalDokter from "./EditModalDokter";
+import JadwalPraktek from './JadwalPraktek';
 
 export default class TambahDokter extends React.Component {
   constructor(props) {
@@ -14,6 +15,20 @@ export default class TambahDokter extends React.Component {
     this.state = {
       dokter: [],
       modal: false,
+      addModalShow: false,
+      editModalShow: false,
+      praktekModalShow: false,
+      initialState: {
+          idDokter:'',
+          namaLengkap:'',
+          spesialisasi:'',
+          tanggalLahir:'',
+          username:'',
+        //   email:'',
+        //   password:'',
+        //   passwordrep:'',
+        //   user_role:'dokter'
+      }
     };
 
     this.columns = [
@@ -48,43 +63,75 @@ export default class TambahDokter extends React.Component {
         filterable: true,
       },
       {
-        name: "Action",
+        name: "Update Jadwal",
         sortable: "true",
-        cell: () =>
-        <div>
-            <Button mb="2"raised primary onClick={this.handleAction}>Update</Button>
-            
-            <Button raised primary onClick={this.handleAction}>Delete</Button>
-        </div>,
+        cell: (updateJadwal) => 
+        <Button className="btn btn-primary" raised primary 
+        onClick={() => this.setState({
+            editModalShow:true,
+            sendIdPraktek: updateJadwal.idPraktek,  
+            sendidDokter: updateJadwal.idDokter,
+            sendJadwal: updateJadwal.jadwal,
+            sendJam: updateJadwal.jam,
+            sendPoli: updateJadwal.poli
+        })}>
+            Update
+        </Button>,
+        ignoreRowClick: true,
+        allowOverflow: true,
+        button: true,
+        cell: (dokter) => {
+        return(
+            <Fragment>
+              <button className="btn btn-primary" 
+                onClick={() => this.setState({
+                    praktekModalShow:true,
+                    sendIdDokter: dokter.idDokter})}>
+                    Update
+                </button>
+            </Fragment>
+          );
+        }
+      },
+      {
+        name: "Update Dokter",
+        sortable: "true",
+        cell: (updateDokter) => 
+        <Button className="btn btn-primary" raised primary 
+        onClick={() => this.setState({
+            editModalShow:true,
+            sendIdDokter: updateDokter.idDokter,
+            sendNamaLengkap: updateDokter.namaLengkap,
+            sendSpesialisasi: updateDokter.spesialisasi,
+            sendTanggalLahir: updateDokter.tanggalLahir,
+            // sendUsername: updateDokter.username,
+            // sendEmail: updateDokter.email,
+            // sendPassword: updateDokter.password,
+            // sendPasswordrep: updateDokter.passwordrep
+        })}>
+            Update
+        </Button>,
         ignoreRowClick: true,
         allowOverflow: true,
         button: true,
       },
+      {
+        name: "Delete",
+        sortable: "true",
+        cell: (tambahDokter) => 
+        <Button className="btn btn-danger" raised primary 
+        onClick={() => this.deleteDokter(tambahDokter.idDokter)}>
+            Delete
+        </Button>,
+        ignoreRowClick: true,
+        allowOverflow: true,
+        button: true,
+      },
+      
     ];
     this.componentDidMount = this.componentDidMount.bind(this);
     this.componentDidUpdate = this.componentDidUpdate.bind(this);
   }
-
-  tambahDokter = (event) => {
-      event.preventDefault();
-
-      const register = {
-        user_role: this.state.user_role,
-        username: this.state.username,
-        password: this.state.password,
-        passwordrep: this.state.passwordrep,
-        email: this.state.email,
-      }
-
-      axios
-        .post("http://localhost:1212/v1/app/register", register)
-        .then((response) => {
-            if (response.data != null) {
-                this.setState(this.initialState);
-                this.setState({show:true});
-            }
-        })
-  };
 
   componentDidMount() {
     this.refreshList();
@@ -99,40 +146,33 @@ export default class TambahDokter extends React.Component {
       .get("http://localhost:1212/v1/app/dokter")
       .then((response) => {
         this.setState({ dokter: response.data.data });
+
+    //     axios.get("http://localhost:1212/v1/app/register"+)
+    //         .then((response) => {
+    //             this.setState({ dokter: response.data.data});
+    //   });
       });
+
+    
   }
 
-  show(animation) {
-    this.setState({
-      animation,
-      visible: true,
-    });
-  }
-
-  hide() {
-    this.setState({ visible: false });
+  deleteDokter = (idDokter) => {
+      axios.delete("http://localhost:1212/v1/app/dokter/"+idDokter)
+      .then(response => {
+          if(response.data != null) {
+              alert("Data berhasil dihapus!");
+              this.setState({
+                  dokter: this.state.dokter.filter(dokter=> dokter.idDokter !== idDokter)
+              })
+          }
+      })
   }
 
   render() {
-    
-    let types = ["door"];
-    let buttons = types.map((value, index) => {
-      let style = {
-        animationDelay: index * 100 + "ms",
-        WebkitAnimationDelay: index * 100 + "ms",
-      };
-      return (
-        <Button
-          key={index}
-          className="mb-2 mr-2"
-          color="primary"
-          onClick={this.show.bind(this, value)}
-          style={style}
-        >
-          Buat Janji
-        </Button>
-      );
-    });
+    console.log(this.state.sendIdDokter);
+    let addModalClose = () => this.setState({addModalShow:false});
+    let praktekModalClose = () => this.setState({praktekModalShow:false});
+    let editModalClose = () => this.setState({editModalShow:false});
     return (
       <Fragment>
         <CSSTransitionGroup
@@ -152,7 +192,20 @@ export default class TambahDokter extends React.Component {
           </div>
           <Row>
               <Col md="12">
-                <Button float-right onClick={this.state.modal=true}>Tambah Dokter</Button>
+                <Button className="btn btn-primary" onClick={() => this.setState({addModalShow: true})}>
+                    Tambah Dokter
+                </Button>
+                <TambahDokterModal
+                    show={this.state.addModalShow}
+                    onHide={addModalClose}
+                    />
+                <ButtonToolbar>
+                  <JadwalPraktek
+                    show={this.state.praktekModalShow}
+                    onHide={praktekModalClose}
+                    sendIdDokter={this.state.sendIdDokter}
+                    />
+                  </ButtonToolbar>
               </Col>
           </Row>
           <Row>
@@ -170,15 +223,44 @@ export default class TambahDokter extends React.Component {
                       spesialisasi: dokter.spesialisasi,
                       tanggalLahir: dokter.tanggalLahir,
                       username: dokter.username,
+                    //   email: dokter.email,
+                    //   password: dokter.password,
+                    //   passwordrep: dokter.passwordrep
                     //   action:   
                     }))}
                   />
+                  {/* <JadwalPraktek
+                  show={this.state.praktekModalShow}
+                  onHide={praktekModalClose}
+                  idDokter={this.state.sendIdDokter}
+                  /> */}
                 </CardBody>
               </Card>
             </Col>
           </Row>
-          
-          {/* <TambahDokterModal/> */}
+          <Row>
+              <Col md="12">
+                <Button className="btn btn-primary" onClick={() => this.setState({addModalShow: true})}>
+                    Tambah Dokter
+                </Button>
+                <TambahDokterModal
+                    show={this.state.addModalShow}
+                    onHide={addModalClose}
+                    />
+                <EditModalDokter
+                    show={this.state.editModalShow}
+                    onHide={editModalClose}
+                    idDokter={this.state.sendIdDokter}
+                    namaLengkap={this.state.sendNamaLengkap}
+                    spesialisasi={this.state.sendSpesialisasi}
+                    tanggalLahir={this.state.sendTanggalLahir}
+                    // username={this.state.sendUsername}
+                    // email={this.state.sendEmail}
+                    // password={this.state.sendPassword}
+                    // passwordrep={this.state.sendPasswordrep}
+                />
+              </Col>
+          </Row>
           
         </CSSTransitionGroup>
       </Fragment>
