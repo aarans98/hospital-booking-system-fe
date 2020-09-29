@@ -103,7 +103,7 @@ export class AddModalKunjungan extends React.Component {
                   <Form.Group as={Col} controlId="idPraktek">
                     <Form.Label>Id Praktek</Form.Label>
                     <Form.Control
-                      required
+                      disabled
                       autoComplete="off"
                       type="number"
                       defaultValue={this.props.idPraktek}
@@ -115,7 +115,7 @@ export class AddModalKunjungan extends React.Component {
                   <Form.Group as={Col} controlId="idDokter">
                     <Form.Label>Id Dokter</Form.Label>
                     <Form.Control
-                      required
+                      disabled
                       autoComplete="off"
                       type="number"
                       defaultValue={this.props.idDokter}
