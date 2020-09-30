@@ -38,6 +38,14 @@ class FormRekamMedik extends React.Component {
     // this.findAllPasien();
   }
 
+  componentDidUpdate() {
+    fetch("http://localhost:1212/v1/app/obat/id")
+        .then(response => response.json())
+        .then(data => {
+            this.setState({ obat: data });
+        });
+  }
+
   findAllIdObat = () => {
     axios.get("http://localhost:1212/v1/app/obat/id")
       .then(response => {
