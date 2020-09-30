@@ -207,7 +207,7 @@ class FormRekamMedik extends React.Component {
               <FormGroup row>
                 <Label for="dosis" sm={2}>Dosis</Label>
                 <Col sm={10}>
-                  <Input required type="textarea" name="dosis" value={dosis}
+                  <Input type="textarea" name="dosis" value={dosis}
                     onChange={this.formChange} id="dosis" placeholder="Masukkan dosis" />
                 </Col>
               </FormGroup>
