@@ -7,7 +7,7 @@ import bg2 from "../../../assets/utils/images/originals/citydark.jpg";
 import bg3 from "../../../assets/utils/images/originals/citynights.jpg";
 
 import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default class Login extends Component {
@@ -35,13 +35,25 @@ export default class Login extends Component {
       .then((response) => response.data)
       .then((data) => {
         this.setState({ logins: data });
-        {
+        if (this.state.logins.status === true) {
+          if (this.state.logins.user_role === null) {
+            alert("Password anda salah!");
+            this.props.history.push({
+              pathname: "/pages/forgot-password",
+              forgot: this.state.logins.username,
+            });
+          } else {
+            this.props.history.push({
+              pathname: "/dashboards/" + data.user_role,
+              customName: this.state.logins,
+            });
+          }
+        } else {
+          alert("Username anda belum terdaftar");
           this.props.history.push({
-            pathname: "/dashboards/" + data.user_role,
-            customName: this.state.logins,
+            pathname: "/pages/register/",
           });
         }
-        console.log(this.state.logins);
       });
     this.setState(this.initialState);
   };
@@ -130,16 +142,19 @@ export default class Login extends Component {
               <Col lg="9" md="10" sm="12" className="mx-auto app-login-box">
                 <div className="app-logo" />
                 <h4 className="mb-0">
-                  <div>Welcome back,</div>
-                  <span>Please sign in to your account.</span>
+                  <div>Selamat Datang!</div>
+                  <span>
+                    Silahkan masukkan username dan password untuk menggunakan
+                    akses
+                  </span>
                 </h4>
                 <h6 className="mt-3">
-                  No account?{" "}
+                  Tidak punya akun?{" "}
                   <Link
                     to={"/pages/register"}
                     className="btn btn-sm btn-outline-primary"
                   >
-                    Sign up now
+                    Daftar sekarang
                   </Link>{" "}
                 </h6>
                 <Row className="divider" />
@@ -168,34 +183,29 @@ export default class Login extends Component {
                             id="password"
                             value={password}
                             onChange={this.loginChange}
-                            placeholder="Password here..."
+                            placeholder="Masukkan password..."
                           />
                         </FormGroup>
                       </Col>
                     </Row>
-                    <FormGroup check>
+                    {/* <FormGroup check>
                       <Input type="checkbox" name="check" id="exampleCheck" />
                       <Label for="exampleCheck" check>
                         Keep me logged in
                       </Label>
-                    </FormGroup>
+                    </FormGroup> */}
                     <Row className="divider" />
                     <div className="d-flex align-items-center">
                       <div className="ml-auto">
-                        <a
-                          href="https://colorlib.com/"
-                          onClick={(e) => e.preventDefault()}
-                          className="btn-lg btn btn-link"
-                        >
-                          Recover Password
-                        </a>{" "}
-                        <Button color="primary" size="lg" type="submit">
-                          {/* <Link
+                        <Col md={10}>
+                          <Button color="danger" size="lg" type="submit">
+                            {/* <Link
                             to={"/" + data.user_role}
                             className='btn btn-sm btn-outline-primary'> */}
-                          Login to Dashboard
-                          {/* </Link> */}
-                        </Button>
+                            Masuk
+                            {/* </Link> */}
+                          </Button>
+                        </Col>
                       </div>
                     </div>
                   </Form>

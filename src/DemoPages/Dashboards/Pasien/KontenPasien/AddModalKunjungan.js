@@ -1,6 +1,5 @@
 import React from "react";
-// import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Card,
-//     CardHeader, CardBody, CardFooter, Row, Col, Form } from 'reactstrap';
+import { CustomInput } from "reactstrap";
 import { Modal, Button, Row, Col, Form, Card } from "react-bootstrap";
 import axios from "axios";
 
@@ -145,7 +144,7 @@ export class AddModalKunjungan extends React.Component {
                       placeholder="Nama Lengkap"
                     />
                   </Form.Group>
-                  <Form.Group as={Col} controlId="jenis_kelamin">
+                  {/* <Form.Group as={Col} controlId="jenis_kelamin">
                     <Form.Label>Jenis Kelamin</Form.Label>
                     <Form.Control
                       required
@@ -156,6 +155,25 @@ export class AddModalKunjungan extends React.Component {
                       name="jenis_kelamin"
                       placeholder="Jenis Kelamin"
                     />
+                  </Form.Group> */}
+                  <Form.Group as={Col} controlId="jenis_kelamin">
+                    <Form.Label for="exampleCheckbox">Jenis Kelamin</Form.Label>
+                    <div>
+                      <CustomInput
+                        type="radio"
+                        id="laki-laki"
+                        name="laki-laki"
+                        label="Laki-laki"
+                        value={this.props.jenis_kelamin}
+                      />
+                      <CustomInput
+                        type="radio"
+                        id="perempuan"
+                        name="perempuan"
+                        label="Perempuan"
+                        value={this.props.jenis_kelamin}
+                      />
+                    </div>
                   </Form.Group>
                   <Form.Group as={Col} controlId="tanggal_lahir">
                     <Form.Label>Tanggal Lahir</Form.Label>
