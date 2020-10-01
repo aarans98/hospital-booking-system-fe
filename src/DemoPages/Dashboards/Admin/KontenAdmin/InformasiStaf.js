@@ -154,6 +154,7 @@ export default class DataTableBasic extends React.Component {
                                         title="Informasi Staf"
                                         columns={this.columns} 
                                         pagination={true}
+                                        defaultSortField="idStaf"
                                         data={this.state.informasiStaf.map((informasiStaf) => (
                                             {idStaf:informasiStaf.idStaf,
                                             namaLengkap:informasiStaf.namaLengkap,

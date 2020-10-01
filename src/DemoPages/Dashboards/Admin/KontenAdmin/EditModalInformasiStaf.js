@@ -105,7 +105,7 @@ export class EditModalInformasiStaf extends Component {
                                         <Form.Label>Posisi</Form.Label>
                                         <Form.Control required autoComplete="off"
                                         type="text" 
-                                        defaultValue={this.props.namaLengkap}
+                                        defaultValue={this.props.posisi}
                                         onChange={this.informasiStafChange} 
                                         name="posisi"
                                         placeholder="Posisi" />
