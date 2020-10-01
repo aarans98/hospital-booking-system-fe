@@ -5,6 +5,7 @@ import {Card, Button, ButtonToolbar} from 'react-bootstrap';
 import {AddModalInformasiStaf} from './AddModalInformasiStaf';
 import {EditModalInformasiStaf} from './EditModalInformasiStaf';
 import DataTable from 'react-data-table-component';
+import DataTableExtensions from 'react-data-table-component-extensions';
 import PageTitle from '../../../../Layout/AppMain/PageTitle';
 import axios from 'axios';
 
@@ -128,6 +129,17 @@ export default class DataTableBasic extends React.Component {
     render() {
         let addModalClose = () => this.setState({addModalShow:false});
         let editModalClose = () => this.setState({editModalShow:false});
+        const tableData = {
+            columns:this.columns,
+            data:this.state.informasiStaf.map((informasiStaf) => (
+                {idStaf:informasiStaf.idStaf,
+                namaLengkap:informasiStaf.namaLengkap,
+                tanggalLahir:informasiStaf.tanggalLahir,
+                posisi: informasiStaf.posisi,
+                mulaiBekerja: informasiStaf.mulaiBekerja,
+                gaji: informasiStaf.gaji}
+            ))
+        };
         return (
             <Fragment>
                 <CSSTransitionGroup
@@ -150,20 +162,16 @@ export default class DataTableBasic extends React.Component {
                                 <Card.Header>
                                 </Card.Header>
                                 <Card.Body class="card-hover-shadow card-border mb-3 card">
+                                    <DataTableExtensions {...tableData}>
                                     <DataTable
+                                        noHeader
                                         title="Informasi Staf"
-                                        columns={this.columns} 
                                         pagination={true}
                                         defaultSortField="idStaf"
-                                        data={this.state.informasiStaf.map((informasiStaf) => (
-                                            {idStaf:informasiStaf.idStaf,
-                                            namaLengkap:informasiStaf.namaLengkap,
-                                            tanggalLahir:informasiStaf.tanggalLahir,
-                                            posisi: informasiStaf.posisi,
-                                            mulaiBekerja: informasiStaf.mulaiBekerja,
-                                            gaji: informasiStaf.gaji}
-                                        ))}
+                                        pagination
+                                        highlightOnHover
                                     />
+                                    </DataTableExtensions>
                                 </Card.Body>
                                 <Card.Footer>
                                     <ButtonToolbar>

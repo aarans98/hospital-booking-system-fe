@@ -165,6 +165,7 @@ export class Praktek extends React.Component {
                                         // title="List Praktek"
                                         columns={this.columns} 
                                         pagination={true}
+                                        defaultSortField="jadwal"
                                         highlightOnHover
                                         data={this.props.jadwal}
                                         />
