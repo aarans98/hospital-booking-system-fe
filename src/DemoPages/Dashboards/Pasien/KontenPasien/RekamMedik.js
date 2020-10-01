@@ -50,9 +50,11 @@ function RekamMedik() {
                     total={posts.length}/>
                 <Row>
                     {
+                        posts.length === 0 ?
+                        <div>
+                            <p>Data rekam medik tidak tersedia.</p>
+                        </div> :
                         posts.slice(pagination.start, pagination.end).map((post) => (
-                            post === null ?
-                            <div></div> :
                             <Col md="4" key={post.id}>
                                 <Card className="main-card mb-5">
                                     <CardBody style={{ fontSize: "14px" }}>
