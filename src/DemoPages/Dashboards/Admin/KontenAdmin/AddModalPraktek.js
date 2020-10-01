@@ -21,14 +21,14 @@ export class AddModalPraktek extends React.Component {
     }
 
     submitPraktek = event =>  {
-        alert(this.state.praktek + " succesfully to submit");
+        alert("Data berhasil masuk !");
         event.preventDefault();
         const praktek = {
             idPraktek: this.state.idPraktek,
             poli: this.state.poli,
             jam: this.state.jam,
             jadwal: this.state.jadwal,
-            idDokter: this.state.idDokter
+            idDokter: event.target.idDokter.value
     };
 
     axios.post("http://localhost:1212/v1/app/praktek/", praktek)
@@ -49,6 +49,7 @@ export class AddModalPraktek extends React.Component {
     };
 
     render() {
+        console.log(this.props.id)
         let {idPraktek, poli, jam,
             jadwal, idDokter} = this.state;
         return (
@@ -69,7 +70,7 @@ export class AddModalPraktek extends React.Component {
                             initialValues={{ idPraktek, poli, jam,
                                                 jadwal, idDokter }}
                             enableReinitialize={true}
-                            id="informasiStaf">
+                            id="praktek">
                             <Card.Body>
                                     <Form.Group as={Col} controlId="idPraktek">
                                         <Form.Label>Id</Form.Label>
@@ -123,7 +124,7 @@ export class AddModalPraktek extends React.Component {
                                         <Form.Label>Id Dokter</Form.Label>
                                         <Form.Control required autoComplete="off"
                                         type="text" 
-                                        value={this.props.idDokter}
+                                        defaultValue={this.props.id}
                                         onChange={this.praktekChange} 
                                         name="idDokter"
                                         placeholder="Id Dokter" />

@@ -22,6 +22,7 @@ export default class ListPraktek extends React.Component {
     super(props);
     this.state = {
       dokter: [],
+      praktek: [],
       addModalShow: false,
       modal: false,
       sendIdDokter:'',
@@ -48,15 +49,26 @@ export default class ListPraktek extends React.Component {
     // ];
     this.componentDidMount = this.componentDidMount.bind(this);
     // this.componentDidUpdate = this.componentDidUpdate.bind(this);
+    // this.refreshListPraktek = this.refreshListPraktek.bind(this);
   }
 
   componentDidMount() {
     this.refreshList();
+    this.refreshListPraktek();
   }
 
   // componentDidUpdate() {
   //   this.refreshList();
   // }
+
+  refreshListPraktek = (id) => {
+    axios
+      .get("http://localhost:1212/v1/app/praktek/dokter/" + id)
+      .then((response) => {
+        console.log(response.data);
+        this.setState({praktek: response.data});
+      });
+  }
 
   refreshList() {
     axios.get("http://localhost:1212/v1/app/dokter").then((response) => {
@@ -79,7 +91,7 @@ export default class ListPraktek extends React.Component {
     const dokter = this.state.dokter;
     let addModalClose = () => this.setState({addModalShow:false});
     const renderCard = (card, index) => {
-      const sendIdDokter = card.idDokter;
+      //const sendIdDokter = card.idDokter;
       return (
         <Card className='main-card mb-3'>
           <Row>
@@ -95,10 +107,7 @@ export default class ListPraktek extends React.Component {
               <CardBody className='mb-0'>
                 <h5 className='card-title'>{card.namaLengkap}</h5>
                 <p>{card.spesialisasi}</p>
-                <Button className='btn btn-primary float-right' onClick={() => this.setState({addModalShow: true})}>Pilih</Button>
-                <Praktek 
-                show={this.state.addModalShow}
-                onHide={addModalClose}/>
+                <Button className='btn btn-primary float-right' onClick={() => {this.refreshListPraktek(card.idDokter); this.setState({addModalShow: true});}}>Pilih</Button>
               </CardBody>
             </Col>
           </Row>
@@ -186,6 +195,10 @@ export default class ListPraktek extends React.Component {
                 </Button>
               </ModalFooter>
             </Rodal>
+            <Praktek 
+                jadwal={this.state.praktek}
+                show={this.state.addModalShow}
+                onHide={addModalClose}/>
           </Container>
         </CSSTransitionGroup>
       </Fragment>

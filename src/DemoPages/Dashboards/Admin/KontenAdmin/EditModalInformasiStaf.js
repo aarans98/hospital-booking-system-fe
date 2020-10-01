@@ -15,7 +15,6 @@ export class EditModalInformasiStaf extends Component {
     initialState = {
         idStaf:'',
         namaLengkap:'',
-        userName:'',
         tanggalLahir:'',
         posisi:'',
         mulaiBekerja:'',
@@ -28,7 +27,6 @@ export class EditModalInformasiStaf extends Component {
         const informasiStaf = {
             idStaf:event.target.idStaf.value,
             namaLengkap:event.target.namaLengkap.value,
-            userName:event.target.userName.value,
             tanggalLahir:event.target.tanggalLahir.value,
             posisi:event.target.posisi.value,
             mulaiBekerja:event.target.mulaiBekerja.value,
@@ -54,7 +52,7 @@ export class EditModalInformasiStaf extends Component {
     };
     
     render() {
-        let {idStaf, namaLengkap, userName,
+        let {idStaf, namaLengkap,
             tanggalLahir, posisi, mulaiBekerja, gaji} = this.state;
         return (
             <Modal {...this.props} size="lg" backdrop="static" className="Mymodal" id="modal_form" animation={true}>
@@ -71,7 +69,7 @@ export class EditModalInformasiStaf extends Component {
                             <Card.Header> Informasi Staf </Card.Header>
                             <Form 
                             onSubmit={this.updateInformasiStaf} 
-                            initialValues={{ idStaf, namaLengkap, userName,
+                            initialValues={{ idStaf, namaLengkap,
                                              tanggalLahir, posisi, mulaiBekerja, gaji}}
                             enableReinitialize={true}
                             id="informasiStaf">
@@ -93,15 +91,6 @@ export class EditModalInformasiStaf extends Component {
                                         onChange={this.informasiStafChange} 
                                         name="namaLengkap"
                                         placeholder="Nama Lengkap" />
-                                    </Form.Group>
-                                    <Form.Group as={Col} controlId="userName">
-                                        <Form.Label>User Name</Form.Label>
-                                        <Form.Control required autoComplete="off"
-                                        type="text" 
-                                        defaultValue={this.props.userName}
-                                        onChange={this.informasiStafChange} 
-                                        name="userName"
-                                        placeholder="User Name" />
                                     </Form.Group>
                                     <Form.Group as={Col} controlId="tanggalLahir">
                                         <Form.Label>Tanggal Lahir</Form.Label>

@@ -14,6 +14,7 @@ export default class TambahDokter extends React.Component {
     super(props);
     this.state = {
       dokter: [],
+      jadwal: [],
       modal: false,
       addModalShow: false,
       editModalShow: false,
@@ -65,18 +66,6 @@ export default class TambahDokter extends React.Component {
       {
         name: "Update Jadwal",
         sortable: "true",
-        cell: (updateJadwal) => 
-        <Button className="btn btn-primary" raised primary 
-        onClick={() => this.setState({
-            editModalShow:true,
-            sendIdPraktek: updateJadwal.idPraktek,  
-            sendidDokter: updateJadwal.idDokter,
-            sendJadwal: updateJadwal.jadwal,
-            sendJam: updateJadwal.jam,
-            sendPoli: updateJadwal.poli
-        })}>
-            Update
-        </Button>,
         ignoreRowClick: true,
         allowOverflow: true,
         button: true,
@@ -84,9 +73,9 @@ export default class TambahDokter extends React.Component {
         return(
             <Fragment>
               <button className="btn btn-primary" 
-                onClick={() => this.setState({
+                onClick={() => {this.refresh(dokter.idDokter); this.setState({
                     praktekModalShow:true,
-                    sendIdDokter: dokter.idDokter})}>
+                    sendIdDokter:dokter.idDokter})}}>
                     Update
                 </button>
             </Fragment>
@@ -100,7 +89,7 @@ export default class TambahDokter extends React.Component {
         <Button className="btn btn-primary" raised primary 
         onClick={() => this.setState({
             editModalShow:true,
-            sendIdDokter: updateDokter.idDokter,
+            sendId: updateDokter.idDokter,
             sendNamaLengkap: updateDokter.namaLengkap,
             sendSpesialisasi: updateDokter.spesialisasi,
             sendTanggalLahir: updateDokter.tanggalLahir,
@@ -130,15 +119,23 @@ export default class TambahDokter extends React.Component {
       
     ];
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.componentDidUpdate = this.componentDidUpdate.bind(this);
+    // this.componentDidUpdate = this.componentDidUpdate.bind(this);
   }
 
   componentDidMount() {
     this.refreshList();
   }
 
-  componentDidUpdate() {
-    this.refreshList();
+  refresh = (id) => {
+    console.log('id', this.props.id)
+      if(id) {
+        const url = "http://localhost:1212/v1/app/praktek/dokter/" + id
+        console.log(url);
+        axios.get(url).then(response => {
+            console.log(response)
+            this.setState({jadwal:response.data})
+      })
+    }
   }
 
   refreshList() {
@@ -152,8 +149,6 @@ export default class TambahDokter extends React.Component {
     //             this.setState({ dokter: response.data.data});
     //   });
       });
-
-    
   }
 
   deleteDokter = (idDokter) => {
@@ -169,7 +164,6 @@ export default class TambahDokter extends React.Component {
   }
 
   render() {
-    console.log(this.state.sendIdDokter);
     let addModalClose = () => this.setState({addModalShow:false});
     let praktekModalClose = () => this.setState({praktekModalShow:false});
     let editModalClose = () => this.setState({editModalShow:false});
@@ -192,9 +186,9 @@ export default class TambahDokter extends React.Component {
           </div>
           <Row>
               <Col md="12">
-                <Button className="btn btn-primary" onClick={() => this.setState({addModalShow: true})}>
+                {/* <Button className="btn btn-primary" onClick={() => this.setState({addModalShow: true})}>
                     Tambah Dokter
-                </Button>
+                </Button> */}
                 <TambahDokterModal
                     show={this.state.addModalShow}
                     onHide={addModalClose}
@@ -203,7 +197,8 @@ export default class TambahDokter extends React.Component {
                   <JadwalPraktek
                     show={this.state.praktekModalShow}
                     onHide={praktekModalClose}
-                    sendIdDokter={this.state.sendIdDokter}
+                    jadwal={this.state.jadwal}
+                    id={this.state.sendIdDokter}
                     />
                   </ButtonToolbar>
               </Col>
@@ -235,14 +230,19 @@ export default class TambahDokter extends React.Component {
                   idDokter={this.state.sendIdDokter}
                   /> */}
                 </CardBody>
+                <CardFooter>
+                <Button className="btn btn-primary" onClick={() => this.setState({addModalShow: true})}>
+                    Tambah Dokter
+                </Button>
+                </CardFooter>
               </Card>
             </Col>
           </Row>
           <Row>
               <Col md="12">
-                <Button className="btn btn-primary" onClick={() => this.setState({addModalShow: true})}>
+                {/* <Button className="btn btn-primary" onClick={() => this.setState({addModalShow: true})}>
                     Tambah Dokter
-                </Button>
+                </Button> */}
                 <TambahDokterModal
                     show={this.state.addModalShow}
                     onHide={addModalClose}

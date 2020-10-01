@@ -11,7 +11,6 @@ export class Praktek extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            praktek:[],
             modal: false,
             editModalShow :  false,
             initialState : {
@@ -71,29 +70,29 @@ export class Praktek extends React.Component {
                 }  
             }
         ];
-        this.componentDidMount = this.componentDidMount.bind(this);
-        this.componentDidUpdate = this.componentDidUpdate.bind(this);
+        // this.componentDidMount = this.componentDidMount.bind(this);
+        // this.componentDidUpdate = this.componentDidUpdate.bind(this);
         this.kunjunganChange = this.kunjunganChange.bind(this);
         // this.submitKunjungan =  this.submitKunjungan.bind(this);
-        console.log(this.props.sendIdDokter);
+        // console.log(this.props.sendIdDokter);
     }
 
 
-  componentDidMount() {
-    this.refreshList();
-  }
+//   componentDidMount() {
+//     this.refreshList();
+//   }
 
-  componentDidUpdate() {
-    this.refreshList();
-  }
+//   componentDidUpdate() {
+//     this.refreshList();
+//   }
 
-  refreshList() {
-    axios
-      .get("http://localhost:1212/v1/app/praktek/dokter/" + 2)
-      .then((response) => {
-        this.setState({ praktek: response.data.data });
-      });
-  }
+//   refreshList() {
+//     axios
+//       .get("http://localhost:1212/v1/app/praktek/dokter/" + 2)
+//       .then((response) => {
+//         this.setState({ praktek: response.data.data });
+//       });
+//   }
 
   editPraktek = (idPraktek) => {
     axios
@@ -127,7 +126,9 @@ export class Praktek extends React.Component {
     }
 
     render() {
+        console.log(this.props.jadwal);
         let editModalClose = () => this.setState({editModalShow:false});
+        console.log(this.props.id)
         return (
             <Modal {...this.props} size="lg" backdrop="static" className="Mymodal" id="modal_form" animation={true}>
             <Modal.Header closeButton>
@@ -157,19 +158,17 @@ export class Praktek extends React.Component {
                                 <Card.Header>
                                 </Card.Header>
                                 <Card.Body class="card-hover-shadow card-border mb-3 card">
-                                    <DataTable
+                                    {
+                                        this.props.jadwal.length === 0 ?
+                                        <div></div> :
+                                        <DataTable
                                         // title="List Praktek"
                                         columns={this.columns} 
                                         pagination={true}
                                         highlightOnHover
-                                        data={this.state.praktek.map((praktek) => (
-                                            {idPraktek:praktek.idPraktek,
-                                            poli:praktek.poli,
-                                            jadwal:praktek.jadwal,
-                                            jam:praktek.jam,
-                                            idDokter:praktek.idDokter}
-                                        ))}
-                                    />
+                                        data={this.props.jadwal}
+                                        />
+                                    }
                                 </Card.Body>
                                 <Card.Footer>
                                 <ButtonToolbar>

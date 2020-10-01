@@ -79,39 +79,20 @@ export default class JadwalPraktek extends React.Component {
                 }  
             }
         ];
-        this.componentDidMount = this.componentDidMount.bind(this);
-        this.componentDidUpdate = this.componentDidUpdate.bind(this);
+        // this.componentDidUpdate = this.componentDidUpdate.bind(this);
         this.praktekChange = this.praktekChange.bind(this);
         this.submitPraktek = this.submitPraktek.bind(this);
     }
 
-    componentDidMount() {
-        this.refreshList();
-    }
-
-    componentDidUpdate() {
-        fetch("http://localhost:1212/v1/app/praktek/dokter/2")
-            .then(response =>  response.json())
-            .then(data =>  {
-                this.setState({praktek:data.data});
-        });
-    }
-
-    refreshList() {
-        axios
-            .get("http://localhost:1212/v1/app/praktek/dokter/2") 
-            .then(response => {
-                this.setState({praktek:response.data.data});
-            });
-    }
-
-    findAllPraktek() {
-        axios.get("http://localhost:1212/v1/app/praktek/dokter/2")
-            .then( response => response.data.data)
-            .then((data) =>  {
-                this.setState({praktek:data.data});
-             });
-    }
+    // componentDidUpdate() {
+    //     fetch("http://localhost:1212/v1/app/praktek/dokter/2")
+    //         .then(response =>  response.json())
+    //         .then(data =>  {
+    //             this.setState({praktek:data});
+    //     });
+    //     // eslint-disable-next-line no-unused-expressions
+    //     this.props.id ? this.refreshList(this.props.id):""
+    // }
 
     submitPraktek = event =>  {
         alert("Data berhasil masuk");
@@ -160,11 +141,6 @@ export default class JadwalPraktek extends React.Component {
                     transitionEnter={false}
                     transitionLeave={false}>
                     <div>
-                        {/* <PageTitle
-                            heading="Data Tables"
-                            subheading="Choose between regular React Bootstrap tables or advanced dynamic ones."
-                            icon="pe-7s-medal icon-gradient bg-tempting-azure"
-                        /> */}
                     </div>
                     <Row>
                         <Col md="12">
@@ -177,13 +153,7 @@ export default class JadwalPraktek extends React.Component {
                                         columns={this.columns} 
                                         pagination={true}
                                         highlightOnHover
-                                        data={this.state.praktek.map((praktek) => (
-                                            {idPraktek:praktek.idPraktek,
-                                            poli:praktek.poli,
-                                            jadwal:praktek.jadwal,
-                                            jam:praktek.jam,
-                                            idDokter:praktek.idDokter}
-                                        ))}
+                                        data={this.props.jadwal}
                                     />
                                 </Card.Body>
                                 <Card.Footer>
@@ -191,7 +161,8 @@ export default class JadwalPraktek extends React.Component {
                                 <Button color="btn btn-primary" onClick={() => this.setState({addModalShow: true})}>Add</Button>
                                         <AddModalPraktek
                                         show={this.state.addModalShow}
-                                        onHide={addModalClose}/>
+                                        onHide={addModalClose}
+                                        id={this.props.id}/>
                                         <EditModalPraktek
                                             show={this.state.editModalShow}
                                             onHide={editModalClose}

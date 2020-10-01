@@ -36,12 +36,6 @@ export default class DataTableBasic extends React.Component {
                 filterable: true,
             },
             {
-                name:'User Name',
-                selector:'userName',
-                sortable: true,
-                filterable: true,
-            },
-            {
                 name:'Tanggal Lahir',
                 selector:'tanggalLahir',
                 sortable: true,
@@ -75,7 +69,6 @@ export default class DataTableBasic extends React.Component {
                     onClick={() => this.setState({editModalShow: true,
                     sendIdStaf: informasiStaf.idStaf,
                     sendNamaLengkap: informasiStaf.namaLengkap,
-                    sendUserName: informasiStaf.userName,
                     sendTanggalLahir: informasiStaf.tanggalLahir,
                     sendPosisi: informasiStaf.posisi,
                     sendMulaiBekerja:informasiStaf.mulaiBekerja,
@@ -164,7 +157,6 @@ export default class DataTableBasic extends React.Component {
                                         data={this.state.informasiStaf.map((informasiStaf) => (
                                             {idStaf:informasiStaf.idStaf,
                                             namaLengkap:informasiStaf.namaLengkap,
-                                            userName:informasiStaf.userName,
                                             tanggalLahir:informasiStaf.tanggalLahir,
                                             posisi: informasiStaf.posisi,
                                             mulaiBekerja: informasiStaf.mulaiBekerja,
@@ -183,7 +175,6 @@ export default class DataTableBasic extends React.Component {
                                             onHide={editModalClose}
                                             idStaf={this.state.sendIdStaf}
                                             namaLengkap={this.state.sendNamaLengkap}
-                                            userName={this.state.sendUserName}
                                             tanggalLahir={this.state.sendTanggalLahir}
                                             posisi={this.state.sendPosisi}
                                             mulaiBekerja={this.state.sendMulaiBekerja}

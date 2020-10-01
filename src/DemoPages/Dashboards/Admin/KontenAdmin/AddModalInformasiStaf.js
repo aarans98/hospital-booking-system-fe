@@ -16,7 +16,6 @@ export class AddModalInformasiStaf extends React.Component {
     initialState = {
         idStaf:'',
         namaLengkap:'',
-        userName:'',
         tanggalLahir:'',
         posisi:'',
         mulaiBekerja:'',
@@ -29,7 +28,6 @@ export class AddModalInformasiStaf extends React.Component {
         const informasiStaf = {
             idStaf: this.state.idStaf,
             namaLengkap: this.state.namaLengkap,
-            userName: this.state.userName,
             tanggalLahir: this.state.tanggalLahir,
             posisi: this.state.posisi,
             mulaiBekerja: this.state.mulaiBekerja,
@@ -94,15 +92,6 @@ export class AddModalInformasiStaf extends React.Component {
                                         onChange={this.informasiStafChange} 
                                         name="namaLengkap"
                                         placeholder="Nama Lengkap"/>
-                                    </Form.Group>
-                                    <Form.Group as={Col} controlId="userName">
-                                        <Form.Label>User Name</Form.Label>
-                                        <Form.Control required autoComplete="off"
-                                        type="text" 
-                                        value={this.props.userName}
-                                        onChange={this.informasiStafChange} 
-                                        name="userName"
-                                        placeholder="User Name" />
                                     </Form.Group>
                                     <Form.Group as={Col} controlId="tanggalLahir">
                                         <Form.Label>Tanggal Lahir</Form.Label>
