@@ -34,7 +34,7 @@ function RekamMedik() {
             .then(response => setPosts(response.data));
         }
         // empty dependency array means this effect will only run once (like componentDidMount in classes)
-    }, []);
+    }, [posts]);
 
     const margin = {
         marginTop: "5px",
@@ -51,9 +51,9 @@ function RekamMedik() {
                 <Row>
                     {
                         posts.length === 0 ?
-                        <div>
-                            <p>Data rekam medik tidak tersedia.</p>
-                        </div> :
+                        <Col>
+                            <p style={{textAlign: "center"}}>Data rekam medik tidak tersedia.</p>
+                        </Col>:
                         posts.slice(pagination.start, pagination.end).map((post) => (
                             <Col md="4" key={post.id}>
                                 <Card className="main-card mb-5">
