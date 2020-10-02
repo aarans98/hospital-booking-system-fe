@@ -143,8 +143,7 @@ export default class TambahDokterModal extends React.Component {
                 <div className="container">
                     <div style={{"display":this.state.show ? "block":"none"}}>
                     </div>
-                    
-                    
+
                         <Form.Group as={Col} controlId="username">
                             <Form.Label>Username</Form.Label>
                             <Form.Control required autoComplete="off"
@@ -224,4 +223,3 @@ export default class TambahDokterModal extends React.Component {
         );
     }
 }
-
