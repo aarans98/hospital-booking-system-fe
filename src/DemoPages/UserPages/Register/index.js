@@ -16,6 +16,7 @@ export default class Register extends Component {
       show: false,
     };
     this.state = this.initialState;
+    // this.state = { errors: [] };
   }
 
   initialState = {
@@ -24,9 +25,33 @@ export default class Register extends Component {
     password: "",
     passwordrep: "",
     email: "",
+    erorr: "",
+    erorr2: "",
   };
+
+  validate() {
+    let benar = false;
+    let password = this.state.password;
+    let passwordrep = this.state.passwordrep;
+
+    if (password.length < 6) {
+      this.setState({ erorr2: "Password less than 6 characters" });
+    } else if (password.length >= 6) {
+      this.setState({ erorr2: "" });
+    }
+
+    if (password === passwordrep && password.length >= 6) {
+      this.setState({ erorr: "" });
+      benar = true;
+    } else if (password !== passwordrep) {
+      this.setState({ erorr: "Password don't match" });
+    }
+    return benar;
+  }
+
   submitAkun = (event) => {
     event.preventDefault();
+    this.validate();
 
     const register = {
       user_role: this.state.user_role,
@@ -36,16 +61,19 @@ export default class Register extends Component {
       email: this.state.email,
     };
 
-    axios
-      .post("http://localhost:1212/v1/app/register", register)
-      .then((response) => {
-        if (response.data != null) {
-          this.setState(this.initialState);
-          this.setState({ show: true });
-          //   alert(response.data.message);
-        }
-      });
+    if (this.validate()) {
+      axios
+        .post("http://localhost:1212/v1/app/register", register)
+        .then((response) => {
+          if (response.data != null) {
+            this.setState(this.initialState);
+            this.setState({ show: true });
+            //   alert(response.data.message);
+          }
+        });
+    }
   };
+
   formChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
@@ -66,6 +94,7 @@ export default class Register extends Component {
       autoplay: true,
       adaptiveHeight: true,
     };
+
     return (
       <Fragment>
         <div className='h-100'>
@@ -94,7 +123,7 @@ export default class Register extends Component {
                   </span>
                 </h4>
                 <div>
-                  <Form>
+                  <Form onSubmit={this.submitAkun}>
                     <Row form>
                       <Col md={6}>
                         <Input
@@ -116,19 +145,23 @@ export default class Register extends Component {
                             name='email'
                             id='exampleEmail'
                             placeholder='Email here...'
+                            required
                           />
                         </FormGroup>
                       </Col>
                       <Col md={6}>
                         <FormGroup>
-                          <Label for='exampleName'>Name</Label>
+                          <Label for='exampleName'>
+                            <span className='text-danger'>*</span> Username
+                          </Label>
                           <Input
                             onChange={this.formChange}
                             value={username}
                             type='text'
                             name='username'
                             id='exampleName'
-                            placeholder='Name here...'
+                            placeholder='Username here...'
+                            required
                           />
                         </FormGroup>
                       </Col>
@@ -144,7 +177,11 @@ export default class Register extends Component {
                             name='password'
                             id='examplePassword'
                             placeholder='Password here...'
+                            required
                           />
+                          <span className='text-danger'>
+                            {this.state.erorr2}
+                          </span>
                         </FormGroup>
                       </Col>
                       <Col md={6}>
@@ -160,22 +197,15 @@ export default class Register extends Component {
                             name='passwordrep'
                             id='examplePasswordRep'
                             placeholder='Repeat Password here...'
+                            required
                           />
+                          <span className='text-danger'>
+                            {this.state.erorr}
+                          </span>
                         </FormGroup>
                       </Col>
                     </Row>
-                    <FormGroup className='mt-3' check>
-                      <Input type='checkbox' name='check' id='exampleCheck' />
-                      <Label for='exampleCheck' check>
-                        Accept our{" "}
-                        <a
-                          href='https://colorlib.com/'
-                          onClick={(e) => e.preventDefault()}>
-                          Terms and Conditions
-                        </a>
-                        .
-                      </Label>
-                    </FormGroup>
+
                     <div className='mt-4 d-flex align-items-center'>
                       <h5 className='mb-0'>
                         Already have an account?{" "}
@@ -188,7 +218,7 @@ export default class Register extends Component {
                       </h5>
                       <div className='ml-auto'>
                         <Button
-                          onClick={this.submitAkun}
+                          type='submit'
                           color='primary'
                           className='btn-wide btn-pill btn-shadow btn-hover-shine'
                           size='lg'>
