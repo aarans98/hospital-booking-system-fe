@@ -17,6 +17,7 @@ export default class Login extends Component {
     this.state = { logins: [] };
     this.submitLogin = this.submitLogin.bind(this);
     this.loginChange = this.loginChange.bind(this);
+    this.saveLocal = this.saveLocal.bind(this);
   }
   initialState = {
     username: "",
@@ -45,8 +46,9 @@ export default class Login extends Component {
           } else {
             this.props.history.push({
               pathname: "/dashboards/" + data.user_role,
-              customName: this.state.logins,
+              // customName: this.state.logins,
             });
+            this.saveLocal();
           }
         } else {
           alert("Username anda belum terdaftar");
@@ -56,6 +58,14 @@ export default class Login extends Component {
         }
       });
     this.setState(this.initialState);
+  };
+
+  saveLocal = () => {
+    localStorage.setItem(
+      "username",
+      JSON.stringify(this.state.logins.username)
+    );
+    localStorage.setItem("role", JSON.stringify(this.state.logins.user_role));
   };
 
   loginChange(event) {

@@ -35,7 +35,7 @@ class UserBox extends React.Component {
     this.state = {
       active: false,
     };
-    this.state = { getdata: [] };
+    this.state = { login: [] };
     this.state = this.getdatacount;
     // this.state = { logins: [] };
     // console.log(this.props.location);
@@ -54,6 +54,8 @@ class UserBox extends React.Component {
     ));
 
   render() {
+    const username = localStorage.getItem("username");
+    const role = localStorage.getItem("role");
     return (
       <Fragment>
         <div className="header-btn-lg pr-0">
@@ -200,12 +202,8 @@ class UserBox extends React.Component {
                 </UncontrolledButtonDropdown>
               </div>
               <div className="widget-content-left  ml-3 header-user-info">
-                <div className="widget-heading">
-                  {this.props.location.customName.username}
-                </div>
-                <div className="widget-subheading">
-                  {this.props.location.customName.user_role}
-                </div>
+                <div className="widget-heading">{username}</div>
+                <div className="widget-subheading">{role}</div>
               </div>
 
               <div className="widget-content-right header-user-info ml-3">
