@@ -31,8 +31,8 @@ export class AddModalKunjungan extends React.Component {
     const pasien = {
       alamat: this.state.alamat,
       berat_badan: this.state.berat_badan,
-      idDokter: this.state.idDokter,
-      idPraktek: this.state.idPraktek,
+      idDokter: event.target.idDokter.value,
+      idPraktek: event.target.idPraktek.value,
       jenis_kelamin: this.state.jenis_kelamin,
       nama_lengkap: this.state.nama_lengkap,
       jenis_kelamin: this.state.jenis_kelamin,
@@ -77,50 +77,48 @@ export class AddModalKunjungan extends React.Component {
     return (
       <Modal
         {...this.props}
-        size="lg"
-        backdrop="static"
-        className="Mymodal"
-        id="modal_form"
-        animation={true}
-      >
+        size='lg'
+        backdrop='static'
+        className='Mymodal'
+        id='modal_form'
+        animation={true}>
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
+          <Modal.Title id='contained-modal-title-vcenter'>
             FORM KUNJUNGAN
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="container">
+          <div className='container'>
             <div style={{ display: this.state.show ? "block" : "none" }}></div>
-            <Card border="light">
+            <Card border='light'>
               <Card.Header> Pasien </Card.Header>
               <Form
                 onSubmit={this.submitKunjungan}
                 enableReinitialize={true}
-                id="idPasien"
-              >
+                id='idPasien'>
                 <Card.Body>
-                  <Form.Group as={Col} controlId="idPraktek">
+                  <Form.Group as={Col} controlId='idPraktek'>
                     <Form.Label>Id Praktek</Form.Label>
                     <Form.Control
                       disabled
-                      autoComplete="off"
-                      type="number"
+                      autoComplete='off'
+                      type='number'
                       defaultValue={this.props.idPraktek}
                       onChange={this.kunjunganChange}
-                      name="idPraktek"
-                      placeholder="Id Praktek"
+                      name='idPraktek'
+                      placeholder='Id Praktek'
                     />
                   </Form.Group>
-                  <Form.Group as={Col} controlId="idDokter">
+                  <Form.Group as={Col} controlId='idDokter'>
                     <Form.Label>Id Dokter</Form.Label>
                     <Form.Control
                       disabled
-                      autoComplete="off"
-                      type="number"
+                      autoComplete='off'
+                      type='number'
                       defaultValue={this.props.idDokter}
                       onChange={this.kunjunganChange}
-                      name="idDokter"
-                      placeholder="Id Dokter"
+                      name='idDokter'
+                      placeholder='Id Dokter'
                     />
                   </Form.Group>
                   {/* <Form.Group as={Col} controlId="idPasien">
@@ -132,128 +130,127 @@ export class AddModalKunjungan extends React.Component {
                                         name="idPasien"
                                         placeholder="Id Pasien" />
                                     </Form.Group> */}
-                  <Form.Group as={Col} controlId="nama_lengkap">
+                  <Form.Group as={Col} controlId='nama_lengkap'>
                     <Form.Label>Nama Lengkap</Form.Label>
                     <Form.Control
                       required
-                      autoComplete="off"
-                      type="text"
-                      value={this.props.namaLengkap}
+                      autoComplete='off'
+                      type='text'
+                      value={nama_lengkap}
                       onChange={this.kunjunganChange}
-                      name="namaLengkap"
-                      placeholder="Nama Lengkap"
+                      name='nama_lengkap'
+                      placeholder='Nama Lengkap'
                     />
                   </Form.Group>
-                  {/* <Form.Group as={Col} controlId="jenis_kelamin">
+                  <Form.Group as={Col} controlId='jenis_kelamin'>
                     <Form.Label>Jenis Kelamin</Form.Label>
                     <Form.Control
                       required
-                      autoComplete="off"
-                      type="text"
-                      value={this.props.jenis_kelamin}
+                      autoComplete='off'
+                      type='text'
+                      value={jenis_kelamin}
                       onChange={this.kunjunganChange}
-                      name="jenis_kelamin"
-                      placeholder="Jenis Kelamin"
+                      name='jenis_kelamin'
+                      placeholder='Jenis Kelamin'
                     />
-                  </Form.Group> */}
-                  <Form.Group as={Col} controlId="jenis_kelamin">
-                    <Form.Label for="exampleCheckbox">Jenis Kelamin</Form.Label>
+                  </Form.Group>
+                  {/* <Form.Group as={Col} controlId='jenis_kelamin'>
+                    <Form.Label for='exampleCheckbox'>Jenis Kelamin</Form.Label>
                     <div>
                       <CustomInput
-                        type="radio"
-                        id="laki-laki"
-                        name="laki-laki"
-                        label="Laki-laki"
-                        value={this.props.jenis_kelamin}
+                        type='radio'
+                        id='laki-laki'
+                        name='laki-laki'
+                        label='Laki-laki'
+                        value={jenis_kelamin}
                       />
                       <CustomInput
-                        type="radio"
-                        id="perempuan"
-                        name="perempuan"
-                        label="Perempuan"
-                        value={this.props.jenis_kelamin}
+                        type='radio'
+                        id='perempuan'
+                        name='perempuan'
+                        label='Perempuan'
+                        value={jenis_kelamin}
                       />
                     </div>
-                  </Form.Group>
-                  <Form.Group as={Col} controlId="tanggal_lahir">
+                  </Form.Group> */}
+                  <Form.Group as={Col} controlId='tanggal_lahir'>
                     <Form.Label>Tanggal Lahir</Form.Label>
                     <Form.Control
                       required
-                      autoComplete="off"
-                      type="date"
-                      value={this.props.tanggal_lahir}
+                      autoComplete='off'
+                      type='date'
+                      value={tanggal_lahir}
                       onChange={this.kunjunganChange}
-                      name="tanggal_lahir"
-                      placeholder="Tanggal Lahir"
+                      name='tanggal_lahir'
+                      placeholder='Tanggal Lahir'
                     />
                   </Form.Group>
-                  <Form.Group as={Col} controlId="tinggi_badan">
+                  <Form.Group as={Col} controlId='tinggi_badan'>
                     <Form.Label>Tinggi Badan</Form.Label>
                     <Form.Control
                       required
-                      autoComplete="off"
-                      type="number"
-                      value={this.props.tinggi_badan}
+                      autoComplete='off'
+                      type='number'
+                      value={tinggi_badan}
                       onChange={this.kunjunganChange}
-                      name="tinggi_badan"
-                      placeholder="Tinggi Badan"
+                      name='tinggi_badan'
+                      placeholder='Tinggi Badan'
                     />
                   </Form.Group>
-                  <Form.Group as={Col} controlId="berat_badan">
+                  <Form.Group as={Col} controlId='berat_badan'>
                     <Form.Label>Berat Badan</Form.Label>
                     <Form.Control
                       required
-                      autoComplete="off"
-                      type="number"
-                      value={this.props.berat_badan}
+                      autoComplete='off'
+                      type='number'
+                      value={berat_badan}
                       onChange={this.kunjunganChange}
-                      name="berat_badan"
-                      placeholder="Berat Badan"
+                      name='berat_badan'
+                      placeholder='Berat Badan'
                     />
                   </Form.Group>
-                  <Form.Group as={Col} controlId="user_name">
+                  <Form.Group as={Col} controlId='user_name'>
                     <Form.Label>User Name</Form.Label>
                     <Form.Control
                       required
-                      autoComplete="off"
-                      type="text"
-                      value={this.props.username}
+                      autoComplete='off'
+                      type='text'
+                      value={username}
                       onChange={this.kunjunganChange}
-                      name="user_name"
-                      placeholder="User Name"
+                      name='username'
+                      placeholder='User Name'
                     />
                   </Form.Group>
-                  <Form.Group as={Col} controlId="usia">
+                  <Form.Group as={Col} controlId='usia'>
                     <Form.Label>Usia</Form.Label>
                     <Form.Control
                       required
-                      autoComplete="off"
-                      type="number"
-                      value={this.props.usia}
+                      autoComplete='off'
+                      type='number'
+                      value={usia}
                       onChange={this.kunjunganChange}
-                      name="usia"
-                      placeholder="Usia"
+                      name='usia'
+                      placeholder='Usia'
                     />
                   </Form.Group>
-                  <Form.Group as={Col} controlId="alamat">
+                  <Form.Group as={Col} controlId='alamat'>
                     <Form.Label>Alamat</Form.Label>
                     <Form.Control
                       required
-                      autoComplete="off"
-                      type="text"
-                      value={this.props.alamat}
+                      autoComplete='off'
+                      type='text'
+                      value={alamat}
                       onChange={this.kunjunganChange}
-                      name="alamat"
-                      placeholder="Alamat"
+                      name='alamat'
+                      placeholder='Alamat'
                     />
                   </Form.Group>
                 </Card.Body>
                 <Card.Footer style={{ textAlign: "right" }}>
                   <Button
-                    class="btn btn-primary"
-                    type="submit"
-                    onClick={this.props.onHide}
-                  >
+                    class='btn btn-primary'
+                    type='submit'
+                    onClick={this.props.onHide}>
                     Save
                   </Button>{" "}
                 </Card.Footer>

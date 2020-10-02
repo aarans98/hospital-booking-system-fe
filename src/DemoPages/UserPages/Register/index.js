@@ -57,6 +57,11 @@ export default class Register extends Component {
       this.setState({ erorr: "Password don't match" });
     }
 
+    if (!/^[a-z0-9._]{2,}$/i.test(username)) {
+      this.setState({ errUsername: "username is invalid" });
+      benar = false;
+    }
+
     if (
       username.length <= 15 &&
       password.length >= 6 &&
@@ -64,13 +69,6 @@ export default class Register extends Component {
       !/^[a-z0-9._]{2,}$/i.test(username) &&
       password === passwordrep
     ) {
-      benar = true;
-    }
-
-    if (!/^[a-z0-9._]{2,}$/i.test(username)) {
-      this.setState({ errUsername: "username is invalid" });
-      benar = false;
-    } else {
       benar = true;
     }
 
