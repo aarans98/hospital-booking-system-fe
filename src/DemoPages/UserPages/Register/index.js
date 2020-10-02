@@ -4,7 +4,7 @@ import axios from "axios";
 import Slider from "react-slick";
 import Login from "../../UserPages/Login/index";
 
-import bg3 from "../../../assets/utils/images/originals/citynights.jpg";
+import bg3 from "../../../assets/img/medical.jpg";
 
 import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import SweetAlert from "sweetalert-react";
@@ -25,6 +25,7 @@ export default class Register extends Component {
     password: "",
     passwordrep: "",
     email: "",
+    fullname: "",
     erorr: "",
     erorr2: "",
     errUsername: "",
@@ -40,12 +41,16 @@ export default class Register extends Component {
       this.setState({ errUsername: "" });
     } else if (username.length > 15) {
       this.setState({ errUsername: "username more than 15 characters" });
+    } else if (!/^[a-z0-9._]{2,}$/i.test(username)) {
+      this.setState({ errUsername: "username is invalid" });
     }
 
     if (password.length < 6) {
       this.setState({ erorr2: "Password less than 6 characters" });
-    } else if (password.length >= 6) {
+    } else if (password.length >= 6 && password.length < 13) {
       this.setState({ erorr2: "" });
+    } else if (password.length > 12) {
+      this.setState({ erorr2: "  Password more than 12 characters" });
     }
 
     if (password === passwordrep && password.length >= 6) {
@@ -57,6 +62,8 @@ export default class Register extends Component {
     if (
       username.length <= 15 &&
       password.length >= 6 &&
+      password.length < 13 &&
+      !/^[a-z0-9._]{2,}$/i.test(username) &&
       password === passwordrep
     ) {
       benar = true;
@@ -74,6 +81,7 @@ export default class Register extends Component {
       password: this.state.password,
       passwordrep: this.state.passwordrep,
       email: this.state.email,
+      fullname: this.state.fullname,
     };
 
     if (this.validate()) {
@@ -96,7 +104,14 @@ export default class Register extends Component {
   };
 
   render() {
-    const { username, email, password, user_role, passwordrep } = this.state;
+    const {
+      username,
+      email,
+      password,
+      user_role,
+      passwordrep,
+      fullname,
+    } = this.state;
     let settings = {
       dots: true,
       infinite: true,
@@ -115,10 +130,10 @@ export default class Register extends Component {
         <div className='h-100'>
           <Row className='h-100 no-gutters'>
             <SweetAlert
-              title='Good job!'
+              title='Your Account Has Been Registered!'
               confirmButtonColor=''
               show={this.state.show}
-              text='You clicked the button!'
+              text='Thank You'
               type='success'
               onConfirm={() => this.setState({ show: false })}
             />
@@ -140,6 +155,22 @@ export default class Register extends Component {
                 <div>
                   <Form onSubmit={this.submitAkun}>
                     <Row form>
+                      <Col md={6}>
+                        <FormGroup>
+                          <Label for='exampleName'>
+                            <span className='text-danger'>*</span> Nama Lengkap
+                          </Label>
+                          <Input
+                            onChange={this.formChange}
+                            value={fullname}
+                            type='text'
+                            name='fullname'
+                            id='exampleName'
+                            placeholder='Nama Lengkap here...'
+                            required
+                          />
+                        </FormGroup>
+                      </Col>
                       <Col md={6}>
                         <Input
                           value={user_role}
@@ -164,6 +195,7 @@ export default class Register extends Component {
                           />
                         </FormGroup>
                       </Col>
+
                       <Col md={6}>
                         <FormGroup>
                           <Label for='exampleName'>
