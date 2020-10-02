@@ -4,7 +4,7 @@ import axios from "axios";
 import Slider from "react-slick";
 import Login from "../../UserPages/Login/index";
 
-import bg3 from "../../../assets/utils/images/originals/citynights.jpg";
+import bg3 from "../../../assets/img/medical.jpg";
 
 import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import SweetAlert from "sweetalert-react";
@@ -16,6 +16,7 @@ export default class Register extends Component {
       show: false,
     };
     this.state = this.initialState;
+    // this.state = { errors: [] };
   }
 
   initialState = {
@@ -24,9 +25,61 @@ export default class Register extends Component {
     password: "",
     passwordrep: "",
     email: "",
+    fullname: "",
+    erorr: "",
+    erorr2: "",
+    errUsername: "",
   };
+
+  validate() {
+    let benar = false;
+    let password = this.state.password;
+    let passwordrep = this.state.passwordrep;
+    let username = this.state.username;
+
+    if (username.length <= 15) {
+      this.setState({ errUsername: "" });
+    } else if (username.length > 15) {
+      this.setState({ errUsername: "username more than 15 characters" });
+    }
+
+    if (password.length < 6) {
+      this.setState({ erorr2: "Password less than 6 characters" });
+    } else if (password.length >= 6 && password.length < 13) {
+      this.setState({ erorr2: "" });
+    } else if (password.length > 12) {
+      this.setState({ erorr2: "  Password more than 12 characters" });
+    }
+
+    if (password === passwordrep && password.length >= 6) {
+      this.setState({ erorr: "" });
+    } else if (password !== passwordrep) {
+      this.setState({ erorr: "Password don't match" });
+    }
+
+    if (
+      username.length <= 15 &&
+      password.length >= 6 &&
+      password.length < 13 &&
+      !/^[a-z0-9._]{2,}$/i.test(username) &&
+      password === passwordrep
+    ) {
+      benar = true;
+    }
+
+    if (!/^[a-z0-9._]{2,}$/i.test(username)) {
+      this.setState({ errUsername: "username is invalid" });
+      benar = false;
+    } else {
+      benar = true;
+    }
+
+    return benar;
+  }
+
   submitAkun = (event) => {
     event.preventDefault();
+    this.validate();
 
     const register = {
       user_role: this.state.user_role,
@@ -34,18 +87,22 @@ export default class Register extends Component {
       password: this.state.password,
       passwordrep: this.state.passwordrep,
       email: this.state.email,
+      fullname: this.state.fullname,
     };
 
-    axios
-      .post("http://localhost:1212/v1/app/register", register)
-      .then((response) => {
-        if (response.data != null) {
-          this.setState(this.initialState);
-          this.setState({ show: true });
-          //   alert(response.data.message);
-        }
-      });
+    if (this.validate()) {
+      axios
+        .post("http://localhost:1212/v1/app/register", register)
+        .then((response) => {
+          if (response.data != null) {
+            this.setState(this.initialState);
+            this.setState({ show: true });
+            //   alert(response.data.message);
+          }
+        });
+    }
   };
+
   formChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
@@ -53,7 +110,14 @@ export default class Register extends Component {
   };
 
   render() {
-    const { username, email, password, user_role, passwordrep } = this.state;
+    const {
+      username,
+      email,
+      password,
+      user_role,
+      passwordrep,
+      fullname,
+    } = this.state;
     let settings = {
       dots: true,
       infinite: true,
@@ -66,15 +130,16 @@ export default class Register extends Component {
       autoplay: true,
       adaptiveHeight: true,
     };
+
     return (
       <Fragment>
         <div className='h-100'>
           <Row className='h-100 no-gutters'>
             <SweetAlert
-              title='Good job!'
+              title='Your Account Has Been Registered!'
               confirmButtonColor=''
               show={this.state.show}
-              text='You clicked the button!'
+              text='Thank You'
               type='success'
               onConfirm={() => this.setState({ show: false })}
             />
@@ -94,8 +159,24 @@ export default class Register extends Component {
                   </span>
                 </h4>
                 <div>
-                  <Form>
+                  <Form onSubmit={this.submitAkun}>
                     <Row form>
+                      <Col md={6}>
+                        <FormGroup>
+                          <Label for='exampleName'>
+                            <span className='text-danger'>*</span> Nama Lengkap
+                          </Label>
+                          <Input
+                            onChange={this.formChange}
+                            value={fullname}
+                            type='text'
+                            name='fullname'
+                            id='exampleName'
+                            placeholder='Nama Lengkap here...'
+                            required
+                          />
+                        </FormGroup>
+                      </Col>
                       <Col md={6}>
                         <Input
                           value={user_role}
@@ -116,20 +197,28 @@ export default class Register extends Component {
                             name='email'
                             id='exampleEmail'
                             placeholder='Email here...'
+                            required
                           />
                         </FormGroup>
                       </Col>
+
                       <Col md={6}>
                         <FormGroup>
-                          <Label for='exampleName'>Name</Label>
+                          <Label for='exampleName'>
+                            <span className='text-danger'>*</span> Username
+                          </Label>
                           <Input
                             onChange={this.formChange}
                             value={username}
                             type='text'
                             name='username'
                             id='exampleName'
-                            placeholder='Name here...'
+                            placeholder='Username here...'
+                            required
                           />
+                          <span className='text-danger'>
+                            {this.state.errUsername}
+                          </span>
                         </FormGroup>
                       </Col>
                       <Col md={6}>
@@ -144,7 +233,11 @@ export default class Register extends Component {
                             name='password'
                             id='examplePassword'
                             placeholder='Password here...'
+                            required
                           />
+                          <span className='text-danger'>
+                            {this.state.erorr2}
+                          </span>
                         </FormGroup>
                       </Col>
                       <Col md={6}>
@@ -160,35 +253,27 @@ export default class Register extends Component {
                             name='passwordrep'
                             id='examplePasswordRep'
                             placeholder='Repeat Password here...'
+                            required
                           />
+                          <span className='text-danger'>
+                            {this.state.erorr}
+                          </span>
                         </FormGroup>
                       </Col>
                     </Row>
-                    <FormGroup className='mt-3' check>
-                      <Input type='checkbox' name='check' id='exampleCheck' />
-                      <Label for='exampleCheck' check>
-                        Accept our{" "}
-                        <a
-                          href='https://colorlib.com/'
-                          onClick={(e) => e.preventDefault()}>
-                          Terms and Conditions
-                        </a>
-                        .
-                      </Label>
-                    </FormGroup>
+
                     <div className='mt-4 d-flex align-items-center'>
                       <h5 className='mb-0'>
                         Already have an account?{" "}
                         <a
                           href='http://localhost:3000/#/pages/login'
-                          onClick={<Login />}
                           className='text-primary'>
                           Sign in
                         </a>
                       </h5>
                       <div className='ml-auto'>
                         <Button
-                          onClick={this.submitAkun}
+                          type='submit'
                           color='primary'
                           className='btn-wide btn-pill btn-shadow btn-hover-shine'
                           size='lg'>

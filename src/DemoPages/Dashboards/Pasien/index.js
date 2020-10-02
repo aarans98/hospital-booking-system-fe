@@ -12,6 +12,7 @@ import ListPraktek from "./KontenPasien/ListPraktek";
 import Praktek from "./KontenPasien/Praktek";
 import RekamMedik from "./KontenPasien/RekamMedik";
 import ListDokter from "./KontenPasien/ListDokter";
+import { Row, Col, Carousel } from "react-bootstrap";
 
 // Examples
 // import CardsBasicExample from "./KontenPasien/Basic";
@@ -24,38 +25,48 @@ export default class MainPasien extends React.Component {
     super(props);
 
     this.state = {
-      username: this.props.location.customName.username,
+      username: localStorage.getItem("username"),
     };
   }
   render() {
     return (
       <Fragment>
         <CSSTransitionGroup
-          component='div'
-          transitionName='TabsAnimation'
+          component="div"
+          transitionName="TabsAnimation"
           transitionAppear={true}
           transitionAppearTimeout={0}
           transitionEnter={false}
-          transitionLeave={false}>
+          transitionLeave={false}
+        >
           <PageTitle
-            heading='Pasien'
-            subheading='Ini Halaman Pasien~'
-            icon='pe-7s-stopwatch icon-gradient bg-amy-crisp'
+            heading="Pasien"
+            subheading="Ini Halaman Pasien~"
+            icon="pe-7s-stopwatch icon-gradient bg-amy-crisp"
           />
-          <Tabs
-            defaultActiveKey='1'
-            renderTabBar={() => <ScrollableInkTabBar />}
-            renderTabContent={() => <TabContent />}>
-            <TabPane tab='List Dokter' key='1'>
-              <ListDokter />
-            </TabPane>
-            <TabPane tab='Notifikasi Pasien' key='3'>
-              <MySchedulePasien username={this.state.username} />
-            </TabPane>
-            <TabPane tab='Rekam Medik' key='4'>
-              <RekamMedik />
-            </TabPane>
-          </Tabs>
+
+          <Row>
+            <Col
+              className="border border-primary offset-2 bg-light mb-5 rounded-lg"
+              md="8"
+            >
+              <Tabs
+                defaultActiveKey="1"
+                renderTabBar={() => <ScrollableInkTabBar />}
+                renderTabContent={() => <TabContent />}
+              >
+                <TabPane tab="List Dokter" key="1">
+                  <ListDokter />
+                </TabPane>
+                <TabPane tab="Notifikasi Pasien" key="3">
+                  <MySchedulePasien username={this.state.username} />
+                </TabPane>
+                <TabPane tab="Rekam Medik" key="4">
+                  <RekamMedik />
+                </TabPane>
+              </Tabs>
+            </Col>
+          </Row>
         </CSSTransitionGroup>
       </Fragment>
     );
