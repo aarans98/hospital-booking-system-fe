@@ -16,6 +16,7 @@ import Rodal from "rodal";
 import { ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { Button, ButtonToolbar} from "react-bootstrap";
 import {Praktek} from './Praktek';
+import DefaultImage from '../../../../img/doctor-default-image.jpg';
 
 export default class ListPraktek extends React.Component {
   constructor(props) {
@@ -91,13 +92,13 @@ export default class ListPraktek extends React.Component {
     const dokter = this.state.dokter;
     let addModalClose = () => this.setState({addModalShow:false});
     const renderCard = (card, index) => {
-      //const sendIdDokter = card.idDokter;
+      const sendIdDokter = card.idDokter;
       return (
         <Card className='main-card mb-3'>
           <Row>
             <Col md='3'>
               <img
-                src='img/doctor-default-image.jpg'
+                src={DefaultImage}
                 className='card-img'
                 alt='...'
               />
@@ -105,10 +106,11 @@ export default class ListPraktek extends React.Component {
 
             <Col md='9'>
               <CardBody className='mb-0'>
-                <h5 className='card-title'>{card.namaLengkap}</h5>
-                <p>{card.spesialisasi}</p>
+                <h3 className=''>dr. {card.namaLengkap}</h3>
+                <p>Dokter {card.spesialisasi}</p>
                 <Button className='btn btn-primary float-right' onClick={() => {this.refreshListPraktek(card.idDokter); this.setState({addModalShow: true});}}>Pilih</Button>
               </CardBody>
+              
             </Col>
           </Row>
         </Card>
@@ -143,7 +145,7 @@ export default class ListPraktek extends React.Component {
           transitionEnter={false}
           transitionLeave={false}>
           <Container>
-            <Row>
+            {/* <Row>
               <Col md='12'>
                 <div>
                   <PageTitle
@@ -153,7 +155,7 @@ export default class ListPraktek extends React.Component {
                   />
                 </div>
               </Col>
-            </Row>
+            </Row> */}
 
             <Row>
               <Col md='12'>

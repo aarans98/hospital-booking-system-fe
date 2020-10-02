@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
+import {Row,Col} from "react-bootstrap"
 
 import PageTitle from "../../../Layout/AppMain/PageTitle";
 
@@ -28,18 +29,22 @@ export default class MainAdmin extends React.Component {
             subheading="Ini Halaman Admin~"
             icon="pe-7s-stopwatch icon-gradient bg-amy-crisp"
           />
-          <Tabs
-            defaultActiveKey="1"
-            renderTabBar={() => <ScrollableInkTabBar />}
-            renderTabContent={() => <TabContent />}
-          >
-            <TabPane tab="Tambah Dokter" key="1">
-              <TambahDokter/>
-            </TabPane>
-            <TabPane tab="Informasi Staff" key="3">
-              <InformasiStaf/>
-            </TabPane>
-          </Tabs>
+          <Row>
+            <Col>
+              <Tabs
+                defaultActiveKey="1"
+                renderTabBar={() => <ScrollableInkTabBar />}
+                renderTabContent={() => <TabContent />}
+              >
+                <TabPane tab="Tambah Dokter" key="1">
+                  <TambahDokter/>
+                </TabPane>
+                <TabPane tab="Informasi Staff" key="2">
+                  <InformasiStaf/>
+                </TabPane>
+              </Tabs>
+            </Col>
+          </Row>
         </CSSTransitionGroup>
       </Fragment>
     );
