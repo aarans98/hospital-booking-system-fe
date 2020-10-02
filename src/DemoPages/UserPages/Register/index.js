@@ -27,12 +27,20 @@ export default class Register extends Component {
     email: "",
     erorr: "",
     erorr2: "",
+    errUsername: "",
   };
 
   validate() {
     let benar = false;
     let password = this.state.password;
     let passwordrep = this.state.passwordrep;
+    let username = this.state.username;
+
+    if (username.length <= 15) {
+      this.setState({ errUsername: "" });
+    } else if (username.length > 15) {
+      this.setState({ errUsername: "username more than 15 characters" });
+    }
 
     if (password.length < 6) {
       this.setState({ erorr2: "Password less than 6 characters" });
@@ -42,9 +50,16 @@ export default class Register extends Component {
 
     if (password === passwordrep && password.length >= 6) {
       this.setState({ erorr: "" });
-      benar = true;
     } else if (password !== passwordrep) {
       this.setState({ erorr: "Password don't match" });
+    }
+
+    if (
+      username.length <= 15 &&
+      password.length >= 6 &&
+      password === passwordrep
+    ) {
+      benar = true;
     }
     return benar;
   }
@@ -163,6 +178,9 @@ export default class Register extends Component {
                             placeholder='Username here...'
                             required
                           />
+                          <span className='text-danger'>
+                            {this.state.errUsername}
+                          </span>
                         </FormGroup>
                       </Col>
                       <Col md={6}>
