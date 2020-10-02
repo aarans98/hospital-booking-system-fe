@@ -229,7 +229,6 @@ export default class Register extends Component {
                         Already have an account?{" "}
                         <a
                           href='http://localhost:3000/#/pages/login'
-                          onClick={<Login />}
                           className='text-primary'>
                           Sign in
                         </a>
