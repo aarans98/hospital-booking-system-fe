@@ -7,7 +7,10 @@ import {EditModalInformasiStaf} from './EditModalInformasiStaf';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import PageTitle from '../../../../Layout/AppMain/PageTitle';
+import CountUp from 'react-countup';
+import CarouselInformasiStaf from './CarouselInformasiStaf';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default class DataTableBasic extends React.Component {
 
@@ -15,6 +18,8 @@ export default class DataTableBasic extends React.Component {
         super(props);
         this.state = {
             informasiStaf:[],
+            jumlah:0,
+            jumlahDokter:0,
             addModalShow : false,
             editModalShow :  false,
             modal: false,
@@ -95,30 +100,67 @@ export default class DataTableBasic extends React.Component {
     }
 
     componentDidMount() {
+        axios.get("http://localhost:1212/v1/app/informasiStaf")
+        .then(
+            response => {
+                this.setState({informasiStaf:response.data.data});
+            });
+        
         this.refreshList();
+        this.refreshListStaf();
+        this.refreshListDokter();
     }
 
-    componentDidUpdate() {
-        fetch("http://localhost:1212/v1/app/informasiStaf")
-            .then(response => response.json())
-            .then((data) => {
-                this.setState({informasiStaf:data.data})
+    refreshListStaf = () => {
+        axios
+          .get("http://localhost:1212/v1/app/informasiStaf/jumlahstaf")
+          .then((response) => {
+            this.setState({ jumlah: response.data.jumlah });
         });
     }
+    
+    refreshListDokter= () => {
+        axios
+          .get("http://localhost:1212/v1/app/informasiStaf/jumlahdokter")
+          .then((response) => {
+            this.setState({ jumlahDokter: response.data.jumlah });
+          });
+    }
 
-    refreshList() {
+    refreshList = () => {
         axios.get("http://localhost:1212/v1/app/informasiStaf")
         .then(
             response => {
                 this.setState({informasiStaf:response.data.data});
             });
     }
+    
+    handleClick = () => {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          onOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+    
+        Toast.fire({
+          icon: 'warning',
+          title: 'Data successfully deleted!'
+        })
+    }
 
     deleteInformasiStaf = (idStaf) => {
         axios.delete("http://localhost:1212/v1/app/informasiStaf/"+idStaf)
         .then(response => {
+            this.refreshList();
+            this.refreshListStaf();
             if(response.data != null) {
-                alert("Data berhasil dihapus !");
+                this.handleClick();
                 this.setState({
                     informasiStaf: this.state.informasiStaf.filter(informasiStaf=> informasiStaf.idStaf !== idStaf)
                 })
@@ -149,13 +191,62 @@ export default class DataTableBasic extends React.Component {
                     transitionAppearTimeout={0}
                     transitionEnter={false}
                     transitionLeave={false}>
-                    <div>
-                        <PageTitle
-                            heading="Tabel Informasi Staf"
-                            subheading="Halaman ini berisi mengenai data informasi staf Rumah Sakit Bahagya"
-                            icon="pe-7s-medal icon-gradient bg-tempting-azure"
-                        />
-                    </div>
+                    <Row>
+                        {/* <Col sm="6">
+                            <Col md="12">
+                                <Card className="main-card mb-3">
+                                    <Card.Body>
+                                        <Card.Title>Basic</Card.Title>
+                                            <CarouselInformasiStaf/>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        </Col> */}
+                        <Col md="6">
+                            <div className="card mb-3 widget-chart">
+                                <div className="icon-wrapper rounded-circle">
+                                    <div className="icon-wrapper-bg bg-primary"/>
+                                    <i className="lnr-user text-primary"/>
+                                </div>
+                                <div className="widget-numbers">
+                                    <CountUp start={0}
+                                             end={this.state.jumlahDokter?this.state.jumlahDokter:0} 
+                                             separator=""
+                                             decimals={0}
+                                             decimal=","
+                                             prefix=""
+                                             suffix=" dokter"
+                                             useEasing={false}
+                                             duration="2"/>
+                                </div>
+                                <div className="widget-subheading">
+                                    Jumlah Dokter
+                                </div>
+                            </div>
+                        </Col>
+                        <Col sm="6">
+                            <div className="card mb-3 widget-chart">
+                                <div className="icon-wrapper rounded-circle">
+                                    <div className="icon-wrapper-bg bg-primary"/>
+                                    <i className="lnr-user text-warning"/>
+                                </div>
+                                <div className="widget-numbers">
+                                    <CountUp start={0}
+                                             end={this.state.jumlah?this.state.jumlah:0}
+                                             separator=","
+                                             decimals={0}
+                                             decimal=","
+                                             prefix=""
+                                             useEasing={false}
+                                             suffix=" orang"
+                                             duration="2"/>
+                                </div>
+                                <div className="widget-subheading">
+                                    Jumlah Staf
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
                     <Row>
                         <Col md="12">
                             <Card className="main-card mb-3">
@@ -178,10 +269,16 @@ export default class DataTableBasic extends React.Component {
                                       <Button color="btn btn-primary" onClick={() => this.setState({addModalShow: true})}>Add</Button>
                                             <AddModalInformasiStaf
                                             show={this.state.addModalShow}
-                                            onHide={addModalClose}/>
+                                            onHide={addModalClose}
+                                            refreshList={this.refreshList}
+                                            refreshListStaf={this.refreshListStaf}
+                                            refreshListDokter={this.refreshListDokter}/>
                                             <EditModalInformasiStaf
                                             show={this.state.editModalShow}
                                             onHide={editModalClose}
+                                            refreshList={this.refreshList}
+                                            refreshListStaf={this.refreshListStaf}
+                                            refreshListDokter={this.refreshListDokter}
                                             idStaf={this.state.sendIdStaf}
                                             namaLengkap={this.state.sendNamaLengkap}
                                             tanggalLahir={this.state.sendTanggalLahir}

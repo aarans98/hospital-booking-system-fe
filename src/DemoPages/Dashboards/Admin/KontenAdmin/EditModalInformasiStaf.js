@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Modal, Button, Col, Form, Card} from 'react-bootstrap';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export class EditModalInformasiStaf extends Component {
 
@@ -20,9 +21,27 @@ export class EditModalInformasiStaf extends Component {
         mulaiBekerja:'',
         gaji:''
     }
+
+    handleClick = () => {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          onOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+    
+        Toast.fire({
+          icon: 'success',
+          title: 'Data successfully updated!'
+        })
+    }
     
     updateInformasiStaf = (event) =>  {
-        alert("Data berhasil di update!");
         event.preventDefault();
         const informasiStaf = {
             idStaf:event.target.idStaf.value,
@@ -35,9 +54,11 @@ export class EditModalInformasiStaf extends Component {
         
         axios.post("http://localhost:1212/v1/app/informasiStaf", informasiStaf)
             .then(response => {
+                this.props.refreshList();
+                this.props.refreshListStaf();
                 if(response.data.data != null) {
                     this.setState({"show":true});
-                    setTimeout(() => this.setState({"show":false}), 1500);
+                    this.handleClick();
                 } else {
                     this.setState({"show":false});
                 }
@@ -77,6 +98,7 @@ export class EditModalInformasiStaf extends Component {
                                     <Form.Group as={Col} controlId="idStaf">
                                         <Form.Label>Id</Form.Label>
                                         <Form.Control required autoComplete="off"
+                                        disabled
                                         type="number"
                                         defaultValue={this.props.idStaf}
                                         onChange={this.informasiStafChange} 
