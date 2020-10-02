@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
-
+import {Row,Col} from "react-bootstrap";
 import PageTitle from "../../../Layout/AppMain/PageTitle";
 
 import Tabs, { TabPane } from "rc-tabs";
@@ -34,23 +34,27 @@ export default class MainDokter extends React.Component {
             subheading='Ini Halaman Dokter~'
             icon='pe-7s-stopwatch icon-gradient bg-amy-crisp'
           />
-          <Tabs
-            defaultActiveKey='1'
-            renderTabBar={() => <ScrollableInkTabBar />}
-            renderTabContent={() => <TabContent />}>
-            <TabPane tab='Pasien' key='1'>
-              <MyScheduleDoctor username={this.state.username} />
-            </TabPane>
-            <TabPane tab='Rekam Medik' key='2'>
-              <RekamMedik />
-            </TabPane>
-            {/* <TabPane tab='Color States' key='3'>
-              <CardsColors />
-            </TabPane>
-            <TabPane tab='Block Loading' key='4'>
-              <CardsBlockLoadingExample />
-            </TabPane> */}
-          </Tabs>
+          <Row>
+            <Col>
+              <Tabs
+                defaultActiveKey='1'
+                renderTabBar={() => <ScrollableInkTabBar />}
+                renderTabContent={() => <TabContent />}>
+                <TabPane tab='Pasien' key='1'>
+                  <MyScheduleDoctor username={this.state.username} />
+                </TabPane>
+                <TabPane tab='Rekam Medik' key='2'>
+                  <RekamMedik />
+                </TabPane>
+                {/* <TabPane tab='Color States' key='3'>
+                  <CardsColors />
+                </TabPane>
+                <TabPane tab='Block Loading' key='4'>
+                  <CardsBlockLoadingExample />
+                </TabPane> */}
+              </Tabs>
+            </Col>
+          </Row>
         </CSSTransitionGroup>
       </Fragment>
     );

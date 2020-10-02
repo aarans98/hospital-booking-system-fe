@@ -16,6 +16,17 @@ import AppFooter from "../../Layout/AppFooter/";
 // Theme Options
 import ThemeOptions from "../../Layout/ThemeOptions/";
 
+// Background
+import Background from "../../img/background-doctor.jpg"
+
+var section = {
+  width: "100%",
+  height: "100px",
+  backgroundImage: `url(  ${ Background } )`,
+  backgroundRepeat: "no-repeat",
+  backgroundAttachment: "fixed"
+};
+
 const Dashboards = ({ match }) => (
   <Fragment>
     <ThemeOptions />
@@ -23,7 +34,7 @@ const Dashboards = ({ match }) => (
     <div className="app-main">
       {/* <AppSidebar /> */}
       <div className="app-main__outer">
-        <div className="app-main__inner">
+        <div className="app-main__inner" style={section}>
           <Route path={`/dashboards/pasien`} component={MainPasien} />
           <Route path={`/dashboards/dokter`} component={MainDokter} />
           <Route path={`/dashboards/admin`} component={MainAdmin} />
