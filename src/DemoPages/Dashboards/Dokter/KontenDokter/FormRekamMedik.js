@@ -135,7 +135,7 @@ class FormRekamMedik extends React.Component {
                 <Label for="idRekamMedik" sm={2}>ID Rekam Medik</Label>
                 <Col sm={10}>
                   <Input required type="number" name="idRekamMedik" id="idRekamMedik"
-                    min="1" value={idRekamMedik} onChange={this.formChange} placeholder="Masukkan id rekam medik" />
+                    min="1" value={idRekamMedik} onChange={this.formChange} placeholder="ID Rekam Medik" />
                 </Col>
               </FormGroup>
               <FormGroup row>
@@ -176,28 +176,28 @@ class FormRekamMedik extends React.Component {
                 <Label for="tinggiBadan" sm={2}>Tinggi Badan</Label>
                 <Col sm={10}>
                   <Input required type="number" name="tinggiBadan" id="tinggiBadan"
-                    min="0" value={tinggiBadan} onChange={this.formChange} placeholder="Masukkan tinggi badan" />
+                    min="0" value={tinggiBadan} onChange={this.formChange} placeholder="Tinggi Badan" />
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label for="beratBadan" sm={2}>Berat Badan</Label>
                 <Col sm={10}>
                   <Input required type="number" name="beratBadan" id="beratBadan"
-                    min="0" value={beratBadan} onChange={this.formChange} placeholder="Masukkan berat badan" />
+                    min="0" value={beratBadan} onChange={this.formChange} placeholder="Berat Badan" />
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label for="gejala" sm={2}>Gejala</Label>
                 <Col sm={10}>
                   <Input required type="textarea" name="gejala" id="gejala" value={gejala}
-                    onChange={this.formChange} placeholder="Masukkan gejala" />
+                    onChange={this.formChange} placeholder="Gejala" />
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label for="diagnosa" sm={2}>Diagnosa</Label>
                 <Col sm={10}>
                   <Input required type="textarea" name="diagnosa" id="diagnosa" value={diagnosa}
-                    onChange={this.formChange} placeholder="Masukkan diagnosa" />
+                    onChange={this.formChange} placeholder="Diagnosa" />
                 </Col>
               </FormGroup>
               <FormGroup row>
@@ -216,7 +216,7 @@ class FormRekamMedik extends React.Component {
                 <Label for="dosis" sm={2}>Dosis</Label>
                 <Col sm={10}>
                   <Input type="textarea" name="dosis" value={dosis}
-                    onChange={this.formChange} id="dosis" placeholder="Masukkan dosis" />
+                    onChange={this.formChange} id="dosis" placeholder="Dosis" />
                 </Col>
               </FormGroup>
               <FormGroup check row style={{ display: "flex", justifyContent: "space-around" }}>
