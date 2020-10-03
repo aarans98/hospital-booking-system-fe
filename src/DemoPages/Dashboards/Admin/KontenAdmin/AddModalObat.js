@@ -41,7 +41,6 @@ export class AddModalObat extends React.Component {
     }
 
     submitDaftarObat = event =>  {
-        // alert("Data berhasil masuk!");
         event.preventDefault();
         const daftarObat = {
             idObat: this.state.idObat,
@@ -72,6 +71,7 @@ export class AddModalObat extends React.Component {
 
     render() {
         let { idObat, namaObat, kategori, deskripsi } = this.state;
+        console.log(idObat);
         return (
             <Modal {...this.props} size="lg" backdrop="static" className="Mymodal" id="modal_form" animation={true}>
                 <Modal.Header closeButton>
@@ -92,10 +92,10 @@ export class AddModalObat extends React.Component {
                             id="daftarObat">
                             <Card.Body>
                                     <Form.Group as={Col} controlId="idObat">
-                                        <Form.Control autoComplete="off"
-                                        hidden
+                                        <Form.Label>Id Obat</Form.Label>
+                                        <Form.Control required autoComplete="off"
                                         type="number"
-                                        value={idObat}
+                                        value={this.props.idObat}
                                         onChange={this.daftarObatChange} 
                                         name="idObat"
                                         placeholder="Id Obat" />
@@ -104,7 +104,7 @@ export class AddModalObat extends React.Component {
                                         <Form.Label>Nama Obat</Form.Label>
                                         <Form.Control required autoComplete="off"
                                         type="text"
-                                        value={namaObat}
+                                        value={this.props.namaObat}
                                         onChange={this.daftarObatChange} 
                                         name="namaObat"
                                         placeholder="Nama Obat"/>
@@ -113,7 +113,7 @@ export class AddModalObat extends React.Component {
                                         <Form.Label>Kategori</Form.Label>
                                         <Form.Control required autoComplete="off"
                                         type="text" 
-                                        value={kategori}
+                                        value={this.props.kategori}
                                         onChange={this.daftarObatChange} 
                                         name="kategori"
                                         placeholder="Kategori" />
@@ -122,7 +122,7 @@ export class AddModalObat extends React.Component {
                                         <Form.Label>Deskripsi</Form.Label>
                                         <Form.Control required autoComplete="off"
                                         as="textarea" 
-                                        value={deskripsi}
+                                        value={this.props.deskripsi}
                                         onChange={this.daftarObatChange} 
                                         name="deskripsi"
                                         placeholder="Deskripsi" />

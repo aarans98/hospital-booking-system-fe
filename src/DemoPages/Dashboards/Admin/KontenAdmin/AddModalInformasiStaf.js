@@ -127,7 +127,6 @@ export class AddModalInformasiStaf extends React.Component {
                                     <Form.Group as={Col} controlId="posisi">
                                         <Form.Label>Posisi</Form.Label>
                                         <Form.Control required autoComplete="off"
-                                        // type="text" 
                                         value={this.props.namaLengkap}
                                         onChange={this.informasiStafChange} 
                                         name="posisi"
@@ -155,7 +154,7 @@ export class AddModalInformasiStaf extends React.Component {
                             <Card.Footer style={{"textAlign":"right"}} >
                                     <Button class="btn btn-primary" type="submit"
                                         onClick={() => this.setState({show: true})}>
-                                        Save
+                                        Simpan
                                     </Button>{' '}
                             </Card.Footer>
                             </Form>

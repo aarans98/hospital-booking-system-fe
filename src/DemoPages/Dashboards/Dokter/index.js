@@ -8,6 +8,7 @@ import TabContent from "rc-tabs/lib/SwipeableTabContent";
 import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
 import RekamMedik from "../Pasien/KontenPasien/RekamMedik";
 import MyScheduleDoctor from "./KontenDokter/MyScheduleDoctor";
+import DaftarObat from "./KontenDokter/DaftarObat";
 
 // Examples
 
@@ -45,6 +46,9 @@ export default class MainDokter extends React.Component {
                 </TabPane>
                 <TabPane tab='Rekam Medik' key='2'>
                   <RekamMedik />
+                </TabPane>
+                <TabPane tab='Daftar Obat' key='3'>
+                  <DaftarObat />
                 </TabPane>
                 {/* <TabPane tab='Color States' key='3'>
                   <CardsColors />

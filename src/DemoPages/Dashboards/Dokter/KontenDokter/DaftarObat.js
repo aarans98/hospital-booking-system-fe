@@ -2,8 +2,6 @@ import React, {Fragment} from 'react'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import {Row, Col} from 'reactstrap';
 import {Card, Button, ButtonToolbar} from 'react-bootstrap';
-import {AddModalObat} from './AddModalObat';
-import {EditModalObat} from './EditModalObat';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import PageTitle from '../../../../Layout/AppMain/PageTitle';
@@ -49,23 +47,6 @@ export default class DaftarObat extends React.Component {
                 selector:'deskripsi',
                 sortable: true,
                 filterable: true,
-            },
-            {
-                name: 'Perbarui',
-                button: true,
-                cell: (daftarObat) => {
-                return (
-                <Fragment>
-                    <button size='sm' className="btn btn-primary"
-                    onClick={() => this.setState({editModalShow: true,
-                    sendIdObat: daftarObat.idObat,
-                    sendNamaObat: daftarObat.namaObat,
-                    sendKategori: daftarObat.kategori,
-                    sendDeskripsi: daftarObat.deskripsi,
-                    })}>Perbarui</button>
-                </Fragment>
-                );
-                }  
             },
         ];
         this.componentDidMount = this.componentDidMount.bind(this);
@@ -182,25 +163,6 @@ export default class DaftarObat extends React.Component {
                                     </DataTableExtensions>
                                 </Card.Body>
                                 <Card.Footer>
-                                    <ButtonToolbar>
-                                      <Button color="btn btn-primary" onClick={() => this.setState({addModalShow: true})}>Tambah</Button>
-                                            <AddModalObat
-                                            show={this.state.addModalShow}
-                                            onHide={addModalClose}
-                                            refreshList={this.refreshList}
-                                            refreshListObat={this.refreshListObat}
-                                            />
-                                            <EditModalObat
-                                            show={this.state.editModalShow}
-                                            onHide={editModalClose}
-                                            refreshList={this.refreshList}
-                                            refreshListObat={this.refreshListObat}
-                                            idObat={this.state.sendIdObat}
-                                            namaObat={this.state.sendNamaObat}
-                                            kategori={this.state.sendKategori}
-                                            deskripsi={this.state.sendDeskripsi}
-                                            />
-                                    </ButtonToolbar>
                                 </Card.Footer>
                             </Card>
                         </Col>
