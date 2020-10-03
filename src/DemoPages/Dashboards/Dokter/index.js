@@ -16,7 +16,7 @@ export default class MainDokter extends React.Component {
     super(props);
 
     this.state = {
-      username: this.props.location.customName.username,
+      username: localStorage.getItem("username").slice(1, -1),
     };
   }
   render() {

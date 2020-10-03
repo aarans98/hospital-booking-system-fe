@@ -25,8 +25,8 @@ function RekamMedik() {
     end: showPerPage,
   });
 
-  const [username, setUsername] = useState(localStorage.getItem("username"));
-  const [userRole, setUserRole] = useState(localStorage.getItem("role"));
+  const [username, setUsername] = useState(localStorage.getItem("username").slice(1, -1));
+  const [userRole, setUserRole] = useState(localStorage.getItem("role").slice(1, -1));
 
   const onPaginationChange = (start, end) => {
     setPagination({ start: start, end: end });
@@ -44,7 +44,7 @@ function RekamMedik() {
         .then((response) => setPosts(response.data));
     }
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
-  }, [posts]);
+  }, []);
 
   const margin = {
     marginTop: "5px",
@@ -61,13 +61,12 @@ function RekamMedik() {
           total={posts.length}
         />
         <Row>
-          {posts.length === 0 ? (
+          {posts.length === 0 ?
             <Col>
               <p style={{ textAlign: "center" }}>
                 Data rekam medik tidak tersedia.
               </p>
-            </Col>
-          ) : (
+            </Col> :
             posts.slice(pagination.start, pagination.end).map((post) => (
               <Col md="4" key={post.id}>
                 <Card className="main-card mb-5">
@@ -219,7 +218,7 @@ function RekamMedik() {
                 </Card>
               </Col>
             ))
-          )}
+          }
         </Row>
       </Container>
     </div>
