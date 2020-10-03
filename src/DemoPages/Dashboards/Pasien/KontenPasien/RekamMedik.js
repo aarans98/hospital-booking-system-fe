@@ -28,6 +28,7 @@ function RekamMedik() {
   const [username, setUsername] = useState(localStorage.getItem("username").slice(1, -1));
   const [userRole, setUserRole] = useState(localStorage.getItem("role").slice(1, -1));
 
+  // change of contents
   const onPaginationChange = (start, end) => {
     setPagination({ start: start, end: end });
   };
