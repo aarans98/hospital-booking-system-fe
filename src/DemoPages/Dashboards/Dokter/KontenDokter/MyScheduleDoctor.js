@@ -58,6 +58,7 @@ export default class MyScheduleDoctor extends Component {
       .then((response) => response.data)
       .then((data) => {
         this.setState({ persons: data });
+        console.log(this.props.username);
       });
   };
   componentDidMount() {

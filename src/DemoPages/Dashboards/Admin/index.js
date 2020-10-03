@@ -7,9 +7,10 @@ import PageTitle from "../../../Layout/AppMain/PageTitle";
 import Tabs, { TabPane } from "rc-tabs";
 import TabContent from "rc-tabs/lib/SwipeableTabContent";
 import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
-import InformasiStaf from './KontenAdmin/InformasiStaf'
-import JadwalPraktek from './KontenAdmin/JadwalPraktek'
-import TambahDokter from "./KontenAdmin/TambahDokter"
+import InformasiStaf from './KontenAdmin/InformasiStaf';
+import JadwalPraktek from './KontenAdmin/JadwalPraktek';
+import TambahDokter from "./KontenAdmin/TambahDokter";
+import DaftarObat from './KontenAdmin/DaftarObat';
 // Examples
 
 export default class MainAdmin extends React.Component {
@@ -39,8 +40,11 @@ export default class MainAdmin extends React.Component {
                 <TabPane tab="Tambah Dokter" key="1">
                   <TambahDokter/>
                 </TabPane>
-                <TabPane tab="Informasi Staff" key="2">
+                <TabPane tab="Informasi Staf" key="2">
                   <InformasiStaf/>
+                </TabPane>
+                <TabPane tab="Daftar Obat" key="3">
+                  <DaftarObat/>
                 </TabPane>
               </Tabs>
             </Col>
