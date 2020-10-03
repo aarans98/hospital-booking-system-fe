@@ -33,7 +33,7 @@ export default class MainPasien extends React.Component {
     super(props);
 
     this.state = {
-      username: localStorage.getItem("username"),
+      username: localStorage.getItem("username").slice(1, -1),
     };
   }
 

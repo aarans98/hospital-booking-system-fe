@@ -15,15 +15,17 @@ class FormRekamMedik extends React.Component {
   }
 
   initialState = {
+    disable: false,
     modal: false,
-    valueObat: [], valueJadwal: '', valuePasien: '',
-    obat: [], jadwal: [], pasien: [],
+    valueObat: [],
+    obat: [],
     idRekamMedik: '',
     tinggiBadan: '',
     beratBadan: '',
     gejala: '',
     diagnosa: '',
     dosis: '',
+    submittedData: [],
   }
 
   toggle() {
@@ -34,16 +36,7 @@ class FormRekamMedik extends React.Component {
 
   componentDidMount() {
     this.findAllIdObat();
-    // this.findAllJadwal();
-    // this.findAllPasien();
-  }
-
-  componentDidUpdate() {
-    fetch("http://localhost:1212/v1/app/obat/id")
-        .then(response => response.json())
-        .then(data => {
-            this.setState({ obat: data });
-        });
+    this.findAllIdJadwal();
   }
 
   findAllIdObat = () => {
@@ -53,19 +46,12 @@ class FormRekamMedik extends React.Component {
       })
   }
 
-  // findAllJadwal = () => {
-  //   axios.get("http://localhost:1212/v1/app/jadwal/id")
-  //     .then(response => {
-  //       this.setState({ jadwal: response.data });
-  //     })
-  // }
-
-  // findAllPasien = () => {
-  //   axios.get("http://localhost:1212/v1/app/pasien/id")
-  //     .then(response => {
-  //       this.setState({ pasien: response.data });
-  //     })
-  // }
+  findAllIdJadwal = () => {
+    axios.get("http://localhost:1212/v1/app/rekam-medik/jadwal/idJadwal")
+      .then(response => {
+        this.setState({ submittedData: response.data });
+      })
+  }
 
   formChange = (event) => {
     this.setState({
@@ -114,16 +100,18 @@ class FormRekamMedik extends React.Component {
     axios.post("http://localhost:1212/v1/app/rekam-medik", rekam_medik)
       .then(response => {
         console.log(response.data);
+        this.setState({disable: true});
+        this.findAllIdObat();
         this.handleClick();
       });
     this.setState(this.initialState);
   }
 
   render() {
-    let { valueObat, valuePasien, valueJadwal, obat, jadwal, pasien, idRekamMedik, tinggiBadan, beratBadan, gejala, diagnosa, dosis } = this.state;
+    let { valueObat, obat, idRekamMedik, tinggiBadan, beratBadan, gejala, diagnosa, dosis, submittedData } = this.state;
     return (
       <span>
-        <Button size='sm' className='btn-icon mr-2' color='warning' onClick={this.toggle}>
+        <Button size='sm' className='btn-icon mr-2' color='warning' disabled={submittedData.includes(this.props.id) ? true : this.state.disable} onClick={this.toggle}>
           <i className='lnr-file-add btn-icon-wrapper'> </i>
           Rekam Medik
         </Button>
@@ -152,26 +140,6 @@ class FormRekamMedik extends React.Component {
                     min="1" defaultValue={this.props.id} />
                 </Col>
               </FormGroup>
-              {/* <FormGroup row>
-                <Label for="idPasien" sm={2}>ID Pasien</Label>
-                <Col sm={10}>
-                  <DropdownList
-                    data={pasien}
-                    value={valuePasien}
-                    onChange={valuePasien => this.setState({ valuePasien })}
-                  />
-                </Col>
-              </FormGroup>
-              <FormGroup row>
-                <Label for="idJadwal" sm={2}>ID Jadwal</Label>
-                <Col sm={10}>
-                  <DropdownList
-                    data={jadwal}
-                    value={valueJadwal}
-                    onChange={valueJadwal => this.setState({ valueJadwal })}
-                  />
-                </Col>
-              </FormGroup> */}
               <FormGroup row>
                 <Label for="tinggiBadan" sm={2}>Tinggi Badan</Label>
                 <Col sm={10}>
