@@ -38,12 +38,11 @@ export class AddModalInformasiStaf extends React.Component {
     
         Toast.fire({
           icon: 'success',
-          title: 'Data successfully saved!'
+          title: 'Data berhasil disimpan!'
         })
     }
 
     submitInformasiStaf = event =>  {
-        // alert("Data berhasil masuk!");
         event.preventDefault();
         const informasiStaf = {
             idStaf: this.state.idStaf,
@@ -99,10 +98,10 @@ export class AddModalInformasiStaf extends React.Component {
                             id="informasiStaf">
                             <Card.Body>
                                     <Form.Group as={Col} controlId="idStaf">
-                                        <Form.Label>Id</Form.Label>
-                                        <Form.Control required autoComplete="off"
+                                        <Form.Control autoComplete="off"
+                                        hidden
                                         type="number"
-                                        value={this.props.idStaf}
+                                        value={idStaf}
                                         onChange={this.informasiStafChange} 
                                         name="idStaf"
                                         placeholder="Id Staf" />

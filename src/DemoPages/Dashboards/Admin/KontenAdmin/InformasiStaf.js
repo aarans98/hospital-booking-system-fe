@@ -8,11 +8,10 @@ import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import PageTitle from '../../../../Layout/AppMain/PageTitle';
 import CountUp from 'react-countup';
-import CarouselInformasiStaf from './CarouselInformasiStaf';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-export default class DataTableBasic extends React.Component {
+export default class InformasiStaf extends React.Component {
 
     constructor(props) {
         super(props);
@@ -66,7 +65,7 @@ export default class DataTableBasic extends React.Component {
                 filterable: true,
             },
             {
-                name: 'Update',
+                name: 'Perbarui',
                 button: true,
                 cell: (informasiStaf) => {
                 return (
@@ -78,19 +77,19 @@ export default class DataTableBasic extends React.Component {
                     sendTanggalLahir: informasiStaf.tanggalLahir,
                     sendPosisi: informasiStaf.posisi,
                     sendMulaiBekerja:informasiStaf.mulaiBekerja,
-                    sendGaji: informasiStaf.gaji})}>Update</button>
+                    sendGaji: informasiStaf.gaji})}>Perbarui</button>
                 </Fragment>
                 );
                 }  
             },
             {
-                name: 'Delete',
+                name: 'Hapus',
                 button: true,
                 cell: (informasiStaf) => {
                 return(
                 <Fragment>
                     <button size='sm' className="btn btn-warning"
-                    onClick={() => this.deleteInformasiStaf(informasiStaf.idStaf)}>Delete</button>
+                    onClick={() => this.deleteInformasiStaf(informasiStaf.idStaf)}>Hapus</button>
                 </Fragment>
                 );
                 }
@@ -150,7 +149,7 @@ export default class DataTableBasic extends React.Component {
     
         Toast.fire({
           icon: 'warning',
-          title: 'Data successfully deleted!'
+          title: 'Data berhasil dihapus!'
         })
     }
 
@@ -192,16 +191,6 @@ export default class DataTableBasic extends React.Component {
                     transitionEnter={false}
                     transitionLeave={false}>
                     <Row>
-                        {/* <Col sm="6">
-                            <Col md="12">
-                                <Card className="main-card mb-3">
-                                    <Card.Body>
-                                        <Card.Title>Basic</Card.Title>
-                                            <CarouselInformasiStaf/>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        </Col> */}
                         <Col md="6">
                             <div className="card mb-3 widget-chart">
                                 <div className="icon-wrapper rounded-circle">
@@ -266,7 +255,7 @@ export default class DataTableBasic extends React.Component {
                                 </Card.Body>
                                 <Card.Footer>
                                     <ButtonToolbar>
-                                      <Button color="btn btn-primary" onClick={() => this.setState({addModalShow: true})}>Add</Button>
+                                      <Button color="btn btn-primary" onClick={() => this.setState({addModalShow: true})}>Tambah</Button>
                                             <AddModalInformasiStaf
                                             show={this.state.addModalShow}
                                             onHide={addModalClose}

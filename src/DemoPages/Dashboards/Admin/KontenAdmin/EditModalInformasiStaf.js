@@ -37,7 +37,7 @@ export class EditModalInformasiStaf extends Component {
     
         Toast.fire({
           icon: 'success',
-          title: 'Data successfully updated!'
+          title: 'Data berhasil diperbarui!'
         })
     }
     
@@ -96,9 +96,9 @@ export class EditModalInformasiStaf extends Component {
                             id="informasiStaf">
                             <Card.Body>
                                     <Form.Group as={Col} controlId="idStaf">
-                                        <Form.Label>Id</Form.Label>
-                                        <Form.Control required autoComplete="off"
+                                        <Form.Control autoComplete="off"
                                         disabled
+                                        hidden
                                         type="number"
                                         defaultValue={this.props.idStaf}
                                         onChange={this.informasiStafChange} 
