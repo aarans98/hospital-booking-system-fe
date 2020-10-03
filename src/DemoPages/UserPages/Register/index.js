@@ -37,6 +37,16 @@ export default class Register extends Component {
     let passwordrep = this.state.passwordrep;
     let username = this.state.username;
 
+    if (
+      username.length <= 15 &&
+      password.length >= 6 &&
+      password.length < 13 &&
+      /^[a-z0-9._]{2,}$/i.test(username) &&
+      password === passwordrep
+    ) {
+      benar = true;
+    }
+
     if (username.length <= 15) {
       this.setState({ errUsername: "" });
     } else if (username.length > 15) {
@@ -60,16 +70,6 @@ export default class Register extends Component {
     if (!/^[a-z0-9._]{2,}$/i.test(username)) {
       this.setState({ errUsername: "username is invalid" });
       benar = false;
-    }
-
-    if (
-      username.length <= 15 &&
-      password.length >= 6 &&
-      password.length < 13 &&
-      !/^[a-z0-9._]{2,}$/i.test(username) &&
-      password === passwordrep
-    ) {
-      benar = true;
     }
 
     return benar;

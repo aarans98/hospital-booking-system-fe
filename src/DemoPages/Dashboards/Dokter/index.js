@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
-import {Row,Col} from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import PageTitle from "../../../Layout/AppMain/PageTitle";
 
 import Tabs, { TabPane } from "rc-tabs";
@@ -16,7 +16,7 @@ export default class MainDokter extends React.Component {
     super(props);
 
     this.state = {
-      username: this.props.location.customName.username,
+      username: localStorage.getItem("username").slice(1, -1),
     };
   }
   render() {

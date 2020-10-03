@@ -42,6 +42,8 @@ export class AddModalKunjungan extends React.Component {
       usia: this.state.usia,
     };
 
+    console.log(pasien);
+
     axios
       .post("http://localhost:1212/v1/app/pasien", pasien)
       .then((response) => {
@@ -62,18 +64,18 @@ export class AddModalKunjungan extends React.Component {
   }
 
   render() {
-    const {
-      alamat,
-      berat_badan,
-      idDokter,
-      idPraktek,
-      jenis_kelamin,
-      nama_lengkap,
-      tanggal_lahir,
-      tinggi_badan,
-      username,
-      usia,
-    } = this.state;
+    // const {
+    //   alamat,
+    //   berat_badan,
+    //   idDokter,
+    //   idPraktek,
+    //   jenis_kelamin,
+    //   nama_lengkap,
+    //   tanggal_lahir,
+    //   tinggi_badan,
+    //   username,
+    //   usia,
+    // } = this.state;
     return (
       <Modal
         {...this.props}
@@ -136,7 +138,7 @@ export class AddModalKunjungan extends React.Component {
                       required
                       autoComplete='off'
                       type='text'
-                      value={nama_lengkap}
+                      value={this.state.nama_lengkap}
                       onChange={this.kunjunganChange}
                       name='nama_lengkap'
                       placeholder='Nama Lengkap'
@@ -148,7 +150,7 @@ export class AddModalKunjungan extends React.Component {
                       required
                       autoComplete='off'
                       type='text'
-                      value={jenis_kelamin}
+                      value={this.state.jenis_kelamin}
                       onChange={this.kunjunganChange}
                       name='jenis_kelamin'
                       placeholder='Jenis Kelamin'
@@ -158,18 +160,18 @@ export class AddModalKunjungan extends React.Component {
                     <Form.Label for='exampleCheckbox'>Jenis Kelamin</Form.Label>
                     <div>
                       <CustomInput
-                        type='radio'
-                        id='laki-laki'
-                        name='laki-laki'
-                        label='Laki-laki'
-                        value={jenis_kelamin}
+                        type="radio"
+                        id="laki-laki"
+                        name="laki-laki"
+                        label="Laki-laki"
+                        value={this.state.jenis_kelamin}
                       />
                       <CustomInput
-                        type='radio'
-                        id='perempuan'
-                        name='perempuan'
-                        label='Perempuan'
-                        value={jenis_kelamin}
+                        type="radio"
+                        id="perempuan"
+                        name="perempuan"
+                        label="Perempuan"
+                        value={this.state.jenis_kelamin}
                       />
                     </div>
                   </Form.Group> */}
@@ -179,7 +181,7 @@ export class AddModalKunjungan extends React.Component {
                       required
                       autoComplete='off'
                       type='date'
-                      value={tanggal_lahir}
+                      value={this.state.tanggal_lahir}
                       onChange={this.kunjunganChange}
                       name='tanggal_lahir'
                       placeholder='Tanggal Lahir'
@@ -191,7 +193,7 @@ export class AddModalKunjungan extends React.Component {
                       required
                       autoComplete='off'
                       type='number'
-                      value={tinggi_badan}
+                      value={this.state.tinggi_badan}
                       onChange={this.kunjunganChange}
                       name='tinggi_badan'
                       placeholder='Tinggi Badan'
@@ -203,7 +205,7 @@ export class AddModalKunjungan extends React.Component {
                       required
                       autoComplete='off'
                       type='number'
-                      value={berat_badan}
+                      value={this.state.berat_badan}
                       onChange={this.kunjunganChange}
                       name='berat_badan'
                       placeholder='Berat Badan'
@@ -215,7 +217,7 @@ export class AddModalKunjungan extends React.Component {
                       required
                       autoComplete='off'
                       type='text'
-                      value={username}
+                      value={this.state.username}
                       onChange={this.kunjunganChange}
                       name='username'
                       placeholder='User Name'
@@ -227,7 +229,7 @@ export class AddModalKunjungan extends React.Component {
                       required
                       autoComplete='off'
                       type='number'
-                      value={usia}
+                      value={this.state.usia}
                       onChange={this.kunjunganChange}
                       name='usia'
                       placeholder='Usia'
@@ -239,7 +241,7 @@ export class AddModalKunjungan extends React.Component {
                       required
                       autoComplete='off'
                       type='text'
-                      value={alamat}
+                      value={this.state.alamat}
                       onChange={this.kunjunganChange}
                       name='alamat'
                       placeholder='Alamat'
