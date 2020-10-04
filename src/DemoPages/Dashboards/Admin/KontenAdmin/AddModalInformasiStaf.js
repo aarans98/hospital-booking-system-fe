@@ -8,10 +8,11 @@ export class AddModalInformasiStaf extends React.Component {
     constructor(props) {
         super(props);
         this.state = this.initialState;
-        this.state.show = false;
+        this.state.show = true;
         this.state.shaw = false;
         this.informasiStafChange = this.informasiStafChange.bind(this);
         this.submitInformasiStaf = this.submitInformasiStaf.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
     }
 
     initialState = {
@@ -53,20 +54,24 @@ export class AddModalInformasiStaf extends React.Component {
             gaji: this.state.gaji
     };
 
-    axios.post("http://localhost:1212/v1/app/informasiStaf", informasiStaf)
+        axios.post("http://localhost:1212/v1/app/informasiStaf", informasiStaf)
         .then(response => {
             this.props.refreshList();
             this.props.refreshListStaf();
             this.props.refreshListDokter();
             if(response.data.data != null) {
-                this.setState({"show":true});
+                this.handleCloseModal();
                 this.handleClick();
             } else {
                 this.setState({"show":false});
             }
         });
-    
+        this.handleCloseModal();
     };
+
+    handleCloseModal () {
+    	this.setState({ show: false });
+  	}
 
     informasiStafChange(event) {
         this.setState({
@@ -92,9 +97,6 @@ export class AddModalInformasiStaf extends React.Component {
                             <Card.Header> Informasi Staf </Card.Header>
                             <Form 
                             onSubmit={this.submitInformasiStaf} 
-                            initialValues={{ idStaf, namaLengkap, userName,
-                                             tanggalLahir, posisi, mulaiBekerja, gaji}}
-                            enableReinitialize={true}
                             id="informasiStaf">
                             <Card.Body>
                                     <Form.Group as={Col} controlId="idStaf">
@@ -127,10 +129,22 @@ export class AddModalInformasiStaf extends React.Component {
                                     <Form.Group as={Col} controlId="posisi">
                                         <Form.Label>Posisi</Form.Label>
                                         <Form.Control required autoComplete="off"
+                                        as='select'
                                         value={this.props.namaLengkap}
                                         onChange={this.informasiStafChange} 
                                         name="posisi"
-                                        placeholder="Posisi" />
+                                        placeholder="Posisi" >
+                                            <option>Posisi</option>
+                                                <option value="Dokter">Dokter</option>
+                                                <option value="Perawat">Perawat</option>
+                                                <option value="Apoteker">Apoteker</option>
+                                                <option value="Admin">Admin</option>
+                                                <option value="Office Boy">Office Boy</option>
+                                                <option value="Bidan">Bidan</option>
+                                                <option value="Programmer">Programmer</option>
+                                                <option value="Laboran">Laboran</option>
+                                                <option value="Satpam">Satpam</option>
+                                        </Form.Control>
                                     </Form.Group>
                                     <Form.Group as={Col} controlId="mulaiBekerja">
                                         <Form.Label>Mulai Bekerja</Form.Label>
@@ -153,7 +167,7 @@ export class AddModalInformasiStaf extends React.Component {
                             </Card.Body>
                             <Card.Footer style={{"textAlign":"right"}} >
                                     <Button class="btn btn-primary" type="submit"
-                                        onClick={() => this.setState({show: true})}>
+                                        onClick={this.props.onHide}>
                                         Simpan
                                     </Button>{' '}
                             </Card.Footer>

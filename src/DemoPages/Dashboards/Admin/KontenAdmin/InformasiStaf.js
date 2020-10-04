@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-import {Row, Col} from 'reactstrap';
+import {Modal, ModalHeader, ModalBody, ModalFooter, Row, Col} from 'reactstrap';
 import {Card, Button, ButtonToolbar} from 'react-bootstrap';
 import {AddModalInformasiStaf} from './AddModalInformasiStaf';
 import {EditModalInformasiStaf} from './EditModalInformasiStaf';
@@ -10,6 +10,7 @@ import PageTitle from '../../../../Layout/AppMain/PageTitle';
 import CountUp from 'react-countup';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import './style.css';
 
 export default class InformasiStaf extends React.Component {
 
@@ -17,10 +18,12 @@ export default class InformasiStaf extends React.Component {
         super(props);
         this.state = {
             informasiStaf:[],
+            id:[],
             jumlah:0,
             jumlahDokter:0,
             addModalShow : false,
             editModalShow :  false,
+            deleteModalShow : false,
             modal: false,
             initialState : {
                 idStaf:'', namaLengkap:'', userName:'', tanggalLahir:'', posisi:'',
@@ -89,15 +92,17 @@ export default class InformasiStaf extends React.Component {
                 return(
                 <Fragment>
                     <button size='sm' className="btn btn-warning"
-                    onClick={() => this.deleteInformasiStaf(informasiStaf.idStaf)}>Hapus</button>
+                    onClick={() => {this.toggle(); this.setState({
+                    id: informasiStaf.idStaf})}}>Hapus</button>
                 </Fragment>
                 );
                 }
             }
         ];
         this.componentDidMount = this.componentDidMount.bind(this);
+        this.toggle = this.toggle.bind(this);
     }
-
+    // this.deleteInformasiStaf(informasiStaf.idStaf); 
     componentDidMount() {
         axios.get("http://localhost:1212/v1/app/informasiStaf")
         .then(
@@ -164,6 +169,12 @@ export default class InformasiStaf extends React.Component {
                     informasiStaf: this.state.informasiStaf.filter(informasiStaf=> informasiStaf.idStaf !== idStaf)
                 })
             }
+        });
+    }
+
+    toggle() {
+        this.setState({
+            modal: !this.state.modal
         });
     }
 
@@ -273,8 +284,20 @@ export default class InformasiStaf extends React.Component {
                                             tanggalLahir={this.state.sendTanggalLahir}
                                             posisi={this.state.sendPosisi}
                                             mulaiBekerja={this.state.sendMulaiBekerja}
-                                            gaji={this.state.sendGaji}
-                                            />
+                                            gaji={this.state.sendGaji}/>
+                                            {/* style={{maxWidth: '700px', width: '100%'}} */}
+                                            <Modal isOpen={this.state.modal} toggle={this.toggle} 
+                                                  draggable={false}
+                                                  style={{maxWidth: '300px', width: '100%', maxHeight: '100px', height: '100%'}}>
+                                                <ModalHeader size='sm' toggle={this.toggle} className='modal-header-style'></ModalHeader>
+                                                <ModalBody>
+                                                    <div style={{ fontSize: 17 }} align='center'>Apakah anda yakin ingin menghapus data ?</div>
+                                                </ModalBody>
+                                                <ModalFooter size='sm' className='modal-footer-style'>
+                                                    <Button size ='sm' style={{ fontSize: 13 }} className="btn btn-secondary" onClick={this.toggle}>Tidak</Button>
+                                                    <Button size ='sm' style={{ fontSize: 13 }} className="btn btn-primary" onClick={() => {this.toggle(); this.deleteInformasiStaf(this.state.id)}}>Ya</Button>{' '}
+                                                </ModalFooter>
+                                            </Modal>
                                     </ButtonToolbar>
                                 </Card.Footer>
                             </Card>

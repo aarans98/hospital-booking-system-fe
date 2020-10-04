@@ -70,65 +70,30 @@ export class Praktek extends React.Component {
                 }  
             }
         ];
-        // this.componentDidMount = this.componentDidMount.bind(this);
-        // this.componentDidUpdate = this.componentDidUpdate.bind(this);
         this.kunjunganChange = this.kunjunganChange.bind(this);
-        // this.submitKunjungan =  this.submitKunjungan.bind(this);
-        // console.log(this.props.sendIdDokter);
     }
 
-
-//   componentDidMount() {
-//     this.refreshList();
-//   }
-
-//   componentDidUpdate() {
-//     this.refreshList();
-//   }
-
-//   refreshList() {
-//     axios
-//       .get("http://localhost:1212/v1/app/praktek/dokter/" + 2)
-//       .then((response) => {
-//         this.setState({ praktek: response.data.data });
-//       });
-//   }
-
-  editPraktek = (idPraktek) => {
-    axios
-      .get("http://localhost:1212/v1/app/praktek/" + idPraktek)
-      .then((response) => response.data.data)
-      .then((data) => {
-        this.setState({
-          idPraktek: data.data.idPraktek,
-          idDokter: data.data.idDokter,
-        });
-      });
-  };
-
-  kunjunganChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  }
-
-
     editPraktek = (idPraktek) => {
-        axios.get("http://localhost:1212/v1/app/praktek/" + idPraktek)
-        .then((response)  => response.data.data)
-        .then((data) =>  {
+        axios
+        .get("http://localhost:1212/v1/app/praktek/" + idPraktek)
+        .then((response) => response.data.data)
+        .then((data) => {
             this.setState({
-                idPraktek: data.data.idPraktek,
-                idDokter: data.data.idDokter
+            idPraktek: data.data.idPraktek,
+            idDokter: data.data.idDokter,
+            });
+        });
+    };
 
-            })
+    kunjunganChange(event) {
+        this.setState({
+        [event.target.name]: event.target.value,
         });
     }
 
     render() {
         console.log(this.props.jadwal);
         let editModalClose = () => this.setState({editModalShow:false});
-        console.log(this.props.id)
         return (
             <Modal {...this.props} size="lg" backdrop="static" className="Mymodal" id="modal_form" animation={true}>
             <Modal.Header closeButton>
@@ -162,7 +127,6 @@ export class Praktek extends React.Component {
                                         this.props.jadwal.length === 0 ?
                                         <div></div> :
                                         <DataTable
-                                        // title="List Praktek"
                                         columns={this.columns} 
                                         pagination={true}
                                         defaultSortField="jadwal"

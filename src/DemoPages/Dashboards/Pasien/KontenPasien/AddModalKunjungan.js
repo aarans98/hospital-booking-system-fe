@@ -39,7 +39,7 @@ export class AddModalKunjungan extends React.Component {
       tanggal_lahir: this.state.tanggal_lahir,
       tinggi_badan: this.state.tinggi_badan,
       username: this.state.username,
-      usia: this.state.usia,
+      usia: this.state.usia
     };
 
     console.log(pasien);
@@ -125,7 +125,7 @@ export class AddModalKunjungan extends React.Component {
                       placeholder="Id Dokter"
                     />
                   </Form.Group>
-                  {/* <Form.Group as={Col} controlId="idPasien">
+                  <Form.Group as={Col} controlId="idPasien">
                                         <Form.Label>Id</Form.Label>
                                         <Form.Control required autoComplete="off"
                                         type="number"
@@ -133,7 +133,7 @@ export class AddModalKunjungan extends React.Component {
                                         onChange={this.praktekChange} 
                                         name="idPasien"
                                         placeholder="Id Pasien" />
-                                    </Form.Group> */}
+                                    </Form.Group>
                   <Form.Group as={Col} controlId="nama_lengkap">
                     <Form.Label>Nama Lengkap</Form.Label>
                     <Form.Control

@@ -90,9 +90,6 @@ export class EditModalInformasiStaf extends Component {
                             <Card.Header> Informasi Staf </Card.Header>
                             <Form 
                             onSubmit={this.updateInformasiStaf} 
-                            initialValues={{ idStaf, namaLengkap,
-                                             tanggalLahir, posisi, mulaiBekerja, gaji}}
-                            enableReinitialize={true}
                             id="informasiStaf">
                             <Card.Body>
                                     <Form.Group as={Col} controlId="idStaf">
@@ -126,11 +123,22 @@ export class EditModalInformasiStaf extends Component {
                                     <Form.Group as={Col} controlId="posisi">
                                         <Form.Label>Posisi</Form.Label>
                                         <Form.Control required autoComplete="off"
-                                        type="text" 
+                                        as="select"
                                         defaultValue={this.props.posisi}
                                         onChange={this.informasiStafChange} 
                                         name="posisi"
-                                        placeholder="Posisi" />
+                                        placeholder="Posisi">
+                                            <option>Posisi</option>
+                                                <option value="Dokter">Dokter</option>
+                                                <option value="Perawat">Perawat</option>
+                                                <option value="Apoteker">Apoteker</option>
+                                                <option value="Admin">Admin</option>
+                                                <option value="Office Boy">Office Boy</option>
+                                                <option value="Bidan">Bidan</option>
+                                                <option value="Programmer">Programmer</option>
+                                                <option value="Laboran">Laboran</option>
+                                                <option value="Satpam">Satpam</option>
+                                        </Form.Control>
                                     </Form.Group>
                                     <Form.Group as={Col} controlId="mulaiBekerja">
                                         <Form.Label>Mulai Bekerja</Form.Label>
@@ -152,7 +160,8 @@ export class EditModalInformasiStaf extends Component {
                                     </Form.Group>
                             </Card.Body>
                             <Card.Footer style={{"textAlign":"right"}} >
-                                    <Button class="btn btn-primary" type="submit">
+                                    <Button class="btn btn-primary" type="submit"
+                                    onClick={this.props.onHide} >
                                         Save
                                     </Button>{' '}
                             </Card.Footer>
