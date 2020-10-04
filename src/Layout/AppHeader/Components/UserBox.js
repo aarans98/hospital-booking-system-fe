@@ -63,8 +63,8 @@ class UserBox extends React.Component {
     ));
 
   render() {
-    const username = localStorage.getItem("username");
-    const role = localStorage.getItem("role");
+    const username = localStorage.getItem("username").slice(1, -1);
+    const role = localStorage.getItem("role").slice(1, -1);
     return (
       <Fragment>
         <div className="header-btn-lg pr-0">
