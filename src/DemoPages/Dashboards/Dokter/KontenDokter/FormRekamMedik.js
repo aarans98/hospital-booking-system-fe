@@ -28,15 +28,24 @@ class FormRekamMedik extends React.Component {
     submittedData: [],
   }
 
-  toggle() {
+  toggle = () => {
     this.setState({
       modal: !this.state.modal
     });
   }
 
   componentDidMount() {
+    // this.findAllIdRm();
     this.findAllIdObat();
     this.findAllIdJadwal();
+  }
+
+  findAllIdRm = () => {
+    axios.get("http://localhost:1212/v1/app/rekam-medik/jumlah")
+      .then(response => {
+        console.log(response.data);
+        this.setState({ idRekamMedik: response.data + 1});
+      })
   }
 
   findAllIdObat = () => {
@@ -81,7 +90,7 @@ class FormRekamMedik extends React.Component {
   submitRekamMedik = (event) => {
     event.preventDefault();
 
-    let { valueObat, valuePasien, valueJadwal, idRekamMedik, tinggiBadan, beratBadan, gejala, diagnosa, dosis } = this.state;
+    let { valueObat, idRekamMedik, tinggiBadan, beratBadan, gejala, diagnosa, dosis } = this.state;
 
     const rekam_medik = {
       id: idRekamMedik,
@@ -111,7 +120,7 @@ class FormRekamMedik extends React.Component {
     let { valueObat, obat, idRekamMedik, tinggiBadan, beratBadan, gejala, diagnosa, dosis, submittedData } = this.state;
     return (
       <span>
-        <Button size='sm' className='btn-icon mr-2' color='warning' disabled={submittedData.includes(this.props.id) ? true : this.state.disable} onClick={this.toggle}>
+        <Button size='sm' className='btn-icon mr-2' color='warning' disabled={submittedData.includes(this.props.id) ? true : this.state.disable} onClick={() => {this.findAllIdRm(); this.toggle();}}>
           <i className='lnr-file-add btn-icon-wrapper'> </i>
           Rekam Medik
         </Button>
@@ -123,7 +132,7 @@ class FormRekamMedik extends React.Component {
                 <Label for="idRekamMedik" sm={2}>ID Rekam Medik</Label>
                 <Col sm={10}>
                   <Input required type="number" name="idRekamMedik" id="idRekamMedik"
-                    min="1" value={idRekamMedik} onChange={this.formChange} placeholder="ID Rekam Medik" />
+                    min="1" defaultValue={idRekamMedik} onChange={this.formChange} placeholder="ID Rekam Medik" />
                 </Col>
               </FormGroup>
               <FormGroup row>
