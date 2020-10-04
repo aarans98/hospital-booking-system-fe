@@ -24,6 +24,7 @@ export default class DaftarObat extends React.Component {
             initialState : {
                 idObat:'', namaObat:'', kategori:'', deskripsi:''
             },
+            availableIdObat: '',
         };
         this.columns = [
             {
@@ -81,6 +82,14 @@ export default class DaftarObat extends React.Component {
         this.refreshList();
         this.refreshListObat();
     }
+
+    findAvailableIdObat = () => {
+        axios.get("http://localhost:1212/v1/app/obat/jumlah")
+          .then(response => {
+            console.log(response.data);
+            this.setState({ availableIdObat: response.data + 1});
+          })
+      }
 
     refreshListObat = () => {
         axios
@@ -183,12 +192,14 @@ export default class DaftarObat extends React.Component {
                                 </Card.Body>
                                 <Card.Footer>
                                     <ButtonToolbar>
-                                      <Button color="btn btn-primary" onClick={() => this.setState({addModalShow: true})}>Tambah</Button>
+                                      <Button color="btn btn-primary" onClick={() => {this.findAvailableIdObat(); this.setState({addModalShow: true});}}>Tambah</Button>
                                             <AddModalObat
                                             show={this.state.addModalShow}
                                             onHide={addModalClose}
                                             refreshList={this.refreshList}
                                             refreshListObat={this.refreshListObat}
+                                            updateObat={this.findAvailableIdObat}
+                                            idObat={this.state.availableIdObat}
                                             />
                                             <EditModalObat
                                             show={this.state.editModalShow}
