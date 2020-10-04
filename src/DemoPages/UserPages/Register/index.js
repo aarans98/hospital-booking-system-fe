@@ -37,6 +37,16 @@ export default class Register extends Component {
     let passwordrep = this.state.passwordrep;
     let username = this.state.username;
 
+    if (
+      username.length <= 15 &&
+      password.length >= 6 &&
+      password.length < 13 &&
+      /^[a-z0-9._]{2,}$/i.test(username) &&
+      password === passwordrep
+    ) {
+      benar = true;
+    }
+
     if (username.length <= 15) {
       this.setState({ errUsername: "" });
     } else if (username.length > 15) {
@@ -57,21 +67,9 @@ export default class Register extends Component {
       this.setState({ erorr: "Password don't match" });
     }
 
-    if (
-      username.length <= 15 &&
-      password.length >= 6 &&
-      password.length < 13 &&
-      !/^[a-z0-9._]{2,}$/i.test(username) &&
-      password === passwordrep
-    ) {
-      benar = true;
-    }
-
     if (!/^[a-z0-9._]{2,}$/i.test(username)) {
       this.setState({ errUsername: "username is invalid" });
       benar = false;
-    } else {
-      benar = true;
     }
 
     return benar;
@@ -136,10 +134,10 @@ export default class Register extends Component {
         <div className='h-100'>
           <Row className='h-100 no-gutters'>
             <SweetAlert
-              title='Your Account Has Been Registered!'
+              title='Akun anda telah terdaftar'
               confirmButtonColor=''
               show={this.state.show}
-              text='Thank You'
+              text='Sukses'
               type='success'
               onConfirm={() => this.setState({ show: false })}
             />
@@ -151,11 +149,11 @@ export default class Register extends Component {
               <Col lg='9' md='10' sm='12' className='mx-auto app-login-box'>
                 <div className='app-logo' />
                 <h4>
-                  <div>Welcome,</div>
+                  <div>Selamat Datang,</div>
                   <span>
-                    It only takes a{" "}
-                    <span className='text-success'>few seconds</span> to create
-                    your account
+                    Hanya butuh{" "}
+                    <span className='text-success'>beberapa detik</span> untuk
+                    membuat akun anda
                   </span>
                 </h4>
                 <div>
@@ -172,7 +170,7 @@ export default class Register extends Component {
                             type='text'
                             name='fullname'
                             id='exampleName'
-                            placeholder='Nama Lengkap here...'
+                            placeholder='Nama Lengkap ...'
                             required
                           />
                         </FormGroup>
@@ -196,7 +194,7 @@ export default class Register extends Component {
                             type='email'
                             name='email'
                             id='exampleEmail'
-                            placeholder='Email here...'
+                            placeholder='Email ...'
                             required
                           />
                         </FormGroup>
@@ -205,7 +203,7 @@ export default class Register extends Component {
                       <Col md={6}>
                         <FormGroup>
                           <Label for='exampleName'>
-                            <span className='text-danger'>*</span> Username
+                            <span className='text-danger'>*</span> Nama Pengguna
                           </Label>
                           <Input
                             onChange={this.formChange}
@@ -213,7 +211,7 @@ export default class Register extends Component {
                             type='text'
                             name='username'
                             id='exampleName'
-                            placeholder='Username here...'
+                            placeholder='Nama Pengguna...'
                             required
                           />
                           <span className='text-danger'>
@@ -224,7 +222,7 @@ export default class Register extends Component {
                       <Col md={6}>
                         <FormGroup>
                           <Label for='examplePassword'>
-                            <span className='text-danger'>*</span> Password
+                            <span className='text-danger'>*</span> Kata Sandi
                           </Label>
                           <Input
                             onChange={this.formChange}
@@ -232,7 +230,7 @@ export default class Register extends Component {
                             type='password'
                             name='password'
                             id='examplePassword'
-                            placeholder='Password here...'
+                            placeholder='Kata Sandi...'
                             required
                           />
                           <span className='text-danger'>
@@ -243,8 +241,8 @@ export default class Register extends Component {
                       <Col md={6}>
                         <FormGroup>
                           <Label for='examplePasswordRep'>
-                            <span className='text-danger'>*</span> Repeat
-                            Password
+                            <span className='text-danger'>*</span> Konfirmasi
+                            Kata Sandi
                           </Label>
                           <Input
                             onChange={this.formChange}
@@ -252,7 +250,7 @@ export default class Register extends Component {
                             type='password'
                             name='passwordrep'
                             id='examplePasswordRep'
-                            placeholder='Repeat Password here...'
+                            placeholder='Ulangi Kata Sandi...'
                             required
                           />
                           <span className='text-danger'>
@@ -264,11 +262,11 @@ export default class Register extends Component {
 
                     <div className='mt-4 d-flex align-items-center'>
                       <h5 className='mb-0'>
-                        Already have an account?{" "}
+                        Sudah Punya Akun?{" "}
                         <a
                           href='http://localhost:3000/#/pages/login'
                           className='text-primary'>
-                          Sign in
+                          Masuk
                         </a>
                       </h5>
                       <div className='ml-auto'>
@@ -277,7 +275,7 @@ export default class Register extends Component {
                           color='primary'
                           className='btn-wide btn-pill btn-shadow btn-hover-shine'
                           size='lg'>
-                          Create Account
+                          Buat Akun
                         </Button>
                       </div>
                     </div>
@@ -296,12 +294,9 @@ export default class Register extends Component {
                       }}
                     />
                     <div className='slider-content'>
-                      <h3>Scalable, Modular, Consistent</h3>
-                      <p>
-                        Easily exclude the components you don't require.
-                        Lightweight, consistent Bootstrap based styles across
-                        all elements and components
-                      </p>
+                      <h3>Profesional, Integritas, Kompeten</h3>
+                      <p>SELAMAT DATANG DI HALAMAN PENDAFTARAN</p>
+                      <p>SILAKAN MEMBUAT AKUN UNTUK BERKUNJUNG</p>
                     </div>
                   </div>
                 </Slider>

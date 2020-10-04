@@ -14,36 +14,61 @@ export default class ForgotPassword extends Component {
     super(props);
     this.state = this.initialState;
     this.state = { newpassword: [] };
+    this.state = { mails: [] };
     this.updateLogin = this.updateLogin.bind(this);
     this.forgotChange = this.forgotChange.bind(this);
-    console.log(this.props.location.forgot);
   }
+
   initialState = {
     username: "",
     password: "",
+    passwordrep: "",
+    emailauth: "",
   };
+
+  componentDidMount() {
+    axios
+      .get(
+        "http://localhost:1212/v1/app/register/authmail?username=" +
+          this.props.location.forgot
+      )
+      .then((response) => response.data)
+      .then((data) => {
+        this.setState({ mails: data });
+        console.log(this.state.mails.mail);
+      });
+  }
+
   updateLogin = (event) => {
     event.preventDefault();
     const newpassword = {
       password: this.state.password,
+      passwordrep: this.state.passwordrep,
       username: this.props.location.forgot,
     };
-    axios
-      .post(
-        "http://localhost:1212/v1/app/register/forgot?password=" +
-          this.state.password +
-          "&username=" +
-          this.props.location.forgot,
-        newpassword
-      )
-      .then((response) => response.data)
-      .then((data) => {
-        {
-          this.props.history.push({
-            pathname: "/pages/login",
-          });
-        }
-      });
+    if (this.state.emailauth === this.state.mails.mail) {
+      axios
+        .post(
+          "http://localhost:1212/v1/app/register/forgot?password=" +
+            this.state.password +
+            "&username=" +
+            this.props.location.forgot,
+          newpassword
+        )
+        .then((response) => response.data)
+        .then((data) => {
+          {
+            this.props.history.push({
+              pathname: "/pages/login",
+            });
+          }
+        });
+    } else {
+      alert(
+        "Email anda bukan email yang didaftarkan untuk username " +
+          this.props.location.forgot
+      );
+    }
     this.setState(this.initialState);
   };
 
@@ -53,7 +78,7 @@ export default class ForgotPassword extends Component {
     });
   }
   render() {
-    const { password } = this.state;
+    const { password, passwordrep, emailauth } = this.state;
     let settings = {
       dots: true,
       infinite: true,
@@ -66,6 +91,7 @@ export default class ForgotPassword extends Component {
       autoplay: true,
       adaptiveHeight: true,
     };
+
     return (
       <Fragment>
         <div className="h-100">
@@ -152,6 +178,18 @@ export default class ForgotPassword extends Component {
                       </Col>
                       <Col md={6}>
                         <FormGroup>
+                          <Label for="email">Masukkan email: </Label>
+                          <Input
+                            type="text"
+                            name="email"
+                            id="email"
+                            placeholder="Masukkan email..."
+                            value={emailauth}
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col md={6}>
+                        <FormGroup>
                           <Label for="password">Password</Label>
                           <Input
                             type="password"
@@ -159,7 +197,20 @@ export default class ForgotPassword extends Component {
                             id="password"
                             value={password}
                             onChange={this.forgotChange}
-                            placeholder="Password here..."
+                            placeholder="Masukkan password baru..."
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col md={6}>
+                        <FormGroup>
+                          <Label for="password">Ulangi password</Label>
+                          <Input
+                            type="passwordrep"
+                            name="passwordrep"
+                            id="passwordrep"
+                            value={passwordrep}
+                            onChange={this.forgotChange}
+                            placeholder="Ketik ulang password baru..."
                           />
                         </FormGroup>
                       </Col>

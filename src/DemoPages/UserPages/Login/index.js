@@ -15,6 +15,7 @@ export default class Login extends Component {
     super(props);
     this.state = this.initialState;
     this.state = { logins: [] };
+    this.state = { count: 0 };
     this.submitLogin = this.submitLogin.bind(this);
     this.loginChange = this.loginChange.bind(this);
     this.saveLocal = this.saveLocal.bind(this);
@@ -26,6 +27,7 @@ export default class Login extends Component {
 
   submitLogin = (event) => {
     event.preventDefault();
+    this.setState((prev) => ({ count: prev.count + 1 }));
     axios
       .get(
         "http://localhost:1212/v1/app/register/login?password=" +
@@ -36,25 +38,48 @@ export default class Login extends Component {
       .then((response) => response.data)
       .then((data) => {
         this.setState({ logins: data });
-        if (this.state.logins.status === true) {
-          if (this.state.logins.user_role === null) {
-            alert("Password anda salah!");
-            this.props.history.push({
-              pathname: "/pages/forgot-password",
-              forgot: this.state.logins.username,
-            });
+        if (this.state.count < 3) {
+          if (this.state.logins.status === true) {
+            if (this.state.logins.user_role === null) {
+              alert("Password anda salah!");
+              // this.props.history.push({
+              //   pathname: "/pages/forgot-password",
+              //   forgot: this.state.logins.username,
+              // });
+            } else {
+              this.saveLocal();
+              this.props.history.push({
+                pathname: "/dashboards/" + data.user_role,
+                // customName: this.state.logins,
+              });
+            }
           } else {
+            alert("Username anda belum terdaftar");
             this.props.history.push({
-              pathname: "/dashboards/" + data.user_role,
-              // customName: this.state.logins,
+              pathname: "/pages/register/",
             });
-            this.saveLocal();
           }
         } else {
-          alert("Username anda belum terdaftar");
-          this.props.history.push({
-            pathname: "/pages/register/",
-          });
+          if (this.state.logins.status === true) {
+            if (this.state.logins.user_role === null) {
+              alert("Password anda salah!");
+              this.props.history.push({
+                pathname: "/pages/forgot-password",
+                forgot: this.state.logins.username,
+              });
+            } else {
+              this.saveLocal();
+              this.props.history.push({
+                pathname: "/dashboards/" + data.user_role,
+                // customName: this.state.logins,
+              });
+            }
+          } else {
+            alert("Username anda belum terdaftar");
+            this.props.history.push({
+              pathname: "/pages/register/",
+            });
+          }
         }
       });
     this.setState(this.initialState);

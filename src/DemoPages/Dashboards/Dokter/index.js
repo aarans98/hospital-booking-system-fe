@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
-import {Row,Col} from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import PageTitle from "../../../Layout/AppMain/PageTitle";
 
 import Tabs, { TabPane } from "rc-tabs";
