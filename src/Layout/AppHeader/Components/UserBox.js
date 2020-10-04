@@ -39,7 +39,16 @@ class UserBox extends React.Component {
     this.state = this.getdatacount;
     // this.state = { logins: [] };
     // console.log(this.props.location);
+    this.logout = this.logout.bind(this);
   }
+
+  logout = (event) => {
+    localStorage.removeItem("username");
+    localStorage.removeItem("role");
+    this.props.history.push({
+      pathname: "/pages/login",
+    });
+  };
 
   notify2 = () =>
     (this.toastId = toast(
@@ -105,6 +114,7 @@ class UserBox extends React.Component {
                                 <Button
                                   className="btn-pill btn-shadow btn-shine"
                                   color="focus"
+                                  onClick={this.logout.bind(this)}
                                 >
                                   Logout
                                 </Button>
