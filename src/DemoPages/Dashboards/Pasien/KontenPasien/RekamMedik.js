@@ -11,10 +11,12 @@ import {
   CardLink,
   CardHeader,
   CardFooter,
-  Container,
+  Container, InputGroup, InputGroupAddon, Input, Button, Label
 } from "reactstrap";
 import axios from "axios";
 import RmPagination from "./RmPagination";
+import { post } from "jquery";
+import { DropdownList } from "react-widgets";
 
 function RekamMedik() {
   //empty array in useState means the initial value of posts
@@ -24,6 +26,10 @@ function RekamMedik() {
     start: 0,
     end: showPerPage,
   });
+
+  const [search, setSearch] = useState("");
+
+  const [show] = useState([3, 6, 9]);
 
   const [username, setUsername] = useState(localStorage.getItem("username").slice(1, -1));
   const [userRole, setUserRole] = useState(localStorage.getItem("role").slice(1, -1));
@@ -47,6 +53,30 @@ function RekamMedik() {
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
   }, []);
 
+  const filteredData = posts.filter((post) => {
+    return (
+      post.namaPasien.toLowerCase().includes(search.toLowerCase()) ||
+      post.tanggalLahir.includes(search) ||
+      String(post.usia).includes(search) ||
+      post.namaDokter.toLowerCase().includes(search.toLowerCase()) ||
+      post.spesialisasi.toLowerCase().includes(search.toLowerCase()) ||
+      post.gejala.toLowerCase().includes(search.toLowerCase()) ||
+      post.poli.toLowerCase().includes(search.toLowerCase()) ||
+      post.jadwal.includes(search) ||
+      post.jam.includes(search) ||
+      String(post.tinggiBadan).includes(search) ||
+      String(post.beratBadan).includes(search) ||
+      post.diagnosa.toLowerCase().includes(search.toLowerCase()) ||
+      // post.namaObat.filter((obat) =>  {
+      //   return obat.toLowerCase().includes(search.toLowerCase())
+      // }) ||
+      // post.deskripsi.filter((obat) =>  {
+      //   return obat.toLowerCase().includes(search.toLowerCase())
+      // }) ||
+      post.dosis.toLowerCase().includes(search.toLowerCase())
+    )
+  })
+
   const margin = {
     marginTop: "5px",
     marginBottom: "5px",
@@ -56,11 +86,35 @@ function RekamMedik() {
   return (
     <div>
       <Container fluid>
-        <RmPagination
-          showPerPage={showPerPage}
-          onPaginationChange={onPaginationChange}
-          total={posts.length}
-        />
+        <Row>
+          <Col sm="4">
+            <Col sm="6">
+              <InputGroup>
+                <InputGroupAddon addonType="prepend"><Button disabled="true"><i className="pe-7s-search" /></Button></InputGroupAddon>
+                <Input name="search" style={{ size: "4" }} placeholder="Search here" onChange={e => setSearch(e.target.value)} />
+              </InputGroup>
+            </Col>
+          </Col>
+          <Col sm="4">
+            <InputGroup>
+              <Label sm="1" style={{ fontSize: "14px" }}>Show: </Label>
+              <Col sm="2">
+                <DropdownList
+                  data={show}
+                  value={showPerPage}
+                  onChange={value => { setShowPerPage(value); setPagination({end: value}) }}
+                />
+              </Col>
+            </InputGroup>
+          </Col>
+          <Col sm="4">
+            <RmPagination
+              showPerPage={showPerPage}
+              onPaginationChange={onPaginationChange}
+              total={filteredData.length}
+            />
+          </Col>
+        </Row>
         <Row>
           {posts.length === 0 ?
             <Col>
@@ -68,7 +122,7 @@ function RekamMedik() {
                 Data rekam medik tidak tersedia.
               </p>
             </Col> :
-            posts.slice(pagination.start, pagination.end).map((post) => (
+            filteredData.slice(pagination.start, pagination.end).map((post) => (
               <Col md="4" key={post.id}>
                 <Card className="main-card mb-5">
                   <CardBody style={{ fontSize: "14px" }}>
