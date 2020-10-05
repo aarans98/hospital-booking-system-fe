@@ -166,7 +166,7 @@ export class EditModalPraktek extends Component {
                                     </Form.Group>
                             </Card.Body>
                             <Card.Footer style={{"textAlign":"right"}} >
-                                    <Button class="btn btn-primary" type="submit">
+                                    <Button class="btn btn-primary" type="submit" onClick={this.props.onHide}>
                                         Simpan
                                     </Button>{' '}
                             </Card.Footer>

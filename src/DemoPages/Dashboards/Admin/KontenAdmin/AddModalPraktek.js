@@ -69,7 +69,6 @@ export class AddModalPraktek extends React.Component {
     };
 
     render() {
-        console.log(this.props.id)
         let {idPraktek, poli, jam,
             jadwal, idDokter} = this.state;
         return (
@@ -165,7 +164,7 @@ export class AddModalPraktek extends React.Component {
                                     </Form.Group>
                             </Card.Body>
                             <Card.Footer style={{"textAlign":"right"}} >
-                                    <Button class="btn btn-primary" type="submit">
+                                    <Button class="btn btn-primary" type="submit" onClick={this.props.onHide}>
                                         Save
                                     </Button>{' '}
                             </Card.Footer>
