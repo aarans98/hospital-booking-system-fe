@@ -93,10 +93,15 @@ export default class Register extends Component {
       axios
         .post("http://localhost:1212/v1/app/register", register)
         .then((response) => {
-          if (response.data != null) {
+          console.log(response.data);
+          if (response.data.data != null) {
             this.setState(this.initialState);
             this.setState({ show: true });
             //   alert(response.data.message);
+          } else {
+            console.log("failed");
+            alert("Data gagal dimasukkan");
+            this.setState({ show: false });
           }
         });
     }
@@ -132,29 +137,32 @@ export default class Register extends Component {
 
     return (
       <Fragment>
-        <div className='h-100'>
-          <Row className='h-100 no-gutters'>
+        <div className="h-100">
+          <Row className="h-100 no-gutters">
             <SweetAlert
-              title='Akun anda telah terdaftar'
-              confirmButtonColor=''
+              title="Akun anda telah terdaftar"
+              confirmButtonColor=""
               show={this.state.show}
-              text='Sukses'
-              type='success'
+              text="Sukses"
+              type="success"
               onConfirm={() => this.setState({ show: false })}
             />
 
             <Col
-              lg='7'
-              md='12'
-              className='h-100 d-md-flex d-sm-block bg-white justify-content-center align-items-center'>
-              <Col lg='9' md='10' sm='12' className='mx-auto app-login-box'>
+              lg="7"
+              md="12"
+              className="h-100 d-md-flex d-sm-block bg-white justify-content-center align-items-center"
+            >
+              <Col lg="9" md="10" sm="12" className="mx-auto app-login-box">
                 {/* <div className='app-logo' /> */}
-                <div><img src={Logo}/></div>
+                <div>
+                  <img src={Logo} />
+                </div>
                 <h4>
                   <div>Selamat Datang,</div>
                   <span>
                     Hanya butuh{" "}
-                    <span className='text-success'>beberapa detik</span> untuk
+                    <span className="text-success">beberapa detik</span> untuk
                     membuat akun anda
                   </span>
                 </h4>
@@ -163,16 +171,16 @@ export default class Register extends Component {
                     <Row form>
                       <Col md={6}>
                         <FormGroup>
-                          <Label for='exampleName'>
-                            <span className='text-danger'>*</span> Nama Lengkap
+                          <Label for="exampleName">
+                            <span className="text-danger">*</span> Nama Lengkap
                           </Label>
                           <Input
                             onChange={this.formChange}
                             value={fullname}
-                            type='text'
-                            name='fullname'
-                            id='exampleName'
-                            placeholder='Nama Lengkap ...'
+                            type="text"
+                            name="fullname"
+                            id="exampleName"
+                            placeholder="Nama Lengkap ..."
                             required
                           />
                         </FormGroup>
@@ -180,23 +188,23 @@ export default class Register extends Component {
                       <Col md={6}>
                         <Input
                           value={user_role}
-                          type='text'
-                          name='user_role'
-                          id='text'
+                          type="text"
+                          name="user_role"
+                          id="text"
                           hidden
                         />
 
                         <FormGroup>
-                          <Label for='exampleEmail'>
-                            <span className='text-danger'>*</span> Email
+                          <Label for="exampleEmail">
+                            <span className="text-danger">*</span> Email
                           </Label>
                           <Input
                             onChange={this.formChange}
                             value={email}
-                            type='email'
-                            name='email'
-                            id='exampleEmail'
-                            placeholder='Email ...'
+                            type="email"
+                            name="email"
+                            id="exampleEmail"
+                            placeholder="Email ..."
                             required
                           />
                         </FormGroup>
@@ -204,79 +212,81 @@ export default class Register extends Component {
 
                       <Col md={6}>
                         <FormGroup>
-                          <Label for='exampleName'>
-                            <span className='text-danger'>*</span> Nama Pengguna
+                          <Label for="exampleName">
+                            <span className="text-danger">*</span> Nama Pengguna
                           </Label>
                           <Input
                             onChange={this.formChange}
                             value={username}
-                            type='text'
-                            name='username'
-                            id='exampleName'
-                            placeholder='Nama Pengguna...'
+                            type="text"
+                            name="username"
+                            id="exampleName"
+                            placeholder="Nama Pengguna..."
                             required
                           />
-                          <span className='text-danger'>
+                          <span className="text-danger">
                             {this.state.errUsername}
                           </span>
                         </FormGroup>
                       </Col>
                       <Col md={6}>
                         <FormGroup>
-                          <Label for='examplePassword'>
-                            <span className='text-danger'>*</span> Kata Sandi
+                          <Label for="examplePassword">
+                            <span className="text-danger">*</span> Kata Sandi
                           </Label>
                           <Input
                             onChange={this.formChange}
                             value={password}
-                            type='password'
-                            name='password'
-                            id='examplePassword'
-                            placeholder='Kata Sandi...'
+                            type="password"
+                            name="password"
+                            id="examplePassword"
+                            placeholder="Kata Sandi..."
                             required
                           />
-                          <span className='text-danger'>
+                          <span className="text-danger">
                             {this.state.erorr2}
                           </span>
                         </FormGroup>
                       </Col>
                       <Col md={6}>
                         <FormGroup>
-                          <Label for='examplePasswordRep'>
-                            <span className='text-danger'>*</span> Konfirmasi
+                          <Label for="examplePasswordRep">
+                            <span className="text-danger">*</span> Konfirmasi
                             Kata Sandi
                           </Label>
                           <Input
                             onChange={this.formChange}
                             value={passwordrep}
-                            type='password'
-                            name='passwordrep'
-                            id='examplePasswordRep'
-                            placeholder='Ulangi Kata Sandi...'
+                            type="password"
+                            name="passwordrep"
+                            id="examplePasswordRep"
+                            placeholder="Ulangi Kata Sandi..."
                             required
                           />
-                          <span className='text-danger'>
+                          <span className="text-danger">
                             {this.state.erorr}
                           </span>
                         </FormGroup>
                       </Col>
                     </Row>
 
-                    <div className='mt-4 d-flex align-items-center'>
-                      <h5 className='mb-0'>
+                    <div className="mt-4 d-flex align-items-center">
+                      <h5 className="mb-0">
                         Sudah Punya Akun?{" "}
                         <a
-                          href='http://localhost:3000/#/pages/login'
-                          className='text-primary'>
+                          href="http://localhost:3000/#/pages/login"
+                          className="text-primary"
+                        >
                           Masuk
                         </a>
                       </h5>
-                      <div className='ml-auto'>
+                      <div className="ml-auto">
                         <Button
-                          type='submit'
-                          color='primary'
-                          className='btn-wide btn-pill btn-shadow btn-hover-shine'
-                          size='lg'>
+                          type="submit"
+                          color="primary"
+                          className="btn-wide btn-pill btn-shadow btn-hover-shine"
+                          size="lg"
+                        >
                           Buat Akun
                         </Button>
                       </div>
@@ -285,17 +295,17 @@ export default class Register extends Component {
                 </div>
               </Col>
             </Col>
-            <Col lg='5' className='d-lg-flex d-xs-none'>
-              <div className='slider-light'>
+            <Col lg="5" className="d-lg-flex d-xs-none">
+              <div className="slider-light">
                 <Slider {...settings}>
-                  <div className='h-100 d-flex justify-content-center align-items-center bg-premium-dark'>
+                  <div className="h-100 d-flex justify-content-center align-items-center bg-premium-dark">
                     <div
-                      className='slide-img-bg'
+                      className="slide-img-bg"
                       style={{
                         backgroundImage: "url(" + bg3 + ")",
                       }}
                     />
-                    <div className='slider-content'>
+                    <div className="slider-content">
                       <h3>Profesional, Integritas, Kompeten</h3>
                       <p>SELAMAT DATANG DI HALAMAN PENDAFTARAN</p>
                       <p>SILAKAN MEMBUAT AKUN UNTUK BERKUNJUNG</p>

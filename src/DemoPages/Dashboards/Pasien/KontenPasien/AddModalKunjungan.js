@@ -21,7 +21,7 @@ export class AddModalKunjungan extends React.Component {
     nama_lengkap: "",
     tanggal_lahir: "",
     tinggi_badan: "",
-    username: "",
+    username: localStorage.getItem("username").slice(1, -1),
     jenis_kelamin: "",
     usia: "",
   };
@@ -39,7 +39,7 @@ export class AddModalKunjungan extends React.Component {
       tanggal_lahir: this.state.tanggal_lahir,
       tinggi_badan: this.state.tinggi_badan,
       username: this.state.username,
-      usia: this.state.usia
+      usia: this.state.usia,
     };
 
     console.log(pasien);
@@ -64,18 +64,7 @@ export class AddModalKunjungan extends React.Component {
   }
 
   render() {
-    // const {
-    //   alamat,
-    //   berat_badan,
-    //   idDokter,
-    //   idPraktek,
-    //   jenis_kelamin,
-    //   nama_lengkap,
-    //   tanggal_lahir,
-    //   tinggi_badan,
-    //   username,
-    //   usia,
-    // } = this.state;
+    // username = localStorage.getItem("username").slice(1, -1);
     return (
       <Modal
         {...this.props}
@@ -123,6 +112,18 @@ export class AddModalKunjungan extends React.Component {
                       onChange={this.kunjunganChange}
                       name="idDokter"
                       placeholder="Id Dokter"
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col} controlId="user_name">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control
+                      disabled
+                      autoComplete="off"
+                      type="text"
+                      value={this.state.username}
+                      onChange={this.kunjunganChange}
+                      name="username"
+                      placeholder="Username"
                     />
                   </Form.Group>
                   <Form.Group as={Col} controlId="nama_lengkap">
@@ -192,18 +193,6 @@ export class AddModalKunjungan extends React.Component {
                       onChange={this.kunjunganChange}
                       name="berat_badan"
                       placeholder="Berat Badan"
-                    />
-                  </Form.Group>
-                  <Form.Group as={Col} controlId="user_name">
-                    <Form.Label>User Name</Form.Label>
-                    <Form.Control
-                      required
-                      autoComplete="off"
-                      type="text"
-                      value={this.state.username}
-                      onChange={this.kunjunganChange}
-                      name="username"
-                      placeholder="User Name"
                     />
                   </Form.Group>
                   <Form.Group as={Col} controlId="usia">
