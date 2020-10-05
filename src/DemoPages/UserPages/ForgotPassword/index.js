@@ -113,7 +113,7 @@ export default class ForgotPassword extends Component {
                       }}
                     />
                     <div className="slider-content">
-                      <p>
+                      {/* <p>
                         Seorang mukmin yang kuat lebih baik dan lebih disukai
                         Allah daripada yang lemah, dan keduanya baik. Teruslah
                         mengejar apa yang menguntungkan bagi kamu, cari bantuan
@@ -123,7 +123,7 @@ export default class ForgotPassword extends Component {
                         memiliki tekad dan melakukan apa yang Dia kehendaki,'
                         kalimat 'jika' membuka pintu untuk setan
                       </p>
-                      <p>-HR Al-Bukhari-</p>
+                      <p>-HR Al-Bukhari-</p> */}
                     </div>
                   </div>
                   <div className="h-100 d-flex justify-content-center align-items-center bg-premium-dark">
@@ -134,12 +134,12 @@ export default class ForgotPassword extends Component {
                       }}
                     />
                     <div className="slider-content">
-                      <h3>Scalable, Modular, Consistent</h3>
+                      {/* <h3>Scalable, Modular, Consistent</h3>
                       <p>
                         Easily exclude the components you don't require.
                         Lightweight, consistent Bootstrap based styles across
                         all elements and components
-                      </p>
+                      </p> */}
                     </div>
                   </div>
                   <div className="h-100 d-flex justify-content-center align-items-center bg-sunny-morning">
@@ -150,11 +150,11 @@ export default class ForgotPassword extends Component {
                       }}
                     />
                     <div className="slider-content">
-                      <h3>Complex, but lightweight</h3>
+                      {/* <h3>Complex, but lightweight</h3>
                       <p>
                         We've included a lot of components that cover almost all
                         use cases for any type of application.
-                      </p>
+                      </p> */}
                     </div>
                   </div>
                 </Slider>

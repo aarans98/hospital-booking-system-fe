@@ -26,7 +26,7 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import city3 from "../../../assets/utils/images/dropdown-header/city3.jpg";
-import avatar1 from "../../../assets/utils/images/avatars/1.jpg";
+import avatar1 from "../../../img/avatar.png";
 import { withRouter } from "react-router";
 
 class UserBox extends React.Component {
@@ -40,6 +40,7 @@ class UserBox extends React.Component {
     // this.state = { logins: [] };
     // console.log(this.props.location);
     this.logout = this.logout.bind(this);
+    this.forgot = this.forgot.bind(this);
   }
 
   logout = (event) => {
@@ -47,6 +48,13 @@ class UserBox extends React.Component {
     localStorage.removeItem("role");
     this.props.history.push({
       pathname: "/pages/login",
+    });
+  };
+
+  forgot = (event) => {
+    this.props.history.push({
+      pathname: "/pages/forgot-password",
+      forgot: localStorage.getItem("username").slice(1, -1),
     });
   };
 
@@ -65,6 +73,7 @@ class UserBox extends React.Component {
   render() {
     const username = localStorage.getItem("username").slice(1, -1);
     const role = localStorage.getItem("role").slice(1, -1);
+    const nama = localStorage.getItem("fullname").slice(1, -1);
     return (
       <Fragment>
         <div className="header-btn-lg pr-0">
@@ -90,7 +99,7 @@ class UserBox extends React.Component {
                         <div
                           className="menu-header-image opacity-2"
                           style={{
-                            backgroundImage: "url(" + city3 + ")",
+                            backgroundColor: "purple",
                           }}
                         />
                         <div className="menu-header-content text-left">
@@ -105,9 +114,9 @@ class UserBox extends React.Component {
                                 />
                               </div>
                               <div className="widget-content-left">
-                                <div className="widget-heading">Pasien</div>
+                                <div className="widget-heading">{nama}</div>
                                 <div className="widget-subheading opacity-8">
-                                  A short profile description
+                                  {role}
                                 </div>
                               </div>
                               <div className="widget-content-right mr-2">
@@ -135,16 +144,18 @@ class UserBox extends React.Component {
                           <NavItem className="nav-item-header">
                             Activity
                           </NavItem>
-                          <NavItem>
+                          {/* <NavItem>
                             <NavLink href="#">
                               Chat
                               <div className="ml-auto badge badge-pill badge-info">
                                 8
                               </div>
                             </NavLink>
-                          </NavItem>
+                          </NavItem> */}
                           <NavItem>
-                            <NavLink href="#">Recover Password</NavLink>
+                            <NavLink onClick={this.forgot.bind(this)}>
+                              Ganti password
+                            </NavLink>
                           </NavItem>
                           <NavItem className="nav-item-header">
                             My Account
