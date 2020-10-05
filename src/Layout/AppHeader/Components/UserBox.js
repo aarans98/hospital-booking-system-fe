@@ -46,6 +46,7 @@ class UserBox extends React.Component {
   logout = (event) => {
     localStorage.removeItem("username");
     localStorage.removeItem("role");
+    localStorage.removeItem("fullname");
     this.props.history.push({
       pathname: "/pages/login",
     });
@@ -163,10 +164,10 @@ class UserBox extends React.Component {
                           <NavItem>
                             <NavLink href="#">
                               Settings */}
-                              {/* <div className='ml-auto badge badge-success'>
+                          {/* <div className='ml-auto badge badge-success'>
                                 New
                               </div> */}
-                            {/* </NavLink>
+                          {/* </NavLink>
                           </NavItem> */}
                           {/* <NavItem>
                             <NavLink href='#'>
