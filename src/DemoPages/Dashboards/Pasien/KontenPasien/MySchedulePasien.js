@@ -7,7 +7,6 @@ import dummyData from "../../Pasien/KontenPasien/dummyData";
 import bg1 from "../../../../assets/utils/images/dropdown-header/abstract1.jpg";
 import avatar4 from "../../../../assets/utils/images/avatars/3.jpg";
 import RmPagination from "./RmPagination";
-import FormRekamMedik from "../../Dokter/KontenDokter/FormRekamMedik";
 
 import {
   ListGroup,
@@ -97,7 +96,6 @@ function SchedulePasien() {
                           </h6>
                         </div>
                         <div className='menu-header-btn-pane'>
-                          <FormRekamMedik id={post.idJadwalDokter} />
                           <Button
                             size='sm'
                             className='btn-icon'

@@ -36,7 +36,7 @@ class FormRekamMedik extends React.Component {
 
   componentDidMount() {
     // this.findAllIdRm();
-    this.findAllIdObat();
+    this.findAllObat();
     this.findAllIdJadwal();
   }
 
@@ -48,10 +48,12 @@ class FormRekamMedik extends React.Component {
       })
   }
 
-  findAllIdObat = () => {
-    axios.get("http://localhost:1212/v1/app/obat/id")
+  findAllObat = () => {
+    axios.get("http://localhost:1212/v1/app/obat")
       .then(response => {
-        this.setState({ obat: response.data });
+        let namaObat = new Array();
+        response.data.data.map(ob => namaObat.push(ob.namaObat))
+        this.setState({ obat: namaObat });
       })
   }
 
@@ -99,7 +101,7 @@ class FormRekamMedik extends React.Component {
       tinggiBadan: tinggiBadan,
       beratBadan: beratBadan,
       gejala: gejala,
-      idObat: valueObat,
+      namaObat: valueObat,
       diagnosa: diagnosa,
       dosis: dosis,
     };
@@ -110,7 +112,7 @@ class FormRekamMedik extends React.Component {
       .then(response => {
         console.log(response.data);
         this.setState({disable: true});
-        this.findAllIdObat();
+        this.findAllObat();
         this.handleClick();
       });
     this.setState(this.initialState);
@@ -178,7 +180,7 @@ class FormRekamMedik extends React.Component {
                 </Col>
               </FormGroup>
               <FormGroup row>
-                <Label for="idObat" sm={2}>ID Obat</Label>
+                <Label for="namaObat" sm={2}>Nama Obat</Label>
                 <Col sm={10}>
                   <Multiselect
                     data={obat}
