@@ -163,17 +163,19 @@ export class AddModalKunjungan extends React.Component {
                     <div>
                       <CustomInput
                         type="radio"
-                        id="laki-laki"
-                        name="laki-laki"
+                        id="laki_laki"
+                        name="jenis_kelamin"
                         label="Laki-laki"
-                        value={this.state.jenis_kelamin}
+                        value="Laki-laki"
+                        onChange={this.kunjunganChange}
                       />
                       <CustomInput
                         type="radio"
                         id="perempuan"
-                        name="perempuan"
+                        name="jenis_kelamin"
                         label="Perempuan"
-                        value={this.state.jenis_kelamin}
+                        value="Perempuan"
+                        onChange={this.kunjunganChange}
                       />
                     </div>
                   </Form.Group> */}
