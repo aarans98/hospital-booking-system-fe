@@ -40,6 +40,7 @@ export default class EditModalInformasiStaf extends Component {
         
         axios.post("http://localhost:1212/v1/app/dokter", updateDokter)
             .then(response => {
+                this.props.refreshList();
                 if(response.data.data != null) {
                     this.setState({"show":true});
                     setTimeout(() => this.setState({"show":false}), 1500);
@@ -79,15 +80,7 @@ export default class EditModalInformasiStaf extends Component {
                             enableReinitialize={true}
                             id="informasiStaf">
                             <Card.Body>
-                                    <Form.Group as={Col} controlId="idStaf">
-                                        <Form.Label>Id</Form.Label>
-                                        <Form.Control required autoComplete="off"
-                                        type="number"
-                                        defaultValue={this.props.idDokter}
-                                        onChange={this.updateDokterChange} 
-                                        name="idDokter"
-                                        placeholder="Id Dokter" />
-                                    </Form.Group>
+                                    
                                     <Form.Group as={Col} controlId="namaLengkap">
                                         <Form.Label>Nama Lengkap</Form.Label>
                                         <Form.Control required autoComplete="off"

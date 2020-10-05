@@ -17,8 +17,9 @@ import axios from "axios";
 import RmPagination from "./RmPagination";
 import { post } from "jquery";
 import { DropdownList } from "react-widgets";
+import { counter } from "@fortawesome/fontawesome-svg-core";
 
-function RekamMedik() {
+const RekamMedik = ({count}) => {
   //empty array in useState means the initial value of posts
   const [posts, setPosts] = useState([]);
   const [showPerPage, setShowPerPage] = useState(3);
@@ -51,7 +52,7 @@ function RekamMedik() {
         .then((response) => setPosts(response.data));
     }
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
-  }, []);
+  }, [count]);
 
   const filteredData = posts.filter((post) => {
     return (
@@ -88,7 +89,7 @@ function RekamMedik() {
       <Container fluid>
         <Row>
           <Col sm="4">
-            <Col sm="6">
+            <Col sm={userRole === "pasien" ? "8" : "6"}>
               <InputGroup>
                 <InputGroupAddon addonType="prepend"><Button disabled="true"><i className="pe-7s-search" /></Button></InputGroupAddon>
                 <Input name="search" style={{ size: "4" }} placeholder="Search here" onChange={e => setSearch(e.target.value)} />
@@ -97,8 +98,8 @@ function RekamMedik() {
           </Col>
           <Col sm="4">
             <InputGroup>
-              <Label sm="1" style={{ fontSize: "14px" }}>Show: </Label>
-              <Col sm="2">
+              <Label sm={userRole === "pasien" ? "2" : "1"} style={{ fontSize: "14px" }}>Show: </Label>
+              <Col sm={userRole === "pasien" ? "3" : "2"}>
                 <DropdownList
                   data={show}
                   value={showPerPage}

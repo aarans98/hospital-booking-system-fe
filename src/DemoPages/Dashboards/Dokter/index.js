@@ -18,8 +18,14 @@ export default class MainDokter extends React.Component {
 
     this.state = {
       username: localStorage.getItem("username").slice(1, -1),
+      count: 0,
     };
   }
+
+  addCount = () =>{
+    this.setState({count: this.state.count + 1});
+  }
+
   render() {
     return (
       <Fragment>
@@ -40,12 +46,14 @@ export default class MainDokter extends React.Component {
               <Tabs
                 defaultActiveKey='1'
                 renderTabBar={() => <ScrollableInkTabBar />}
-                renderTabContent={() => <TabContent />}>
+                renderTabContent={() => <TabContent />}
+                onChange={this.addCount}
+              >
                 <TabPane tab='Pasien' key='1'>
                   <MyScheduleDoctor username={this.state.username} />
                 </TabPane>
                 <TabPane tab='Rekam Medik' key='2'>
-                  <RekamMedik />
+                  <RekamMedik count={this.state.count}/>
                 </TabPane>
                 <TabPane tab='Daftar Obat' key='3'>
                   <DaftarObat />

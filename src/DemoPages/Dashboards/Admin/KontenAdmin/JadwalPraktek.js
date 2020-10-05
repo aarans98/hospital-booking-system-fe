@@ -7,6 +7,7 @@ import {AddModalPraktek} from './AddModalPraktek';
 import {EditModalPraktek} from './EditModalPraktek';
 import PageTitle from '../../../../Layout/AppMain/PageTitle';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default class JadwalPraktek extends React.Component {
 
@@ -62,7 +63,13 @@ export default class JadwalPraktek extends React.Component {
                 filterable: true,
             },
             {
-                name: 'Update',
+                name:'Tersedia',
+                selector:'tersedia',
+                sortable: true,
+                filterable: true,
+            },
+            {
+                name: 'Perbarui',
                 button: true,
                 cell: (praktek) => {
                 return (
@@ -73,7 +80,7 @@ export default class JadwalPraktek extends React.Component {
                         sendPoli:praktek.poli,
                         sendJam:praktek.jam,
                         sendJadwal:praktek.jadwal,
-                        sendIdDokter:praktek.idDokter})}>Update</button>
+                        sendIdDokter:praktek.idDokter})}>Perbarui</button>
                 </Fragment>
                 );
                 }  
@@ -84,18 +91,25 @@ export default class JadwalPraktek extends React.Component {
         this.submitPraktek = this.submitPraktek.bind(this);
     }
 
-    // componentDidUpdate() {
-    //     fetch("http://localhost:1212/v1/app/praktek/dokter/2")
-    //         .then(response =>  response.json())
-    //         .then(data =>  {
-    //             this.setState({praktek:data});
-    //     });
-    //     // eslint-disable-next-line no-unused-expressions
-    //     this.props.id ? this.refreshList(this.props.id):""
-    // }
+    componentDidMount() {
+        axios
+        .get("http://localhost:1212/v1/app/praktek/" + this.props.id)
+        .then((response) => {
+            this.setState({ praktek: response.data.jumlah });
+        });
+
+        this.refreshList();
+    }
+
+    refreshList = () => {
+        axios
+            .get("http://localhost:1212/v1/app/praktek/" + this.props.id)
+            .then((response) => {
+                this.setState({ praktek: response.data.jumlah });
+        });
+    }
 
     submitPraktek = event =>  {
-        alert("Data berhasil masuk");
         event.preventDefault();
         const praktek = {
             idPraktek: this.state.idPraktek,
@@ -107,13 +121,34 @@ export default class JadwalPraktek extends React.Component {
 
         axios.post("http://localhost:1212/v1/app/praktek", praktek)
             .then(response => {
+                this.refreshList();
                 if(response.data.data != null) {
+                    this.handleClick();
                     this.setState({"show":true});
                 } else {
                     this.setState({"show":false});
                 }
             });
     };
+
+    handleClick = () => {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          onOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+    
+        Toast.fire({
+          icon: 'warning',
+          title: 'Data berhasil disimpan!'
+        })
+    }
 
     praktekChange(event) {
         this.setState({
@@ -146,11 +181,13 @@ export default class JadwalPraktek extends React.Component {
                         <Col md="12">
                             <Card className="main-card mb-3">
                                 <Card.Header>
+                                    LIST PRAKTEK
                                 </Card.Header>
                                 <Card.Body class="card-hover-shadow card-border mb-3 card">
                                     <DataTable
-                                        title="List Praktek"
-                                        columns={this.columns} 
+                                        // title="List Praktek"
+                                        columns={this.columns}
+                                        defaultSortField="idPraktek"
                                         pagination={true}
                                         highlightOnHover
                                         data={this.props.jadwal}
@@ -158,11 +195,12 @@ export default class JadwalPraktek extends React.Component {
                                 </Card.Body>
                                 <Card.Footer>
                                 <ButtonToolbar>
-                                <Button color="btn btn-primary" onClick={() => this.setState({addModalShow: true})}>Add</Button>
+                                <Button color="btn btn-primary" onClick={() => this.setState({addModalShow: true})}>Tambah</Button>
                                         <AddModalPraktek
                                         show={this.state.addModalShow}
                                         onHide={addModalClose}
-                                        id={this.props.id}/>
+                                        id={this.props.id}
+                                        />
                                         <EditModalPraktek
                                             show={this.state.editModalShow}
                                             onHide={editModalClose}

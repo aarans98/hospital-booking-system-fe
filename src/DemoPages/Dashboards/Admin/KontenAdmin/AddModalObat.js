@@ -15,7 +15,6 @@ export class AddModalObat extends React.Component {
     }
 
     initialState = {
-        idObat:'',
         namaObat:'',
         kategori:'',
         deskripsi:'',
@@ -43,7 +42,7 @@ export class AddModalObat extends React.Component {
     submitDaftarObat = event =>  {
         event.preventDefault();
         const daftarObat = {
-            idObat: this.state.idObat,
+            idObat: event.target.idObat.value,
             namaObat: this.state.namaObat,
             kategori: this.state.kategori,
             deskripsi: this.state.deskripsi,
@@ -51,6 +50,7 @@ export class AddModalObat extends React.Component {
 
         axios.post("http://localhost:1212/v1/app/obat", daftarObat)
             .then(response => {
+                this.props.updateObat();
                 this.props.refreshList();
                 this.props.refreshListObat();
                 if(response.data.data != null) {
@@ -60,7 +60,7 @@ export class AddModalObat extends React.Component {
                     this.setState({"show":false});
                 }
             });
-    
+        this.setState(this.initialState);
     };
 
     daftarObatChange(event) {
@@ -70,8 +70,7 @@ export class AddModalObat extends React.Component {
     };
 
     render() {
-        let { idObat, namaObat, kategori, deskripsi } = this.state;
-        console.log(idObat);
+        let { namaObat, kategori, deskripsi } = this.state;
         return (
             <Modal {...this.props} size="lg" backdrop="static" className="Mymodal" id="modal_form" animation={true}>
                 <Modal.Header closeButton>
@@ -87,15 +86,14 @@ export class AddModalObat extends React.Component {
                             <Card.Header> Daftar Obat </Card.Header>
                             <Form 
                             onSubmit={this.submitDaftarObat} 
-                            initialValues={{ idObat, namaObat, kategori, deskripsi}}
                             enableReinitialize={true}
                             id="daftarObat">
                             <Card.Body>
                                     <Form.Group as={Col} controlId="idObat">
                                         <Form.Label>Id Obat</Form.Label>
                                         <Form.Control required autoComplete="off"
-                                        type="number"
-                                        value={this.props.idObat}
+                                        type="text"
+                                        defaultValue={this.props.idObat}
                                         onChange={this.daftarObatChange} 
                                         name="idObat"
                                         placeholder="Id Obat" />
@@ -104,7 +102,7 @@ export class AddModalObat extends React.Component {
                                         <Form.Label>Nama Obat</Form.Label>
                                         <Form.Control required autoComplete="off"
                                         type="text"
-                                        value={this.props.namaObat}
+                                        value={namaObat}
                                         onChange={this.daftarObatChange} 
                                         name="namaObat"
                                         placeholder="Nama Obat"/>
@@ -113,7 +111,7 @@ export class AddModalObat extends React.Component {
                                         <Form.Label>Kategori</Form.Label>
                                         <Form.Control required autoComplete="off"
                                         type="text" 
-                                        value={this.props.kategori}
+                                        value={kategori}
                                         onChange={this.daftarObatChange} 
                                         name="kategori"
                                         placeholder="Kategori" />
@@ -122,7 +120,7 @@ export class AddModalObat extends React.Component {
                                         <Form.Label>Deskripsi</Form.Label>
                                         <Form.Control required autoComplete="off"
                                         as="textarea" 
-                                        value={this.props.deskripsi}
+                                        value={deskripsi}
                                         onChange={this.daftarObatChange} 
                                         name="deskripsi"
                                         placeholder="Deskripsi" />
@@ -130,7 +128,7 @@ export class AddModalObat extends React.Component {
                             </Card.Body>
                             <Card.Footer style={{"textAlign":"right"}} >
                                     <Button class="btn btn-primary" type="submit"
-                                        onClick={() => this.setState({show: true})}>
+                                        onClick={this.props.onHide}>
                                         Simpan
                                     </Button>{' '}
                             </Card.Footer>

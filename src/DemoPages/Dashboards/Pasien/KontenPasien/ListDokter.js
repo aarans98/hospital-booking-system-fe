@@ -55,7 +55,7 @@ export default class ListPraktek extends React.Component {
 
   componentDidMount() {
     this.refreshList();
-    this.refreshListPraktek();
+    
   }
 
   // componentDidUpdate() {
@@ -64,7 +64,7 @@ export default class ListPraktek extends React.Component {
 
   refreshListPraktek = (id) => {
     axios
-      .get("http://localhost:1212/v1/app/praktek/dokter/" + id)
+      .get("http://localhost:1212/v1/app/praktek/available/" + id)
       .then((response) => {
         console.log(response.data);
         this.setState({praktek: response.data});
@@ -108,7 +108,7 @@ export default class ListPraktek extends React.Component {
               <CardBody className='mb-0'>
                 <h3 className=''>dr. {card.namaLengkap}</h3>
                 <p>Dokter {card.spesialisasi}</p>
-                <Button className='btn btn-primary float-right' onClick={() => {this.refreshListPraktek(card.idDokter); this.setState({addModalShow: true});}}>Pilih</Button>
+                <Button className='btn btn-primary float-right' onClick={() => {this.refreshListPraktek(card.idDokter); this.setState({addModalShow: true, sendId:card.idDokter}); }}>Pilih</Button>
               </CardBody>
               
             </Col>
@@ -200,7 +200,9 @@ export default class ListPraktek extends React.Component {
             <Praktek 
                 jadwal={this.state.praktek}
                 show={this.state.addModalShow}
-                onHide={addModalClose}/>
+                refreshListPraktek={this.refreshListPraktek}
+                onHide={addModalClose}
+                />
           </Container>
         </CSSTransitionGroup>
       </Fragment>

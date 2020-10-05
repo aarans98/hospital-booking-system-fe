@@ -39,7 +39,7 @@ export class AddModalKunjungan extends React.Component {
       tanggal_lahir: this.state.tanggal_lahir,
       tinggi_badan: this.state.tinggi_badan,
       username: this.state.username,
-      usia: this.state.usia,
+      usia: this.state.usia
     };
 
     console.log(pasien);
@@ -125,7 +125,7 @@ export class AddModalKunjungan extends React.Component {
                       placeholder="Id Dokter"
                     />
                   </Form.Group>
-                  {/* <Form.Group as={Col} controlId="idPasien">
+                  <Form.Group as={Col} controlId="idPasien">
                                         <Form.Label>Id</Form.Label>
                                         <Form.Control required autoComplete="off"
                                         type="number"
@@ -133,7 +133,7 @@ export class AddModalKunjungan extends React.Component {
                                         onChange={this.praktekChange} 
                                         name="idPasien"
                                         placeholder="Id Pasien" />
-                                    </Form.Group> */}
+                                    </Form.Group>
                   <Form.Group as={Col} controlId="nama_lengkap">
                     <Form.Label>Nama Lengkap</Form.Label>
                     <Form.Control
@@ -146,7 +146,7 @@ export class AddModalKunjungan extends React.Component {
                       placeholder="Nama Lengkap"
                     />
                   </Form.Group>
-                  {/* <Form.Group as={Col} controlId="jenis_kelamin">
+                  <Form.Group as={Col} controlId="jenis_kelamin">
                     <Form.Label>Jenis Kelamin</Form.Label>
                     <Form.Control
                       required
@@ -157,26 +157,28 @@ export class AddModalKunjungan extends React.Component {
                       name="jenis_kelamin"
                       placeholder="Jenis Kelamin"
                     />
-                  </Form.Group> */}
-                  <Form.Group as={Col} controlId="jenis_kelamin">
+                  </Form.Group>
+                  {/* <Form.Group as={Col} controlId="jenis_kelamin">
                     <Form.Label for="exampleCheckbox">Jenis Kelamin</Form.Label>
                     <div>
                       <CustomInput
                         type="radio"
-                        id="laki-laki"
-                        name="laki-laki"
+                        id="laki_laki"
+                        name="jenis_kelamin"
                         label="Laki-laki"
-                        value={this.state.jenis_kelamin}
+                        value="Laki-laki"
+                        onChange={this.kunjunganChange}
                       />
                       <CustomInput
                         type="radio"
                         id="perempuan"
-                        name="perempuan"
+                        name="jenis_kelamin"
                         label="Perempuan"
-                        value={this.state.jenis_kelamin}
+                        value="Perempuan"
+                        onChange={this.kunjunganChange}
                       />
                     </div>
-                  </Form.Group>
+                  </Form.Group> */}
                   <Form.Group as={Col} controlId="tanggal_lahir">
                     <Form.Label>Tanggal Lahir</Form.Label>
                     <Form.Control

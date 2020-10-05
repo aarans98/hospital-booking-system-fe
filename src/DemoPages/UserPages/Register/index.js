@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import Login from "../../UserPages/Login/index";
 
 import bg3 from "../../../assets/img/medical.jpg";
+import Logo from "../../../img/logo-bahagya-long.png";
 
 import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import SweetAlert from "sweetalert-react";
@@ -147,7 +148,8 @@ export default class Register extends Component {
               md='12'
               className='h-100 d-md-flex d-sm-block bg-white justify-content-center align-items-center'>
               <Col lg='9' md='10' sm='12' className='mx-auto app-login-box'>
-                <div className='app-logo' />
+                {/* <div className='app-logo' /> */}
+                <div><img src={Logo}/></div>
                 <h4>
                   <div>Selamat Datang,</div>
                   <span>

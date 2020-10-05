@@ -14,8 +14,8 @@ import RekamMedik from "./KontenPasien/RekamMedik";
 import ListDokter from "./KontenPasien/ListDokter";
 import {Row,Col,Carousel} from "react-bootstrap"
 import Carousel1 from "../../../img/carousel-1.png"
-import Carousel2 from "../../../img/carousel-2.jpg"
-import Carousel3 from "../../../img/carousel-3.jpg"
+import Carousel2 from "../../../img/carousel-2.png"
+// import Carousel3 from "../../../img/carousel-3.jpg"
 
 
 // Examples
@@ -43,43 +43,22 @@ export default class MainPasien extends React.Component {
         <Row>
           <Col md="8" className="offset-2" style={{'backgroundColor':'white'}}>
             <Carousel style={carouselStyle}>
-              <Carousel.Item style={{'height':'300px'}}>
+              <Carousel.Item style={{'height':'400px'}}>
                 <img
                   className="d-block w-100"
                   src={Carousel1}
-                  alt="First slide"
+                  // alt="First slide"
                 />
-                <Carousel.Caption>
-                  <h3>First slide label</h3>
-                  <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </Carousel.Caption>
+                
               </Carousel.Item>
-              <Carousel.Item style={{'height':'300px'}}>
+              <Carousel.Item style={{'height':'400px'}}>
                 <img
                   className="d-block w-100"
                   src={Carousel2}
-                  alt="Second slide"
+                  // alt="Second slide"
                 />
-        
-                <Carousel.Caption>
-                  <h3>Second slide label</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </Carousel.Caption>
               </Carousel.Item>
-              <Carousel.Item  style={{'height':'300px'}}>
-                <img
-                  className="d-block w-100"
-                  src={Carousel3}
-                  alt="Third slide"
-                />
-        
-                <Carousel.Caption>
-                  <h3>Third slide label</h3>
-                  <p>
-                    Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                  </p>
-                </Carousel.Caption>
-              </Carousel.Item>
+              
             </Carousel>
           </Col>  
         </Row>
@@ -92,7 +71,7 @@ export default class MainPasien extends React.Component {
           transitionEnter={false}
           transitionLeave={false}>
           
-          <Row className="mt-5" >
+          <Row className="" >
             <Col className="border border-primary offset-2 bg-light mb-5 rounded-lg" md="8">
               <Tabs
                 defaultActiveKey="1"
