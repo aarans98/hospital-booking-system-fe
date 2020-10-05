@@ -62,7 +62,7 @@ export default class InformasiDokter extends React.Component {
         filterable: true,
       },
       {
-        name: "Update Jadwal",
+        name: "Perbarui Jadwal",
         sortable: "true",
         ignoreRowClick: true,
         allowOverflow: true,
@@ -81,7 +81,7 @@ export default class InformasiDokter extends React.Component {
         }
       },
       {
-        name: "Update Dokter",
+        name: "Perbarui Dokter",
         sortable: "true",
         cell: (updateDokter) => 
         <Button className="btn btn-primary" raised primary 
@@ -103,7 +103,7 @@ export default class InformasiDokter extends React.Component {
         button: true,
       },
       {
-        name: "Delete",
+        name: "Hapus",
         sortable: "true",
         cell: (tambahDokter) => 
         <Button className="btn btn-danger" raised primary 

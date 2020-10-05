@@ -96,7 +96,7 @@ export default class LoginBoxed extends Component {
     });
     Toast3.fire({
       icon: "warning",
-      title: "Password anda salah!",
+      title: "Kata sandi anda salah!",
     });
   };
   handleClick4 = () => {
@@ -113,7 +113,7 @@ export default class LoginBoxed extends Component {
     });
     Toast4.fire({
       icon: "warning",
-      title: "Username anda belum terdaftar!",
+      title: "Nama pengguna anda belum terdaftar!",
     });
   };
 
@@ -171,12 +171,12 @@ export default class LoginBoxed extends Component {
                       <Row form>
                         <Col md={12}>
                           <FormGroup>
-                            <Label for="username">Username</Label>
+                            <Label for="username">Nama Pengguna</Label>
                             <Input
                               type="text"
                               name="username"
                               id="username"
-                              placeholder="Masukkan username.."
+                              placeholder="Masukkan nama pengguna..."
                               onChange={this.loginChange}
                               value={username}
                             />
@@ -184,14 +184,14 @@ export default class LoginBoxed extends Component {
                           {/* </Col> */}
                           {/* <Col md={12}> */}
                           <FormGroup>
-                            <Label for="password">Password</Label>
+                            <Label for="password">Kata Sandi</Label>
                             <Input
                               type="password"
                               name="password"
                               id="password"
                               value={password}
                               onChange={this.loginChange}
-                              placeholder="Masukkan password..."
+                              placeholder="Masukkan kata sandi..."
                             />
                           </FormGroup>
                         </Col>

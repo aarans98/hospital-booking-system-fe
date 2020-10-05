@@ -88,7 +88,7 @@ export default class EditModalInformasiStaf extends Component {
             <Modal {...this.props} size="lg" backdrop="static" className="Mymodal" id="modal_form" animation={true}>
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        FORM UPDATE DOKTER
+                        FORM PERBARUI DOKTER
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -96,7 +96,7 @@ export default class EditModalInformasiStaf extends Component {
                         <div style={{"display":this.state.show ? "block":"none"}}>
                         </div>
                         <Card border="light">
-                            <Card.Header> Update Dokter </Card.Header>
+                            <Card.Header> Perbarui Dokter </Card.Header>
                             <Form 
                             onSubmit={this.updateInformasiStaf} 
                             initialValues={{ idDokter, namaLengkap, spesialisasi, 
@@ -180,7 +180,7 @@ export default class EditModalInformasiStaf extends Component {
                             </Card.Body>
                             <Card.Footer style={{"textAlign":"right"}} >
                                     <Button class="btn btn-primary" type="submit">
-                                        Save
+                                        Simpan
                                     </Button>{' '}
                             </Card.Footer>
                             </Form>

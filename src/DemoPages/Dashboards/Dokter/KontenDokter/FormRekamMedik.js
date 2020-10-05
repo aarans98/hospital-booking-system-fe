@@ -85,7 +85,7 @@ class FormRekamMedik extends React.Component {
 
     Toast.fire({
       icon: 'success',
-      title: 'Data successfully saved!'
+      title: 'Data berhasil disimpan!'
     })
   }
 
@@ -199,8 +199,8 @@ class FormRekamMedik extends React.Component {
                 </Col>
               </FormGroup>
               <FormGroup check row style={{ display: "flex", justifyContent: "space-around" }}>
-                <Button color="primary" onClick={this.toggle}>Cancel</Button>
-                <Button type="submit">Submit</Button>
+                <Button color="primary" onClick={this.toggle}>Batal</Button>
+                <Button type="submit">Kirim</Button>
               </FormGroup>
             </Form>
           </ModalBody>

@@ -115,7 +115,7 @@ export class AddModalKunjungan extends React.Component {
                     />
                   </Form.Group>
                   <Form.Group as={Col} controlId="user_name">
-                    <Form.Label>Username</Form.Label>
+                    <Form.Label>Nama Pengguna</Form.Label>
                     <Form.Control
                       disabled
                       autoComplete="off"
@@ -123,7 +123,7 @@ export class AddModalKunjungan extends React.Component {
                       value={this.state.username}
                       onChange={this.kunjunganChange}
                       name="username"
-                      placeholder="Username"
+                      placeholder="Nama pengguna"
                     />
                   </Form.Group>
                   <Form.Group as={Col} controlId="nama_lengkap">
@@ -176,6 +176,7 @@ export class AddModalKunjungan extends React.Component {
                     <Form.Control
                       required
                       autoComplete="off"
+                      min="0"
                       type="number"
                       value={this.state.tinggi_badan}
                       onChange={this.kunjunganChange}
@@ -188,6 +189,7 @@ export class AddModalKunjungan extends React.Component {
                     <Form.Control
                       required
                       autoComplete="off"
+                      min="0"
                       type="number"
                       value={this.state.berat_badan}
                       onChange={this.kunjunganChange}
@@ -200,6 +202,7 @@ export class AddModalKunjungan extends React.Component {
                     <Form.Control
                       required
                       autoComplete="off"
+                      min="0"
                       type="number"
                       value={this.state.usia}
                       onChange={this.kunjunganChange}
@@ -226,7 +229,7 @@ export class AddModalKunjungan extends React.Component {
                     type="submit"
                     onClick={this.props.onHide}
                   >
-                    Save
+                    Kirim
                   </Button>{" "}
                 </Card.Footer>
               </Form>

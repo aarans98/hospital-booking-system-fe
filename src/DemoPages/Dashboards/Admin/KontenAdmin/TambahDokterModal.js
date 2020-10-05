@@ -185,7 +185,7 @@ export default class TambahDokterModal extends React.Component {
               ></div>
 
               <Form.Group as={Col} controlId="username">
-                <Form.Label>Username</Form.Label>
+                <Form.Label>Nama Pengguna</Form.Label>
                 <Form.Control
                   required
                   autoComplete="off"
@@ -193,7 +193,7 @@ export default class TambahDokterModal extends React.Component {
                   value={this.props.username}
                   onChange={this.tambahDokterChange}
                   name="username"
-                  placeholder="Username"
+                  placeholder="Nama Pengguna"
                 />
                 <span className="text-danger">{this.state.errUsername}</span>
               </Form.Group>
@@ -210,7 +210,7 @@ export default class TambahDokterModal extends React.Component {
                 />
               </Form.Group>
               <Form.Group as={Col} controlId="password">
-                <Form.Label>Password</Form.Label>
+                <Form.Label>Kata Sandi</Form.Label>
                 <Form.Control
                   required
                   autoComplete="off"
@@ -218,12 +218,12 @@ export default class TambahDokterModal extends React.Component {
                   value={this.props.password}
                   onChange={this.tambahDokterChange}
                   name="password"
-                  placeholder="Password"
+                  placeholder="Kata Sandi"
                 />
                 <span className="text-danger">{this.state.erorr2}</span>
               </Form.Group>
               <Form.Group as={Col} controlId="passwordrep">
-                <Form.Label>Passwordrep</Form.Label>
+                <Form.Label>Konfirmasi Kata Sandi</Form.Label>
                 <Form.Control
                   required
                   autoComplete="off"
@@ -231,7 +231,7 @@ export default class TambahDokterModal extends React.Component {
                   value={this.props.passwordrep}
                   onChange={this.tambahDokterChange}
                   name="passwordrep"
-                  placeholder="Passwordrep"
+                  placeholder="Ulangi Kata Sandi"
                 />
                 <span className="text-danger">{this.state.erorr}</span>
               </Form.Group>

@@ -97,7 +97,7 @@ export default class ForgotPassword extends Component {
 
     Toast1.fire({
       icon: "warning",
-      title: "Ketik ulang password!",
+      title: "Ketik ulang kata sandi!",
     });
   };
 
@@ -208,7 +208,7 @@ export default class ForgotPassword extends Component {
                   <img src={Logo} />
                 </div>
                 <h4>
-                  <div>Lupa Password?</div>
+                  <div>Lupa Kata Sandi?</div>
                   <span>Gunakan formulir dibawah untuk mengembalikannya!</span>
                 </h4>
                 <div>
@@ -216,20 +216,20 @@ export default class ForgotPassword extends Component {
                     <Row form>
                       <Col md={6}>
                         <FormGroup>
-                          <Label for="username">Username</Label>
+                          <Label for="username">Nama Pengguna</Label>
                           <Input
                             disabled
                             type="text"
                             name="username"
                             id="username"
-                            placeholder="Masukkan username.."
+                            placeholder="Masukkan nama pengguna..."
                             defaultValue={this.props.location.forgot}
                           />
                         </FormGroup>
                       </Col>
                       <Col md={6}>
                         <FormGroup>
-                          <Label for="emailauth">Masukkan email: </Label>
+                          <Label for="emailauth">Email </Label>
                           <Input
                             type="text"
                             name="emailauth"
@@ -242,27 +242,27 @@ export default class ForgotPassword extends Component {
                       </Col>
                       <Col md={6}>
                         <FormGroup>
-                          <Label for="password">Password</Label>
+                          <Label for="password">Kata Sandi Baru</Label>
                           <Input
                             type="password"
                             name="password"
                             id="password"
                             value={password}
                             onChange={this.forgotChange}
-                            placeholder="Masukkan password baru..."
+                            placeholder="Masukkan kata sandi baru..."
                           />
                         </FormGroup>
                       </Col>
                       <Col md={6}>
                         <FormGroup>
-                          <Label for="passwordrep">Ulangi password</Label>
+                          <Label for="passwordrep">Ulangi kata sandi</Label>
                           <Input
                             type="password"
                             name="passwordrep"
                             id="passwordrep"
                             value={passwordrep}
                             onChange={this.forgotChange}
-                            placeholder="Ketik ulang password baru..."
+                            placeholder="Ketik ulang kata sandi baru..."
                           />
                         </FormGroup>
                       </Col>

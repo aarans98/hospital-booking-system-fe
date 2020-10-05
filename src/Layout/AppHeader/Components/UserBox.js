@@ -125,7 +125,7 @@ class UserBox extends React.Component {
                                   color="focus"
                                   onClick={this.logout.bind(this)}
                                 >
-                                  Logout
+                                  Keluar
                                 </Button>
                               </div>
                             </div>
@@ -141,9 +141,9 @@ class UserBox extends React.Component {
                     >
                       <PerfectScrollbar>
                         <Nav vertical>
-                          <NavItem className="nav-item-header">
-                            Activity
-                          </NavItem>
+                          {/* <NavItem className="nav-item-header">
+                            Aktifitas
+                          </NavItem> */}
                           {/* <NavItem>
                             <NavLink href="#">
                               Chat
@@ -154,20 +154,20 @@ class UserBox extends React.Component {
                           </NavItem> */}
                           <NavItem>
                             <NavLink onClick={this.forgot.bind(this)}>
-                              Ganti password
+                              Ubah Kata Sandi
                             </NavLink>
                           </NavItem>
-                          <NavItem className="nav-item-header">
+                          {/* <NavItem className="nav-item-header">
                             My Account
                           </NavItem>
                           <NavItem>
                             <NavLink href="#">
-                              Settings
+                              Settings */}
                               {/* <div className='ml-auto badge badge-success'>
                                 New
                               </div> */}
-                            </NavLink>
-                          </NavItem>
+                            {/* </NavLink>
+                          </NavItem> */}
                           {/* <NavItem>
                             <NavLink href='#'>
                               Messages
