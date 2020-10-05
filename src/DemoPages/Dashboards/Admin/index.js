@@ -11,7 +11,7 @@ import InformasiStaf from './KontenAdmin/InformasiStaf';
 import JadwalPraktek from './KontenAdmin/JadwalPraktek';
 import InformasiDokter from "./KontenAdmin/InformasiDokter";
 import DaftarObat from './KontenAdmin/DaftarObat';
-import Coba from'./KontenAdmin/Coba';
+// import Coba from'./KontenAdmin/Coba';
 // Examples
 
 export default class MainAdmin extends React.Component {
@@ -47,9 +47,9 @@ export default class MainAdmin extends React.Component {
                 <TabPane tab="Daftar Obat" key="3">
                   <DaftarObat/>
                 </TabPane>
-                <TabPane tab="Coba" key="4">
+                {/* <TabPane tab="Coba" key="4">
                   <Coba/>
-                </TabPane>
+                </TabPane> */}
               </Tabs>
             </Col>
           </Row>
