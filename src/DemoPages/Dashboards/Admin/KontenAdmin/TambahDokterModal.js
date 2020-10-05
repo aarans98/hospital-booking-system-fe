@@ -13,7 +13,6 @@ export default class TambahDokterModal extends React.Component {
     }
 
     initialState = {
-        // idDokter: '',
         namaLengkap: '',
         spesialisasi: '',
         tanggalLahir: '',
@@ -59,28 +58,22 @@ export default class TambahDokterModal extends React.Component {
     };
 
     submitTambahDokter = event =>  {
-        // alert("tes");
         event.preventDefault();
         const dokter = {
-            // idDokter: this.state.idDokter,
             namaLengkap: this.state.namaLengkap,
             spesialisasi: this.state.spesialisasi,
             tanggalLahir: this.state.tanggalLahir,
             username: this.state.username,
-            // email: this.state.email,
-            // password: this.state.password,
-            // passwordrep: this.state.passwordrep,
-            // user_role: this.state.user_role,
-    };
+        };
 
-    const register = {
-        email: this.state.email,
-        fullname: this.state.namaLengkap,
-        password: this.state.password,
-        passwordrep: this.state.passwordrep,
-        user_role: 'dokter',
-        username: this.state.username,
-    };
+        const register = {
+            email: this.state.email,
+            fullname: this.state.namaLengkap,
+            password: this.state.password,
+            passwordrep: this.state.passwordrep,
+            user_role: 'dokter',
+            username: this.state.username,
+        };
 
     // if (this.validate()) {
         axios.post("http://localhost:1212/v1/app/register", register)
@@ -91,10 +84,11 @@ export default class TambahDokterModal extends React.Component {
                     console.log("success");
                     axios.post("http://localhost:1212/v1/app/dokter", dokter)
                         .then(response => {
+                            this.props.refreshList();
                             console.log(response.data.data);
                             if(response.data.data != null) {
                                 alert("Data berhasil masuk!")
-                                this.setState({"show":false});
+                                this.setState({"show":true});
                             } else {
                                 console.log("failed")
                                 alert("Data gagal dimasukkan");
@@ -105,7 +99,6 @@ export default class TambahDokterModal extends React.Component {
                     console.log("failed")
                 }
             });
-        // }
     }
 
     tambahDokterChange(event) {

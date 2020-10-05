@@ -10,6 +10,8 @@ import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+import Logo from '../../../img/logo-bahagya-long.png';
+
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -98,6 +100,7 @@ export default class Login extends Component {
       [event.target.name]: event.target.value,
     });
   }
+
   render() {
     const { username, password } = this.state;
     let settings = {
@@ -112,6 +115,10 @@ export default class Login extends Component {
       autoplay: true,
       adaptiveHeight: true,
     };
+
+    var style = {
+      
+    }
     return (
       <Fragment>
         <div className="h-100">
@@ -175,7 +182,10 @@ export default class Login extends Component {
               className="h-100 d-flex bg-white justify-content-center align-items-center"
             >
               <Col lg="9" md="10" sm="12" className="mx-auto app-login-box">
-                <div className="app-logo" />
+                {/* <div className="app-logo" /> */}
+                <div>
+                  <img src={Logo} />
+                </div>
                 <h4 className="mb-0">
                   <div>Selamat Datang!</div>
                   <span>

@@ -9,8 +9,9 @@ import TabContent from "rc-tabs/lib/SwipeableTabContent";
 import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
 import InformasiStaf from './KontenAdmin/InformasiStaf';
 import JadwalPraktek from './KontenAdmin/JadwalPraktek';
-import TambahDokter from "./KontenAdmin/TambahDokter";
+import InformasiDokter from "./KontenAdmin/InformasiDokter";
 import DaftarObat from './KontenAdmin/DaftarObat';
+import Coba from'./KontenAdmin/Coba';
 // Examples
 
 export default class MainAdmin extends React.Component {
@@ -25,26 +26,29 @@ export default class MainAdmin extends React.Component {
           transitionEnter={false}
           transitionLeave={false}
         >
-          <PageTitle
+          {/* <PageTitle
             heading="Admin"
             subheading="Ini Halaman Admin~"
             icon="pe-7s-stopwatch icon-gradient bg-amy-crisp"
-          />
+          /> */}
           <Row>
-            <Col>
+            <Col md="10" className="offset-1">
               <Tabs
                 defaultActiveKey="1"
                 renderTabBar={() => <ScrollableInkTabBar />}
                 renderTabContent={() => <TabContent />}
               >
                 <TabPane tab="Tambah Dokter" key="1">
-                  <TambahDokter/>
+                  <InformasiDokter/>
                 </TabPane>
                 <TabPane tab="Informasi Staf" key="2">
                   <InformasiStaf/>
                 </TabPane>
                 <TabPane tab="Daftar Obat" key="3">
                   <DaftarObat/>
+                </TabPane>
+                <TabPane tab="Coba" key="4">
+                  <Coba/>
                 </TabPane>
               </Tabs>
             </Col>

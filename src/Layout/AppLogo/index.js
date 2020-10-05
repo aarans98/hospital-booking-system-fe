@@ -5,11 +5,21 @@ import { Slider } from 'react-burgers'
 
 import AppMobileMenu from '../AppMobileMenu';
 
+import Logo from '../../img/logo-bahagya-long.png';
+
 import {
     setEnableClosedSidebar,
     setEnableMobileMenu,
     setEnableMobileMenuSmall,
 } from '../../reducers/ThemeOptions';
+
+// var section = {
+//     width: "100%",
+//     height: "50px",
+//     backgroundImage: `url(  ${ Logo } )`,
+//     // backgroundRepeat: "no-repeat",
+//     // backgroundAttachment: "fixed"
+// };
 
 class HeaderLogo extends React.Component {
     constructor(props) {
@@ -40,8 +50,9 @@ class HeaderLogo extends React.Component {
         return (
             <Fragment>
                 <div className="app-header__logo">
-                    <div className="logo-src"/>
-                    <div className="header__pane ml-auto">
+                    <div className=""/>
+                        <img src={Logo}/>
+                    {/* <div className="header__pane ml-auto">
                         <div onClick={this.toggleEnableClosedSidebar}>
                         <Slider 
                          width={26}
@@ -51,7 +62,7 @@ class HeaderLogo extends React.Component {
                          active={this.state.active}
                          onClick={() => this.setState({ active: !this.state.active })}/>
                         </div>
-                    </div>
+                    </div> */} 
                 </div>
                 <AppMobileMenu/>
             </Fragment>

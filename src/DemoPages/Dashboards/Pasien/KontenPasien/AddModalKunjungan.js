@@ -146,7 +146,7 @@ export class AddModalKunjungan extends React.Component {
                       placeholder="Nama Lengkap"
                     />
                   </Form.Group>
-                  {/* <Form.Group as={Col} controlId="jenis_kelamin">
+                  <Form.Group as={Col} controlId="jenis_kelamin">
                     <Form.Label>Jenis Kelamin</Form.Label>
                     <Form.Control
                       required
@@ -157,8 +157,8 @@ export class AddModalKunjungan extends React.Component {
                       name="jenis_kelamin"
                       placeholder="Jenis Kelamin"
                     />
-                  </Form.Group> */}
-                  <Form.Group as={Col} controlId="jenis_kelamin">
+                  </Form.Group>
+                  {/* <Form.Group as={Col} controlId="jenis_kelamin">
                     <Form.Label for="exampleCheckbox">Jenis Kelamin</Form.Label>
                     <div>
                       <CustomInput
@@ -176,7 +176,7 @@ export class AddModalKunjungan extends React.Component {
                         value={this.state.jenis_kelamin}
                       />
                     </div>
-                  </Form.Group>
+                  </Form.Group> */}
                   <Form.Group as={Col} controlId="tanggal_lahir">
                     <Form.Label>Tanggal Lahir</Form.Label>
                     <Form.Control
