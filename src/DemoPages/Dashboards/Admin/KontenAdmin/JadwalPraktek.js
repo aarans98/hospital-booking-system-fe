@@ -29,7 +29,8 @@ export default class JadwalPraktek extends React.Component {
             sendPoli:'',
             sendJam:'',
             sendJadwal:'',
-            sendIdDokter:''
+            sendIdDokter:'',
+            jadwalBaru:'',
         };
         this.columns = [
             {
@@ -107,6 +108,11 @@ export default class JadwalPraktek extends React.Component {
             .then((response) => {
                 this.setState({ praktek: response.data.jumlah });
         });
+    }
+
+    loadJadwalBaru = (jadwal) => {
+        this.setState({jadwalBaru: jadwal})
+        console.log(this.state.jadwalBaru)
     }
 
     submitPraktek = event =>  {
@@ -190,7 +196,7 @@ export default class JadwalPraktek extends React.Component {
                                         defaultSortField="idPraktek"
                                         pagination={true}
                                         highlightOnHover
-                                        data={this.props.jadwal}
+                                        data={this.state.jadwalBaru? this.state.jadwalBaru : this.props.jadwal}
                                     />
                                 </Card.Body>
                                 <Card.Footer>
@@ -200,6 +206,7 @@ export default class JadwalPraktek extends React.Component {
                                         show={this.state.addModalShow}
                                         onHide={addModalClose}
                                         id={this.props.id}
+                                        setJadwalBaru={this.loadJadwalBaru}
                                         />
                                         <EditModalPraktek
                                             show={this.state.editModalShow}
