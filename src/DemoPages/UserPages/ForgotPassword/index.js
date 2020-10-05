@@ -2,9 +2,9 @@ import React, { Fragment, Component } from "react";
 
 import Slider from "react-slick";
 
-import bg1 from "../../../assets/utils/images/originals/city.jpg";
-import bg2 from "../../../assets/utils/images/originals/citydark.jpg";
-import bg3 from "../../../assets/utils/images/originals/citynights.jpg";
+import bg1 from "../../../assets/img/bg1.jpg";
+import bg2 from "../../../assets/img/bg2.png";
+import bg3 from "../../../assets/img/bg3.jpg";
 
 import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import axios from "axios";
@@ -112,12 +112,17 @@ export default class ForgotPassword extends Component {
                       }}
                     />
                     <div className="slider-content">
-                      <h3>Perfect Balance</h3>
                       <p>
-                        ArchitectUI is like a dream. Some think it's too good to
-                        be true! Extensive collection of unified React Boostrap
-                        Components and Elements.
+                        Seorang mukmin yang kuat lebih baik dan lebih disukai
+                        Allah daripada yang lemah, dan keduanya baik. Teruslah
+                        mengejar apa yang menguntungkan bagi kamu, cari bantuan
+                        hanya dari Allah, dan jangan menyerah. Jika ada sesuatu
+                        keburukan yang menimpa, jangan katakan, 'Kalau saja saya
+                        melakukan sebaliknya'. Alih-alih katakan, 'Allah
+                        memiliki tekad dan melakukan apa yang Dia kehendaki,'
+                        kalimat 'jika' membuka pintu untuk setan
                       </p>
+                      <p>-HR Al-Bukhari-</p>
                     </div>
                   </div>
                   <div className="h-100 d-flex justify-content-center align-items-center bg-premium-dark">
@@ -162,8 +167,8 @@ export default class ForgotPassword extends Component {
               <Col lg="6" md="8" sm="12" className="mx-auto app-login-box">
                 <div className="app-logo" />
                 <h4>
-                  <div>Forgot your Password?</div>
-                  <span>Use the form below to recover it.</span>
+                  <div>Lupa Password?</div>
+                  <span>Gunakan formulir dibawah untuk mengembalikannya!</span>
                 </h4>
                 <div>
                   <Form onSubmit={this.updateLogin}>
