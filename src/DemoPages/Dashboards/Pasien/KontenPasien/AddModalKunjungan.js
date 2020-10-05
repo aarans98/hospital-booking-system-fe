@@ -125,15 +125,6 @@ export class AddModalKunjungan extends React.Component {
                       placeholder="Id Dokter"
                     />
                   </Form.Group>
-                  <Form.Group as={Col} controlId="idPasien">
-                                        <Form.Label>Id</Form.Label>
-                                        <Form.Control required autoComplete="off"
-                                        type="number"
-                                        value={this.props.idPasien}
-                                        onChange={this.praktekChange} 
-                                        name="idPasien"
-                                        placeholder="Id Pasien" />
-                                    </Form.Group>
                   <Form.Group as={Col} controlId="nama_lengkap">
                     <Form.Label>Nama Lengkap</Form.Label>
                     <Form.Control
@@ -147,18 +138,6 @@ export class AddModalKunjungan extends React.Component {
                     />
                   </Form.Group>
                   <Form.Group as={Col} controlId="jenis_kelamin">
-                    <Form.Label>Jenis Kelamin</Form.Label>
-                    <Form.Control
-                      required
-                      autoComplete="off"
-                      type="text"
-                      value={this.props.jenis_kelamin}
-                      onChange={this.kunjunganChange}
-                      name="jenis_kelamin"
-                      placeholder="Jenis Kelamin"
-                    />
-                  </Form.Group>
-                  {/* <Form.Group as={Col} controlId="jenis_kelamin">
                     <Form.Label for="exampleCheckbox">Jenis Kelamin</Form.Label>
                     <div>
                       <CustomInput
@@ -178,7 +157,7 @@ export class AddModalKunjungan extends React.Component {
                         onChange={this.kunjunganChange}
                       />
                     </div>
-                  </Form.Group> */}
+                  </Form.Group>
                   <Form.Group as={Col} controlId="tanggal_lahir">
                     <Form.Label>Tanggal Lahir</Form.Label>
                     <Form.Control
