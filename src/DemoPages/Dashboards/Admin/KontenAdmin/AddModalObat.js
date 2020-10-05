@@ -91,7 +91,7 @@ export class AddModalObat extends React.Component {
                             <Card.Body>
                                     <Form.Group as={Col} controlId="idObat">
                                         <Form.Label>Id Obat</Form.Label>
-                                        <Form.Control required autoComplete="off"
+                                        <Form.Control disabled required autoComplete="off"
                                         type="text"
                                         defaultValue={this.props.idObat}
                                         onChange={this.daftarObatChange} 
