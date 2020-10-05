@@ -8,6 +8,7 @@ import axios from "axios";
 import TambahDokterModal from "./TambahDokterModal";
 import EditModalDokter from "./EditModalDokter";
 import JadwalPraktek from './JadwalPraktek';
+import Swal from  'sweetalert2';
 
 export default class InformasiDokter extends React.Component {
   constructor(props) {
@@ -154,13 +155,33 @@ export default class InformasiDokter extends React.Component {
       });
   }
 
+  handleClick = () => {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      onOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'warning',
+      title: 'Data berhasil dihapus!'
+    })
+  }
+
   deleteDokter = (idDokter) => {
       axios.delete("http://localhost:1212/v1/app/dokter/"+idDokter)
       .then(response => {
         this.refreshList();
           if(response.data != null) {
-              alert("Data berhasil dihapus!");
-
+              axios.delete("http://localhost:1212/v1/app/register")
+              // alert("Data berhasil dihapus!");
+              this.handleClick();
               this.setState({
                   dokter: this.state.dokter.filter(dokter=> dokter.idDokter !== idDokter)
               })
