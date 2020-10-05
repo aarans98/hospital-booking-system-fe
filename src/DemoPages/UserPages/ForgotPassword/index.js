@@ -231,7 +231,7 @@ export default class ForgotPassword extends Component {
                         <FormGroup>
                           <Label for="emailauth">Email </Label>
                           <Input
-                            type="text"
+                            type="email"
                             name="emailauth"
                             id="emailauth"
                             placeholder="Masukkan email..."

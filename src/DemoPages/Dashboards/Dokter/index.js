@@ -22,40 +22,41 @@ export default class MainDokter extends React.Component {
     };
   }
 
-  addCount = () =>{
-    this.setState({count: this.state.count + 1});
-  }
+  addCount = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
 
   render() {
     return (
       <Fragment>
         <CSSTransitionGroup
-          component='div'
-          transitionName='TabsAnimation'
+          component="div"
+          transitionName="TabsAnimation"
           transitionAppear={true}
           transitionAppearTimeout={0}
           transitionEnter={false}
-          transitionLeave={false}>
-          <PageTitle
-            heading='Dokter'
-            subheading='Ini Halaman Dokter~'
-            icon='pe-7s-stopwatch icon-gradient bg-amy-crisp'
-          />
+          transitionLeave={false}
+        >
+          {/* <PageTitle
+            heading=''
+            subheading=''
+            icon='pe-7s-stopwatch'
+          /> */}
           <Row>
             <Col>
               <Tabs
-                defaultActiveKey='1'
+                defaultActiveKey="1"
                 renderTabBar={() => <ScrollableInkTabBar />}
                 renderTabContent={() => <TabContent />}
                 onChange={this.addCount}
               >
-                <TabPane tab='Pasien' key='1'>
+                <TabPane tab="Pasien" key="1">
                   <MyScheduleDoctor username={this.state.username} />
                 </TabPane>
-                <TabPane tab='Rekam Medik' key='2'>
-                  <RekamMedik count={this.state.count}/>
+                <TabPane tab="Rekam Medik" key="2">
+                  <RekamMedik count={this.state.count} />
                 </TabPane>
-                <TabPane tab='Daftar Obat' key='3'>
+                <TabPane tab="Daftar Obat" key="3">
                   <DaftarObat />
                 </TabPane>
                 {/* <TabPane tab='Color States' key='3'>

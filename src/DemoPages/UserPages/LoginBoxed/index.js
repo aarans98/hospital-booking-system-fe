@@ -20,10 +20,41 @@ export default class LoginBoxed extends Component {
   initialState = {
     username: "",
     password: "",
+    errUsername: "",
   };
+
+  validate() {
+    let benar = false;
+    let password = this.state.password;
+    let passwordrep = this.state.passwordrep;
+    let username = this.state.username;
+
+    if (
+      username.length <= 15 &&
+      password.length >= 6 &&
+      password.length < 13 &&
+      /^[a-z0-9._]{2,}$/i.test(username) &&
+      password === passwordrep
+    ) {
+      benar = true;
+    }
+
+    if (username.length <= 15) {
+      this.setState({ errUsername: "" });
+    } else if (username.length > 15) {
+      this.setState({ errUsername: "username more than 15 characters" });
+    }
+
+    if (!/^[a-z0-9._]{2,}$/i.test(username)) {
+      this.setState({ errUsername: "username is invalid" });
+      benar = false;
+    }
+    return benar;
+  }
 
   submitLogin = (event) => {
     event.preventDefault();
+    this.validate();
     this.setState((prev) => ({ count: prev.count + 1 }));
     axios
       .get(
@@ -180,6 +211,9 @@ export default class LoginBoxed extends Component {
                               onChange={this.loginChange}
                               value={username}
                             />
+                            <span className="text-danger">
+                              {this.state.errUsername}
+                            </span>
                           </FormGroup>
                           {/* </Col> */}
                           {/* <Col md={12}> */}
