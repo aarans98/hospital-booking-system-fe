@@ -36,7 +36,7 @@ class FormRekamMedik extends React.Component {
 
   componentDidMount() {
     // this.findAllIdRm();
-    this.findAllIdObat();
+    this.findAllObat();
     this.findAllIdJadwal();
   }
 
@@ -48,10 +48,12 @@ class FormRekamMedik extends React.Component {
       })
   }
 
-  findAllIdObat = () => {
-    axios.get("http://localhost:1212/v1/app/obat/id")
+  findAllObat = () => {
+    axios.get("http://localhost:1212/v1/app/obat")
       .then(response => {
-        this.setState({ obat: response.data });
+        let namaObat = new Array();
+        response.data.data.map(ob => namaObat.push(ob.namaObat))
+        this.setState({ obat: namaObat });
       })
   }
 
@@ -99,18 +101,18 @@ class FormRekamMedik extends React.Component {
       tinggiBadan: tinggiBadan,
       beratBadan: beratBadan,
       gejala: gejala,
-      idObat: valueObat,
+      namaObat: valueObat,
       diagnosa: diagnosa,
       dosis: dosis,
     };
 
     console.log(rekam_medik);
 
-    axios.post("http://localhost:1212/v1/app/rekam-medik", rekam_medik)
+    axios.post("http://localhost:1212/v1/app/rekam-medik/trx", rekam_medik)
       .then(response => {
         console.log(response.data);
         this.setState({disable: true});
-        this.findAllIdObat();
+        this.findAllObat();
         this.handleClick();
       });
     this.setState(this.initialState);
@@ -131,21 +133,21 @@ class FormRekamMedik extends React.Component {
               <FormGroup row>
                 <Label for="idRekamMedik" sm={2}>ID Rekam Medik</Label>
                 <Col sm={10}>
-                  <Input required type="number" name="idRekamMedik" id="idRekamMedik"
+                  <Input disabled required type="number" name="idRekamMedik" id="idRekamMedik"
                     min="1" defaultValue={idRekamMedik} onChange={this.formChange} placeholder="ID Rekam Medik" />
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label for="idPasien" sm={2}>ID Pasien</Label>
                 <Col sm={10}>
-                  <Input required type="number" name="idPasien" id="idPasien"
+                  <Input disabled required type="number" name="idPasien" id="idPasien"
                     min="1" defaultValue={this.props.id} />
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label for="idJadwal" sm={2}>ID Jadwal</Label>
                 <Col sm={10}>
-                  <Input required type="number" name="idJadwal" id="idJadwal"
+                  <Input disabled required type="number" name="idJadwal" id="idJadwal"
                     min="1" defaultValue={this.props.id} />
                 </Col>
               </FormGroup>
@@ -178,7 +180,7 @@ class FormRekamMedik extends React.Component {
                 </Col>
               </FormGroup>
               <FormGroup row>
-                <Label for="idObat" sm={2}>ID Obat</Label>
+                <Label for="namaObat" sm={2}>Nama Obat</Label>
                 <Col sm={10}>
                   <Multiselect
                     data={obat}
