@@ -233,7 +233,12 @@ export default class Login extends Component {
                     <div className="d-flex align-items-center">
                       <div className="ml-auto">
                         <Col md={10}>
-                          <Button color="danger" size="lg" type="submit">
+                          <Button
+                            color="primary"
+                            className="btn-wide btn-pill btn-shadow btn-hover-shine"
+                            size="lg"
+                            type="submit"
+                          >
                             {/* <Link
                             to={"/" + data.user_role}
                             className='btn btn-sm btn-outline-primary'> */}

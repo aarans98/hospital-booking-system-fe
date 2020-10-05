@@ -46,23 +46,28 @@ export default class ForgotPassword extends Component {
       passwordrep: this.state.passwordrep,
       username: this.props.location.forgot,
     };
+
     if (this.state.emailauth === this.state.mails.mail) {
-      axios
-        .post(
-          "http://localhost:1212/v1/app/register/forgot?password=" +
-            this.state.password +
-            "&username=" +
-            this.props.location.forgot,
-          newpassword
-        )
-        .then((response) => response.data)
-        .then((data) => {
-          {
-            this.props.history.push({
-              pathname: "/pages/login",
-            });
-          }
-        });
+      if (this.state.password === this.state.passwordrep) {
+        axios
+          .post(
+            "http://localhost:1212/v1/app/register/forgot?password=" +
+              this.state.password +
+              "&username=" +
+              this.props.location.forgot,
+            newpassword
+          )
+          .then((response) => response.data)
+          .then((data) => {
+            {
+              this.props.history.push({
+                pathname: "/pages/login",
+              });
+            }
+          });
+      } else {
+        alert("Ketik ulang password!");
+      }
     } else {
       alert(
         "Email anda bukan email yang didaftarkan untuk username " +
@@ -178,12 +183,13 @@ export default class ForgotPassword extends Component {
                       </Col>
                       <Col md={6}>
                         <FormGroup>
-                          <Label for="email">Masukkan email: </Label>
+                          <Label for="emailauth">Masukkan email: </Label>
                           <Input
                             type="text"
-                            name="email"
-                            id="email"
+                            name="emailauth"
+                            id="emailauth"
                             placeholder="Masukkan email..."
+                            onChange={this.forgotChange}
                             value={emailauth}
                           />
                         </FormGroup>
@@ -203,9 +209,9 @@ export default class ForgotPassword extends Component {
                       </Col>
                       <Col md={6}>
                         <FormGroup>
-                          <Label for="password">Ulangi password</Label>
+                          <Label for="passwordrep">Ulangi password</Label>
                           <Input
-                            type="passwordrep"
+                            type="password"
                             name="passwordrep"
                             id="passwordrep"
                             value={passwordrep}
