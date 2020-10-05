@@ -3,6 +3,8 @@ import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import axios from "axios";
 import Logo from "../../../img/logos2.png";
 import bg1 from "../../../assets/img/bg1.jpg";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 // Layout
 
 export default class LoginBoxed extends Component {
@@ -36,7 +38,7 @@ export default class LoginBoxed extends Component {
         if (this.state.count < 3) {
           if (this.state.logins.status === true) {
             if (this.state.logins.user_role === null) {
-              alert("Password anda salah!");
+              this.handleClick3();
               // this.props.history.push({
               //   pathname: "/pages/forgot-password",
               //   forgot: this.state.logins.username,
@@ -49,7 +51,7 @@ export default class LoginBoxed extends Component {
               });
             }
           } else {
-            alert("Username anda belum terdaftar");
+            this.handleClick4();
             this.props.history.push({
               pathname: "/pages/register/",
             });
@@ -57,7 +59,7 @@ export default class LoginBoxed extends Component {
         } else {
           if (this.state.logins.status === true) {
             if (this.state.logins.user_role === null) {
-              alert("Password anda salah!");
+              this.handleClick3();
               this.props.history.push({
                 pathname: "/pages/forgot-password",
                 forgot: this.state.logins.username,
@@ -70,7 +72,7 @@ export default class LoginBoxed extends Component {
               });
             }
           } else {
-            alert("Username anda belum terdaftar");
+            this.handleClick4();
             this.props.history.push({
               pathname: "/pages/register/",
             });
@@ -78,6 +80,41 @@ export default class LoginBoxed extends Component {
         }
       });
     this.setState(this.initialState);
+  };
+
+  handleClick3 = () => {
+    const Toast3 = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      onOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+    Toast3.fire({
+      icon: "warning",
+      title: "Password anda salah!",
+    });
+  };
+  handleClick4 = () => {
+    const Toast4 = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      onOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+    Toast4.fire({
+      icon: "warning",
+      title: "Username anda belum terdaftar!",
+    });
   };
 
   saveLocal = () => {
@@ -120,6 +157,15 @@ export default class LoginBoxed extends Component {
                         <div>Selamat Datang!</div>
                         <span>Silahkan masuk untuk menggunakan akses!</span>
                       </h4>
+                      <h6 className="mt-3">
+                        Tidak punya akun?{" "}
+                        <Link
+                          to={"/pages/register"}
+                          className="btn btn-sm btn-outline-primary"
+                        >
+                          Daftar sekarang
+                        </Link>{" "}
+                      </h6>
                     </div>
                     <Form onSubmit={this.submitLogin}>
                       <Row form>

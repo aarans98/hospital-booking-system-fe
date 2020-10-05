@@ -9,6 +9,7 @@ import Logo from "../../../img/logo-bahagya-long.png";
 
 import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export default class ForgotPassword extends Component {
   constructor(props) {
@@ -67,13 +68,10 @@ export default class ForgotPassword extends Component {
             }
           });
       } else {
-        alert("Ketik ulang password!");
+        this.handleClick1();
       }
     } else {
-      alert(
-        "Email anda bukan email yang didaftarkan untuk username " +
-          this.props.location.forgot
-      );
+      this.handleClick2();
     }
     this.setState(this.initialState);
   };
@@ -83,6 +81,45 @@ export default class ForgotPassword extends Component {
       [event.target.name]: event.target.value,
     });
   }
+
+  handleClick1 = () => {
+    const Toast1 = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      onOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+
+    Toast1.fire({
+      icon: "warning",
+      title: "Ketik ulang password!",
+    });
+  };
+
+  handleClick2 = () => {
+    const Toast2 = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      onOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+
+    Toast2.fire({
+      icon: "warning",
+      title: "Email yang didaftarkan bukan milik " + this.props.location.forgot,
+    });
+  };
+
   render() {
     const { password, passwordrep, emailauth } = this.state;
     let settings = {
