@@ -84,9 +84,8 @@ export class AddModalPraktek extends React.Component {
     }
 
     render() {
-        console.log(this.props.id)
-        let { idPraktek, poli, jam,
-            jadwal, idDokter } = this.state;
+        let {idPraktek, poli, jam,
+            jadwal, idDokter} = this.state;
         return (
             <Modal {...this.props} size="lg" backdrop="static" className="Mymodal" id="modal_form" animation={true}>
                 <Modal.Header closeButton>
@@ -178,9 +177,9 @@ export class AddModalPraktek extends React.Component {
                                             name="idDokter"
                                             placeholder="Id Dokter" />
                                     </Form.Group>
-                                </Card.Body>
-                                <Card.Footer style={{ "textAlign": "right" }} >
-                                    <Button class="btn btn-primary" type="submit">
+                            </Card.Body>
+                            <Card.Footer style={{"textAlign":"right"}} >
+                                    <Button class="btn btn-primary" type="submit" onClick={this.props.onHide}>
                                         Save
                                     </Button>{' '}
                                 </Card.Footer>
