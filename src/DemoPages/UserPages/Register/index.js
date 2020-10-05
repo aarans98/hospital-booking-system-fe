@@ -92,17 +92,19 @@ export default class Register extends Component {
     if (this.validate()) {
       axios
         .post("http://localhost:1212/v1/app/register", register)
-        .then((response) => {
-          console.log(response.data);
-          if (response.data.data != null) {
-            this.setState(this.initialState);
-            this.setState({ show: true });
-            //   alert(response.data.message);
+        .then((response) => response.data)
+        .then((data) => {
+          if (data.user_role === null) {
+            if (data.username === "false") {
+              alert("Username sudah digunakan");
+            } else if (data.email === "false") {
+              alert("Email sudah digunakan");
+            }
           } else {
-            console.log("failed");
-            alert("Data gagal dimasukkan");
-            this.setState({ show: false });
+            this.setState({ show: true });
+            alert("berhasil");
           }
+          // this.setState(this.initialState);
         });
     }
   };
