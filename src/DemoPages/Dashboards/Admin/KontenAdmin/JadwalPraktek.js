@@ -29,7 +29,7 @@ export default class JadwalPraktek extends React.Component {
       sendJam: "",
       sendJadwal: "",
       sendIdDokter: "",
-      jadwalBaru: "",
+      // jadwalBaru: "",
     };
     this.columns = [
       {
@@ -118,10 +118,10 @@ export default class JadwalPraktek extends React.Component {
       });
   };
 
-  loadJadwalBaru = (jadwal) => {
-    this.setState({ jadwalBaru: jadwal });
-    console.log(this.state.jadwalBaru);
-  };
+  // loadJadwalBaru = (jadwal) => {
+  //   this.setState({ jadwalBaru: jadwal });
+  //   console.log(this.state.jadwalBaru);
+  // };
 
   submitPraktek = (event) => {
     event.preventDefault();
@@ -210,11 +210,7 @@ export default class JadwalPraktek extends React.Component {
                         defaultSortField="idPraktek"
                         pagination={true}
                         highlightOnHover
-                        data={
-                          this.state.jadwalBaru
-                            ? this.state.jadwalBaru
-                            : this.props.jadwal
-                        }
+                        data={ this.props.jadwal  }
                       />
                     </Card.Body>
                     <Card.Footer>

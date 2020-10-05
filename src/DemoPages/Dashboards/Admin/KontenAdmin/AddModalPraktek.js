@@ -19,7 +19,7 @@ export class AddModalPraktek extends React.Component {
         jam: '',
         jadwal: '',
         idDokter: '',
-        jadwalBaru: '',
+        // jadwalBaru: '',
     }
 
     submitPraktek = event => {
@@ -36,7 +36,7 @@ export class AddModalPraktek extends React.Component {
             .then(response => {
                 if (response.data.data != null) {
                     this.handleClick();
-                    this.refresh(response.data.data.idDokter);
+                    // this.refresh(response.data.data.idDokter);
                     this.setState({ "show": true });
                 } else {
                     this.setState({ "show": false });
@@ -70,18 +70,18 @@ export class AddModalPraktek extends React.Component {
         })
     };
 
-    refresh = (id) => {
-        if (id) {
-            const url = "http://localhost:1212/v1/app/praktek/dokter/" + id
-            console.log(url);
-            axios.get(url).then(response => {
-                console.log(response)
-                this.setState({ jadwalBaru: response.data })
-                console.log(this.state.jadwalBaru)
-                this.props.setJadwalBaru(this.state.jadwalBaru)
-            })
-        }
-    }
+    // refresh = (id) => {
+    //     if (id) {
+    //         const url = "http://localhost:1212/v1/app/praktek/dokter/" + id
+    //         console.log(url);
+    //         axios.get(url).then(response => {
+    //             console.log(response)
+    //             this.setState({ jadwalBaru: response.data })
+    //             console.log(this.state.jadwalBaru)
+    //             this.props.setJadwalBaru(this.state.jadwalBaru)
+    //         })
+    //     }
+    // }
 
     render() {
         let {idPraktek, poli, jam,
