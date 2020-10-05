@@ -77,6 +77,7 @@ export default class TambahDokterModal extends React.Component {
     };
 
     if (this.validate()) {
+      console.log("Masuk validate")
       axios
         .post("http://localhost:1212/v1/app/register", register)
         .then((response) => {
@@ -90,6 +91,7 @@ export default class TambahDokterModal extends React.Component {
                 this.props.refreshList();
                 console.log(response.data.data);
                 if (response.data.data != null) {
+                  console.log("succes dokter")
                   alert("Data berhasil masuk!");
                   this.setState({ show: true });
                 } else {
@@ -99,7 +101,7 @@ export default class TambahDokterModal extends React.Component {
                 }
               });
           } else {
-            console.log("failed");
+            console.log("failed register");
           }
         });
     }

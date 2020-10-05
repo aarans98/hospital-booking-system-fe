@@ -86,7 +86,7 @@ export default class InformasiDokter extends React.Component {
         <Button className="btn btn-primary" raised primary 
         onClick={() => this.setState({
             editModalShow:true,
-            sendId: updateDokter.idDokter,
+            sendIdDokter: updateDokter.idDokter,
             sendNamaLengkap: updateDokter.namaLengkap,
             sendSpesialisasi: updateDokter.spesialisasi,
             sendTanggalLahir: updateDokter.tanggalLahir,

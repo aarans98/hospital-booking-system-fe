@@ -27,6 +27,7 @@ export default class EditModalInformasiStaf extends Component {
     updateInformasiStaf = (event) =>  {
         alert("Data berhasil di update!");
         event.preventDefault();
+        console.log(event.target.namaLengkap);
         const updateDokter = {
             idDokter:event.target.idDokter.value,
             namaLengkap:event.target.namaLengkap.value,
@@ -40,11 +41,14 @@ export default class EditModalInformasiStaf extends Component {
         
         axios.post("http://localhost:1212/v1/app/dokter", updateDokter)
             .then(response => {
+                console.log("masuk update dokter axios");
                 this.props.refreshList();
                 if(response.data.data != null) {
+                    console.log("berhasil post")
                     this.setState({"show":true});
                     setTimeout(() => this.setState({"show":false}), 1500);
                 } else {
+                    console.log("gagal post")
                     this.setState({"show":false});
                 }
             });
@@ -80,6 +84,15 @@ export default class EditModalInformasiStaf extends Component {
                             enableReinitialize={true}
                             id="informasiStaf">
                             <Card.Body>
+                                    <Form.Group as={Col} controlId="idDokter">
+                                        <Form.Label hidden>Id</Form.Label>
+                                        <Form.Control hidden autoComplete="off"
+                                        type="number" 
+                                        defaultValue={this.props.idDokter}
+                                        onChange={this.updateDokterChange} 
+                                        name="Id"
+                                        placeholder="Id" />
+                                    </Form.Group>
                                     
                                     <Form.Group as={Col} controlId="namaLengkap">
                                         <Form.Label>Nama Lengkap</Form.Label>
