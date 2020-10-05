@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Modal, Button, Col, Form, Card} from 'react-bootstrap';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default class EditModalInformasiStaf extends Component {
 
@@ -24,8 +25,26 @@ export default class EditModalInformasiStaf extends Component {
         user_role: 'dokter'
     }
     
+    handleClick = () => {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          onOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+    
+        Toast.fire({
+          icon: 'success',
+          title: 'Data berhasil disimpan!'
+        })
+    }
+
     updateInformasiStaf = (event) =>  {
-        alert("Data berhasil di update!");
         event.preventDefault();
         console.log(event.target.namaLengkap);
         const updateDokter = {
@@ -44,7 +63,8 @@ export default class EditModalInformasiStaf extends Component {
                 console.log("masuk update dokter axios");
                 this.props.refreshList();
                 if(response.data.data != null) {
-                    console.log("berhasil post")
+                    this.handleClick();
+                    console.log("berhasil post");
                     this.setState({"show":true});
                     setTimeout(() => this.setState({"show":false}), 1500);
                 } else {

@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal, Button, Row, Col, Form, Card } from "react-bootstrap";
 import axios from "axios";
+import Swal from 'sweetalert2';
 
 export default class TambahDokterModal extends React.Component {
   constructor(props) {
@@ -92,11 +93,12 @@ export default class TambahDokterModal extends React.Component {
                 console.log(response.data.data);
                 if (response.data.data != null) {
                   console.log("succes dokter")
-                  alert("Data berhasil masuk!");
+                  // alert("Data berhasil masuk!");
+                  this.handleClick();
                   this.setState({ show: true });
                 } else {
                   console.log("failed");
-                  alert("Data gagal dimasukkan");
+                  // alert("Data gagal dimasukkan");
                   this.setState({ show: false });
                 }
               });
@@ -106,6 +108,25 @@ export default class TambahDokterModal extends React.Component {
         });
     }
   };
+
+  handleClick = () => {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      onOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Data berhasil disimpan!'
+    })
+}
 
   tambahDokterChange(event) {
     this.setState({
@@ -258,7 +279,7 @@ export default class TambahDokterModal extends React.Component {
               type="submit"
               onClick={this.props.onHide}
             >
-              Save
+              Simpan
             </Button>
           </Modal.Footer>
         </Form>
