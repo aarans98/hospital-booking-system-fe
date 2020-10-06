@@ -2,6 +2,7 @@ import React from "react";
 import { CustomInput } from "reactstrap";
 import { Modal, Button, Row, Col, Form, Card } from "react-bootstrap";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export class AddModalKunjungan extends React.Component {
   constructor(props) {
@@ -50,7 +51,21 @@ export class AddModalKunjungan extends React.Component {
         if (response.data != null) {
           this.setState({ show: true });
           setTimeout(() => this.setState({ show: false }), 3000);
-          alert("Data berhasil masuk!");
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            onOpen: (toast) => {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            },
+          });
+          Toast.fire({
+            icon: "success",
+            title: "Anda sudah membuat jadwal!",
+          });
         } else {
           this.setState({ show: false });
         }
