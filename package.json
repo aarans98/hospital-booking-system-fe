@@ -144,7 +144,7 @@
     "sweetalert2": "^10.3.5",
     "sweetalert2-react-content": "^3.2.0",
     "typescript": "^3.7.2",
-    "validator": "^12.1.0"
+    "validator": "^13.7.0"
   },
   "scripts": {
     "start": "react-scripts start",
